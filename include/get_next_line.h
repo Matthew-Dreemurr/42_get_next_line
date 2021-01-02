@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/02 18:24:10 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/02 18:30:48 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,14 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+
+#ifndef BUFFER_SIZE
 # define BUFFER_SIZE 128
+#endif
+
+#ifndef TXT
 # define TXT "NOPE"
+#endif
 
 int	get_next_line(int fd, char **line);
 #endif
