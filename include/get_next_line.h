@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_main.c                               :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/02 15:41:33 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/02 16:37:02 by mhadad           ###   ########.fr       */
+/*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
+/*   Updated: 2021/01/02 18:06:09 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
+#ifndef __GET_NEXT_LINE__
+# define __GET_NET_LINE__
 
-int	check_error(int fd, char **line )
-{
+# include <stdlib.h>
+# include <unistd.h>
+# define BUFFER_SIZE 128
 
-	if (-1 == (get_next_line(fd, line)))
-	{
-		printf("/!\\ [{Error}_check_error]: Return fonction /!\\\n");
-	}
-	else
-	{
-		printf("[{OK}_check_error]\n");
-	}
-	
-	return (1);
-}
-
-int	main()
-{
-	int		fd;
-	char	**line;
-
-	check_error(fd, line);
-	free(line);
-	return (0);
-}
+int	get_next_line(int fd, char **line);
+#endif

@@ -6,19 +6,22 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/01/02 16:21:19 by mhadad           ###   ########.fr        #
+#    Updated: 2021/01/02 17:58:24 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gnl.OwO
 CC = gcc
-CFLAG = -Wall -Wextra -Werror -I .
-SRC = get_next_line_utils.c get_next_line.c \
-	get_next_line_main.c
+CFLAG = -Wall -Wextra -Werror -I ./include
+SRC = SRC/get_next_line_utils.c SRC/get_next_line.c \
+	SRC/get_next_line_main.c
 OBJ = ${SRC:c=o}
-DEF = -D BUFFER_SIZE=32
+DEF = -D BUFFER_SIZE=32 
 
 all: $(NAME)
+
+.c:.o
+	gcc -c -o
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAG) $(DEF) $(OBJ) -o $(NAME)
@@ -28,9 +31,9 @@ $(NAME): $(OBJ)
 re: fclean all
 
 clean:
-	@rm -f $(OBJ)
+	rm -f $(OBJ)
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 leak: re
 	$(CC) $(CFLAG) $(DEF) -fsanitize=address $(OBJ) -o $(NAME)

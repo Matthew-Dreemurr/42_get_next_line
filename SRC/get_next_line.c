@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/02 15:47:33 by mhadad           ###   ########.fr       */
+/*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
+/*   Updated: 2021/01/02 16:59:20 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __GET_NEXT_LINE__
-# define __GET_NET_LINE__
+#include "../include/get_next_line.h"
 
-#include <stdlib.h>
-#include <unistd.h>
+int	get_next_line(int fd, char **line)
+{
 
-int	get_next_line(int fd, char **line);
-#endif
+	if (!(line))
+		return (-1);
+	return (0);
+}
