@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 15:41:33 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/02 19:44:27 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/02 19:49:35 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main()
 		printf("/!\\ [{Error}_main]: Open " TXT " fd = |%d|/!\\\n", fd);
 		return (1);
 	}
-	printf("File descriptor |%d|\n", fd);
+	printf("Open successful, File descriptor |%d|\n", fd);
 	check_error(fd, line);
 	free(line);
 	return (0);
