@@ -6,14 +6,15 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/02 14:22:07 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/02 15:47:33 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	get_next_line(int fd, char **line)
-{
+#ifndef __GET_NEXT_LINE__
+# define __GET_NET_LINE__
 
+#include <stdlib.h>
+#include <unistd.h>
 
-
-	return (0);
-}
+int	get_next_line(int fd, char **line);
+#endif
