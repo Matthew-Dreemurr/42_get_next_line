@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/02 18:50:00 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/02 20:15:36 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ int	get_next_line(int fd, char **line)
 {
 	(void)fd;
 	if (!(line))
-		return (-1);
+		return (0);
+	*line = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	ft_bzero(*line, BUFFER_SIZE + 1);
+	read(fd, *line, BUFFER_SIZE);
 	return (0);
 }

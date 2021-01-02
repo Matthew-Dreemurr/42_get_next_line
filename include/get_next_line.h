@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/02 18:30:48 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/02 20:14:52 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@
 #endif
 
 int	get_next_line(int fd, char **line);
+void	ft_bzero(void *s, size_t n);
 #endif
