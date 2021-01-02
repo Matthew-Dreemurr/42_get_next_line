@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 15:41:33 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/02 19:49:35 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/02 19:51:57 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <strings.h>
-
-int	check_error(int fd, char **line)
-{
-
-	if (-1 == (get_next_line(fd, line)))
-	{
-		printf("/!\\ [{Error}_check_error]: Return fonction = -1 /!\\\n");
-	}
-	else
-	{
-		printf("[{OK}_check_error]\n");
-	}
-	
-	return (1);
-}
 
 int	main()
 {
@@ -49,8 +34,15 @@ int	main()
 		printf("/!\\ [{Error}_main]: Open " TXT " fd = |%d|/!\\\n", fd);
 		return (1);
 	}
-	printf("Open successful, File descriptor |%d|\n", fd);
-	check_error(fd, line);
+	printf("Open %s successful, File descriptor |%d|\n", TXT, fd);
+	if (-1 == (get_next_line(fd, line)))
+	{
+		printf("/!\\ [{Error}_check_error]: Return fonction = -1 /!\\\n");
+	}
+	else
+	{
+		printf("[{OK}_check_error]\n");
+	}
 	free(line);
 	return (0);
 }
