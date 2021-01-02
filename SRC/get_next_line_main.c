@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 15:41:33 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/02 17:58:12 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/02 18:24:42 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int	main()
 	char	**line;
 
 	printf("|%d| test\n", BUFFER_SIZE);
-	if (TXT == "")
+	if (TXT == "NOPE")
 	{
 		printf("/!\\ [{Error}_main]: Please add DEF = -D TXT=\"FILE_NAME\" to the Makefile /!\\\n");
 		return (1);
 	}
-	if(!(fd = open("TXT", "r")))
+	if(!(fd = open(TXT, 'r')))
 	{
 		printf("/!\\ [{Error}_main]: Open " TXT "/!\\\n");
 		return (1);

@@ -6,7 +6,7 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/01/02 17:58:24 by mhadad           ###   ########.fr        #
+#    Updated: 2021/01/02 18:20:35 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAG = -Wall -Wextra -Werror -I ./include
 SRC = SRC/get_next_line_utils.c SRC/get_next_line.c \
 	SRC/get_next_line_main.c
 OBJ = ${SRC:c=o}
-DEF = -D BUFFER_SIZE=32 
+DEF = -D BUFFER_SIZE=32
 
 all: $(NAME)
 
@@ -25,7 +25,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAG) $(DEF) $(OBJ) -o $(NAME)
-	@cat cat.UwU
+	@cat ./test/cat.UwU
 	@echo "\n"
 
 re: fclean all

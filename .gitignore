@@ -53,3 +53,4 @@ dkms.conf
 
 # Custom
 *.OwO
+.DS_Store
