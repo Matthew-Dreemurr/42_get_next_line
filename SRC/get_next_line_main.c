@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 15:41:33 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/02 18:24:42 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/02 19:44:27 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <strings.h>
 
-int	check_error(int fd, char **line )
+int	check_error(int fd, char **line)
 {
 
 	if (-1 == (get_next_line(fd, line)))
 	{
-		printf("/!\\ [{Error}_check_error]: Return fonction /!\\\n");
+		printf("/!\\ [{Error}_check_error]: Return fonction = -1 /!\\\n");
 	}
 	else
 	{
@@ -33,20 +34,22 @@ int	check_error(int fd, char **line )
 
 int	main()
 {
-	int		fd;
-	char	**line;
+	int			fd;
+	static char	**line;
 
-	printf("|%d| test\n", BUFFER_SIZE);
-	if (TXT == "NOPE")
+
+	printf("TXT = |%s|, BUFFER_SIZE = |%d|\n", TXT, BUFFER_SIZE);
+	if ((char *)TXT == (char *)"NOPE")
 	{
 		printf("/!\\ [{Error}_main]: Please add DEF = -D TXT=\"FILE_NAME\" to the Makefile /!\\\n");
 		return (1);
 	}
-	if(!(fd = open(TXT, 'r')))
+	if((fd = open(TXT, O_RDONLY)) == -1)
 	{
-		printf("/!\\ [{Error}_main]: Open " TXT "/!\\\n");
+		printf("/!\\ [{Error}_main]: Open " TXT " fd = |%d|/!\\\n", fd);
 		return (1);
 	}
+	printf("File descriptor |%d|\n", fd);
 	check_error(fd, line);
 	free(line);
 	return (0);
