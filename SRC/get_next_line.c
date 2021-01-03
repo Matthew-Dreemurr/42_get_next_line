@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/03 09:58:45 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/03 15:44:44 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ int	get_next_line(int fd, char **line)
 
 	if (!(line))
 		return (-1);
+	gnl.len = 0;
 	buff = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
 	read(fd, buff, BUFFER_SIZE);
 	gnl.len += EOL_len(buff, 0);
 	*line = ft_substr(buff, gnl.index, gnl.len);
-	gnl.index += gnl.len;
+	gnl.index += gnl.len + 1;
 	free(buff);
-#ifdef DEBUG
+#ifdef DEBUG //TODO need to remove
 	printf("GNL data :\n	gnl.index = |%lu|\n	gnl.len = |%lu|\n", gnl.index, gnl.len);
 #endif
 	return (0);

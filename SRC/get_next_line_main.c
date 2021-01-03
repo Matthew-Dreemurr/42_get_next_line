@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 15:41:33 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/03 09:51:40 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/03 13:04:02 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <strings.h>
+#include <string.h>
 
 #ifndef TXT
 # define TXT "ERROR"
@@ -47,7 +48,7 @@ int	gnl_test()
 
 	//* Call GNL *//
 
-	printf("\n\n\n[===[GNL: start]===]\n\n\n");
+	printf("\n[===[GNL: start]===]\n");
 	if (-1 == (get_next_line(fd, &line)))
 	{
 		printf("###/!\\ [{Error}_check_error]: Return fonction = -1 /!\\\n");
@@ -57,8 +58,9 @@ int	gnl_test()
 		printf("###[{OK}_get_next_line]\n\n\n");
 	}
 	printf("##line read = |%s|\n", line);
-	printf("\n\n\n[===[GNL: stop]===]\n\n\n");
+	printf("[===[GNL: stop]===]\n");
 	printf("\n[=========================================]\n\n\n");
+	free(line);
 	return (1);
 }
 
