@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 15:41:33 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/02 20:12:23 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/03 09:51:40 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,63 @@
 #include <fcntl.h>
 #include <strings.h>
 
-int	main()
+#ifndef TXT
+# define TXT "ERROR"
+#endif
+#ifndef LOOP
+# define LOOP 1
+#endif
+
+int	gnl_test()
 {
 	int			fd;
 	char		*line;
 
 
-	printf("TXT = |%s|, BUFFER_SIZE = |%d|\n", TXT, BUFFER_SIZE);
-	if ((char *)TXT == (char *)"NOPE")
+	printf("#Reading file |%s| whit the buffer size limit of |%d|oct\n", TXT, BUFFER_SIZE);
+	if (!(strcmp(TXT, "ERROR")))
 	{
-		printf("/!\\ [{Error}_main]: Please add DEF = -D TXT=\"FILE_NAME\" to the Makefile /!\\\n");
-		return (1);
+		printf("##/!\\ [{Error}_main]: Please add DEF = -D TXT=\"FILE_NAME\" to the Makefile /!\\\n");
+		return (0);
 	}
-
+#ifdef TXT
 	//* Check open file *//
 	if((fd = open(TXT, O_RDONLY)) == -1)
 	{
-		printf("/!\\ [{Error}_main]: Open " TXT " fd = |%d|/!\\\n", fd);
-		return (1);
+		printf("##/!\\ [{Error}_main]: Open " TXT " fd = |%d|/!\\\n", fd);
+		return (0);
 	}
-	printf("Open %s successful, File descriptor |%d|\n", TXT, fd);
+	printf("##Open %s successful, File descriptor |%d|\n", TXT, fd);
 
 	//* Call GNL *//
+
+	printf("\n\n\n[===[GNL: start]===]\n\n\n");
 	if (-1 == (get_next_line(fd, &line)))
 	{
-		printf("/!\\ [{Error}_check_error]: Return fonction = -1 /!\\\n");
+		printf("###/!\\ [{Error}_check_error]: Return fonction = -1 /!\\\n");
 	}
 	else
 	{
-		printf("[{OK}_get_next_line]\n");
+		printf("###[{OK}_get_next_line]\n\n\n");
 	}
-	printf("line = |%s|", line);
-	free(line);
+	printf("##line read = |%s|\n", line);
+	printf("\n\n\n[===[GNL: stop]===]\n\n\n");
+	printf("\n[=========================================]\n\n\n");
+	return (1);
+}
+
+int	main()
+{
+	int	loop;
+
+	loop = LOOP;
+	while(loop--)
+	{
+		if (!(gnl_test()))
+		{
+			printf("[======[STOP ERROR]======]");
+		}
+	}
 	return (0);
 }
+#endif
