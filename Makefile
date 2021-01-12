@@ -6,7 +6,7 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/01/03 09:52:08 by mhadad           ###   ########.fr        #
+#    Updated: 2021/01/12 17:38:28 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME = gnl.OwO
 CC = gcc
 DEF = -D BUFFER_SIZE=256 -D TXT=\"test/txt.UwU\" -D DEBUG -D LOOP=3
 CFLAG = $(DEF) -Wall -Wextra -Werror
-SRC = SRC/get_next_line_utils.c SRC/get_next_line.c \
-	SRC/get_next_line_main.c
+SRC = src/get_next_line_utils.c src/get_next_line.c \
+	src/get_next_line_main.c
 
 all: $(NAME)
 
