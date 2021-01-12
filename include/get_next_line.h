@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/03 09:45:02 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/12 09:19:03 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 int	get_next_line(int fd, char **line);
 void	ft_bzero(void *s, size_t n);
 size_t	EOL_len(const char *s, int len);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void	*ft_calloc(size_t nmemb, size_t size);
 
 typedef struct	s_get_next_line

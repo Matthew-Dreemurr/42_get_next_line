@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/03 09:39:08 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/12 09:18:55 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,34 +31,34 @@ size_t	EOL_len(const char *s, int len)
 	if(!len)
 	{
 		while (s[i] && s[i] != '\n')
-		i++;
+			i++;
 	}
 	else
 	{
-		while (s[i] && s[i] != '\n')
+		while (s[i])
 			i++;
 	}
 	return (i);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char	*buff;
-	char	*s1;
+	size_t	i;
+	size_t	count;
 
-	if (!s)
-		return (NULL);
-	s1 = (char *)s;
-	if (!(buff = malloc((sizeof(char) * (len + 1)))))
-		return (NULL);
-	ft_bzero(buff, len + 1);
-	if (start >= EOL_len(s, 1))
-		return (buff);
-	while (start--)
-		s1++;
-	while (len--)
-		buff[len] = s1[len];
-	return (buff);
+	if (!dst)
+		return (0);
+	i = 0;
+	count = ft_strlen(src);
+	if (!dstsize)
+		return (count);
+	while (src[i] != '\0' && i < (dstsize - 1))
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (count);
 }
 
 void	*ft_calloc(size_t nmemb, size_t size)
