@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/15 15:06:55 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/15 15:57:34 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char*	read_file(int fd, t_gnl gnl)
 		return (NULL);
 	if (gnl.ret_read == -1)
 		return (NULL);
-printf("buff: |%s|\n", buff);
 	return (buff);
 }
 
@@ -57,6 +56,5 @@ int	get_next_line(int fd, char **line)
 	
 	if (!(*line = read_file(fd, gnl)))
 		return (-1);
-printf("buff: |%s|\n", *line);
 	return (1); //on line was read, 0 for the EOF
 }
