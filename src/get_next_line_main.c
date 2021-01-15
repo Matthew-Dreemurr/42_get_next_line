@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 15:41:33 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/03 13:04:02 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/15 15:23:00 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 # define LOOP 1
 #endif
 
-int	gnl_test()
+int	gnl_test(int fd)
 {
-	int			fd;
 	char		*line;
+	int			ret;
 
-
+	ret = 0;
 	printf("#Reading file |%s| whit the buffer size limit of |%d|oct\n", TXT, BUFFER_SIZE);
 	if (!(strcmp(TXT, "ERROR")))
 	{
@@ -38,18 +38,11 @@ int	gnl_test()
 		return (0);
 	}
 #ifdef TXT
-	//* Check open file *//
-	if((fd = open(TXT, O_RDONLY)) == -1)
-	{
-		printf("##/!\\ [{Error}_main]: Open " TXT " fd = |%d|/!\\\n", fd);
-		return (0);
-	}
-	printf("##Open %s successful, File descriptor |%d|\n", TXT, fd);
-
 	//* Call GNL *//
 
 	printf("\n[===[GNL: start]===]\n");
-	if (-1 == (get_next_line(fd, &line)))
+	ret = get_next_line(fd, &line);
+	if (ret == -1)
 	{
 		printf("###/!\\ [{Error}_check_error]: Return fonction = -1 /!\\\n");
 	}
@@ -61,19 +54,36 @@ int	gnl_test()
 	printf("[===[GNL: stop]===]\n");
 	printf("\n[=========================================]\n\n\n");
 	free(line);
-	return (1);
+	return (ret);
 }
 
 int	main()
 {
 	int	loop;
+	int	fd;
+	int	ret;
 
 	loop = LOOP;
+	ret = 0;
+		//* Check open file *//
+	if((fd = open(TXT, O_RDONLY)) == -1)
+	{
+		printf("##/!\\ [{Error}_main]: Open " TXT " fd = |%d|/!\\\n", fd);
+		return (0);
+	}
+	printf("##Open %s successful, File descriptor |%d|\n", TXT, fd);
 	while(loop--)
 	{
-		if (!(gnl_test()))
+		ret = gnl_test(fd);
+		if (ret == 0)
 		{
-			printf("[======[STOP ERROR]======]");
+			printf("[======[EOF]======]");
+			break;
+		}
+		if (ret == -1)
+		{
+			printf("[======[ERROR]======]");
+			break;
 		}
 	}
 	return (0);

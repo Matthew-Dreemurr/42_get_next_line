@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/12 17:39:36 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/15 12:53:13 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ void	ft_bzero(void *s, size_t n)
 **	If len == 0, the fonction will return the number of characters that
 **	precede the '\n'.	If len == 1, the fonction will return the number
 **	of characters that precede the '\0'
-**	TODO need to proterc NULL string
+**
+**	Return :
+		The number of characters
 */
+//TODO need to proterc NULL string
 
 size_t	eol_len(const char *s, int len)
 {
@@ -37,15 +40,11 @@ size_t	eol_len(const char *s, int len)
 
 	i = 0;
 	if (!len)
-	{
 		while (s[i] && s[i] != '\n')
 			i++;
-	}
 	else
-	{
 		while (s[i])
 			i++;
-	}
 	return (i);
 }
 
@@ -54,6 +53,10 @@ size_t	eol_len(const char *s, int len)
 **
 **	The function will copy the `len` number of characters of the string
 **	from `src` to `dest` starting at the `start` byte.
+**	
+**	Return :
+**		1 = Success
+**		0 = Error
 */
 
 size_t	md_cpydata(const char *src, char *dest, size_t start, size_t len)
@@ -76,14 +79,4 @@ size_t	md_cpydata(const char *src, char *dest, size_t start, size_t len)
 	if (++dest)
 		*dest = '\0';
 	return (1);
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	char *str;
-
-	if (!(str = malloc(nmemb * size)))
-		return (NULL);
-	ft_bzero(str, (size * nmemb));
-	return (str);
 }
