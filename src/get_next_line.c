@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/15 15:57:34 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/15 16:35:54 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char*	read_file(int fd, t_gnl gnl)
 **
 **	Return :
 **		1 = A line has been read
-**		0 = Success
+**		0 = EOF
 **		-1 = Error
 */
 
@@ -56,5 +56,7 @@ int	get_next_line(int fd, char **line)
 	
 	if (!(*line = read_file(fd, gnl)))
 		return (-1);
+	if (!gnl.ret_read)
+		return (0);
 	return (1); //on line was read, 0 for the EOF
 }
