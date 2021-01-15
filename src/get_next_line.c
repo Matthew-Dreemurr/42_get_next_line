@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/15 21:41:37 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/15 22:05:55 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@
 
 int	get_next_line(int fd, char **line)
 {
-
+	(void)fd;
+	(void)line;
+	return (0);
 }

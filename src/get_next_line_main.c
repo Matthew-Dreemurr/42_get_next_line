@@ -55,7 +55,7 @@ int	gnl_test(int fd)
 	}
 	printf("line read = |%s|\n", line);
 	printf("[---[GNL: stop]---]\n");
-	if (line)
+	if (*line)
 		free(line);
 	return (ret);
 }
@@ -85,7 +85,9 @@ int	main()
 	}
 	while(i < loop)
 	{
-		printf(YEL "\n[=====[Loop nbr %d]=====]\n" RESET, i);
+		printf(YEL "\n     [.---=====---.]\n" RESET);
+		printf(YEL "[=====[Loop nbr %d]=====]\n" RESET, i);
+		printf(YEL "     ['--=======--']\n" RESET);
 		ret = gnl_test(fd);
 		if (ret == -1)
 		{
