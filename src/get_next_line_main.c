@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 15:41:33 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/15 15:23:00 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/15 15:43:12 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ int	gnl_test(int fd)
 
 	printf("\n[===[GNL: start]===]\n");
 	ret = get_next_line(fd, &line);
+	printf("GNL return |%d|\n", ret);
 	if (ret == -1)
 	{
 		printf("###/!\\ [{Error}_check_error]: Return fonction = -1 /!\\\n");
 	}
-	else
+	if (ret == 0)
 	{
 		printf("###[{OK}_get_next_line]\n\n\n");
 	}
@@ -75,14 +76,14 @@ int	main()
 	while(loop--)
 	{
 		ret = gnl_test(fd);
-		if (ret == 0)
-		{
-			printf("[======[EOF]======]");
-			break;
-		}
 		if (ret == -1)
 		{
 			printf("[======[ERROR]======]");
+			break;
+		}
+		else if (!ret)
+		{
+			printf("[======[EOF]======]");
 			break;
 		}
 	}
