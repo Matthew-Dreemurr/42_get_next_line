@@ -49,13 +49,14 @@ int	gnl_test(int fd)
 	{
 		printf(RED "/!\\ [{Error}_check_error]: Return fonction = -1 /!\\\n" RESET);
 	}
-	if (ret == 0)
+	if (ret >= 0)
 	{
 		printf(GRN "[{OK}_get_next_line]\n\n\n" RESET);
 	}
 	printf("line read = |%s|\n", line);
 	printf("[---[GNL: stop]---]\n");
-	free(line);
+	if (line)
+		free(line);
 	return (ret);
 }
 
@@ -98,5 +99,6 @@ int	main()
 		}
 		i++;
 	}
+	close(fd);
 	return (0);
 }

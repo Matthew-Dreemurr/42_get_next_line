@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/15 12:56:43 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/15 16:51:22 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define BUFFER_SIZE 128
 #endif
 
-int	get_next_line(int fd, char **line);
+int		get_next_line(int fd, char **line);
 void	ft_bzero(void *s, size_t n);
 size_t	eol_len(const char *s, int len);
 size_t	md_cpydata(const char *src, char * dest, size_t start, size_t len);
@@ -30,7 +30,7 @@ typedef struct	s_gnl
 {
 	size_t	index;
 	size_t	len;
-	int		ret_read;
+	ssize_t		ret_read;
 }				t_gnl;
 
 #endif
