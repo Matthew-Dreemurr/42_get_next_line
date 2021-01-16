@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/16 16:34:08 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/16 16:47:01 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 #define B_MAG	"\x1B[35;1m"
 #define B_CYN	"\x1B[36;1m"
 #define B_WHT	"\x1B[37;1m"
+#define D_WHT	"\x1B[37;2m"
 #define B_RESET	"\x1B[0m"
 
 /*

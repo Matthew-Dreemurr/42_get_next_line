@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/16 16:18:16 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/16 16:46:27 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ int	get_next_line(int fd, char **line)
 	(void)gnl;
 	if (!line)
 		return (ERROR);
+#ifdef DEBUG
+printf(B_YEL "\nThe last buff" RESET " = |%s|\n", buff);
+#endif
 	if (!(eol_len(buff, 0)))
 	{
 		
@@ -44,9 +47,14 @@ int	get_next_line(int fd, char **line)
 
 
 #ifdef DEBUG
-printf(YEL "Read buff" RESET " = |%s|\n", buff);
+printf(B_YEL "\nRead buff" RESET " = |%s|\n", buff);
 #endif
 	}
+	else
+	{
+		/* code */
+	}
+	
 	*line = buff;
 	
 	return (1);
