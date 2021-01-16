@@ -55,8 +55,6 @@ int	gnl_test(int fd)
 	}
 	printf("line read = |%s|\n", line);
 	printf("[---[GNL: stop]---]\n");
-	if (*line)
-		free(line);
 	return (ret);
 }
 

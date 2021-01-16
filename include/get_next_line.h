@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/15 16:51:22 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/16 12:11:01 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,26 @@
 # define BUFFER_SIZE 128
 #endif
 
+/*
+**   get_next_line return :
+**      A line has been read =   LRD
+**      End of line =            EOF
+**      Error =	                 ERROR
+*/
+
+#define LRD 1
+#define EOF 0
+#define ERROR -1
+
 int		get_next_line(int fd, char **line);
-void	ft_bzero(void *s, size_t n);
 size_t	eol_len(const char *s, int len);
-size_t	md_cpydata(const char *src, char * dest, size_t start, size_t len);
-void	*ft_calloc(size_t nmemb, size_t size);
+
+/*
+**   struct gnl :
+**      index :
+**      len :
+**      ret_read :
+*/
 
 typedef struct	s_gnl
 {
