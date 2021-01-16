@@ -18,15 +18,6 @@
 #include <strings.h>
 #include <string.h>
 
-#define RED   "\x1B[31m"
-#define GRN   "\x1B[32m"
-#define YEL   "\x1B[33m"
-#define BLU   "\x1B[34m"
-#define MAG   "\x1B[35m"
-#define CYN   "\x1B[36m"
-#define WHT   "\x1B[37m"
-#define RESET "\x1B[0m"
-
 #ifndef TXT
 # define TXT "ERROR"
 #endif
@@ -41,20 +32,27 @@ int	gnl_test(int fd)
 
 	ret = 0;
 	//* Call GNL *//
-
+#ifdef DEBUG
 	printf("\n[---[GNL: start]---]\n");
+#endif
 	ret = get_next_line(fd, &line);
-	printf("GNL return |%d|\n", ret);
+#ifdef DEBUG
+	printf(YEL "GNL return" RESET " |%d|\n", ret);
+#endif
 	if (ret == -1)
 	{
 		printf(RED "/!\\ [{Error}_check_error]: Return fonction = -1 /!\\\n" RESET);
 	}
 	if (ret >= 0)
 	{
+#ifdef DEBUG
 		printf(GRN "[{OK}_get_next_line]\n\n\n" RESET);
+#endif
 	}
-	printf("line read = |%s|\n", line);
+	printf(YEL "**line" RESET " = |%s|\n", line);
+#ifdef DEBUG
 	printf("[---[GNL: stop]---]\n");
+#endif
 	return (ret);
 }
 
@@ -74,8 +72,10 @@ int	main()
 		printf(RED "/!\\ [{Error}_main]: Open " TXT " fd = |%d|/!\\\n" RESET, fd);
 		return (0);
 	}
+#ifdef DEBUG
 	printf(GRN "Open %s successful, File descriptor |%d|\n" RESET, TXT, fd);
 	printf(YEL "Reading file |%s| whit the buffer size limit of |%d|oct\n" RESET, TXT, BUFFER_SIZE);
+#endif
 	if (!(strcmp(TXT, "ERROR")))
 	{
 		printf(RED "/!\\ [{Error}_main]: Please add DEF = -D TXT=\"FILE_NAME\" to the Makefile /!\\\n" RESET);
@@ -85,7 +85,7 @@ int	main()
 	{
 		printf(YEL "\n     [.---=====---.]\n" RESET);
 		printf(YEL "[=====[Loop nbr %d]=====]\n" RESET, i);
-		printf(YEL "     ['--=======--']\n" RESET);
+		printf(YEL "     ['--=======--']\n\n" RESET);
 		ret = gnl_test(fd);
 		if (ret == -1)
 		{

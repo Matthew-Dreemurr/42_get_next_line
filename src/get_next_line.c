@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/16 12:53:54 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/16 15:54:53 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 
 int	get_next_line(int fd, char **line)
 {
-	static char		buff[BUFFER_SIZE + 1];
-	static char		*tmp;
 	static t_gnl	gnl;
+	static char		buff[BUFFER_SIZE + 1];
+	char		*tmp;
 
 	(void)tmp;
 	(void)gnl;
@@ -37,8 +37,12 @@ int	get_next_line(int fd, char **line)
 	if (!(eol_len(buff, 0)))
 	{
 		read(fd, &buff, BUFFER_SIZE);
+		buff[BUFFER_SIZE] = '\0';
+#ifdef DEBUG
+printf("etst");
+#endif
 	}
-	buff[BUFFER_SIZE] = '\0';
 	*line = buff;
-	return (0);
+	
+	return (1);
 }

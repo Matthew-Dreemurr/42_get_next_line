@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/16 12:11:01 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/16 16:05:28 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 128
 #endif
+
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
 
 /*
 **   get_next_line return :
