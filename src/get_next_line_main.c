@@ -33,11 +33,11 @@ int	gnl_test(int fd)
 	ret = 0;
 	//* Call GNL *//
 #ifdef DEBUG
-	printf("\n[---[GNL: start]---]\n");
+	printf("[---[GNL: start]---]\n");
 #endif
 	ret = get_next_line(fd, &line);
 #ifdef DEBUG
-	printf(YEL "GNL return" RESET " |%d|\n", ret);
+	printf(YEL "\nGNL return" RESET " |%d|\n", ret);
 #endif
 	if (ret == -1)
 	{
@@ -49,7 +49,7 @@ int	gnl_test(int fd)
 		printf(GRN "[{OK}_get_next_line]\n\n\n" RESET);
 #endif
 	}
-	printf(YEL "**line" RESET " = |%s|\n", line);
+	printf(YEL "**line" RESET " = " B_WHT "|%s|\n" RESET, line);
 #ifdef DEBUG
 	printf("[---[GNL: stop]---]\n");
 #endif
@@ -83,9 +83,9 @@ int	main()
 	}
 	while(i < loop)
 	{
-		printf(YEL "\n     [.---=====---.]\n" RESET);
+		printf(B_YEL "\n     [..--====--..]\n" RESET);
 		printf(YEL "[=====[Loop nbr %d]=====]\n" RESET, i);
-		printf(YEL "     ['--=======--']\n\n" RESET);
+		printf(B_YEL "    ['---=======---']\n\n" RESET);
 		ret = gnl_test(fd);
 		if (ret == -1)
 		{
