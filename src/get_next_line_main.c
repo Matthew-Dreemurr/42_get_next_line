@@ -38,12 +38,12 @@ int	gnl_test(int fd)
 #endif
 	if (ret == -1)
 	{
-		printf(RED "/!\\ [{Error}_check_error]: Return fonction = -1 /!\\\n" RESET);
+		printf(RED "/!\\ [Error_check_error]: Return fonction = -1 /!\\\n" RESET);
 	}
 	if (ret >= 0)
 	{
 #ifdef DEBUG
-		printf(B_GRN "[[OK] get_next_line\n\n" RESET);
+		printf(B_GRN "[OK] get_next_line\n\n" RESET);
 #endif
 	}
 	printf(B_YEL "**line" RESET " = " B_WHT "|%s|\n" RESET, line);
@@ -63,7 +63,7 @@ int	main()
 		//* Check open file *//
 	if((fd = open(TXT, O_RDONLY)) == -1)
 	{
-		printf(RED "/!\\ [{Error}_main]: Open " TXT " fd = |%d|/!\\\n" RESET, fd);
+		printf(RED "/!\\ [Error_main]: Open " TXT " fd = |%d|/!\\\n" RESET, fd);
 		return (0);
 	}
 #ifdef DEBUG
@@ -72,7 +72,7 @@ int	main()
 #endif
 	if (!(strcmp(TXT, "ERROR")))
 	{
-		printf(RED "/!\\ [{Error}_main]: Please add DEF = -D TXT=\"FILE_NAME\" to the Makefile /!\\\n" RESET);
+		printf(RED "/!\\ [Error_main]: Please add DEF = -D TXT=\"FILE_NAME\" to the Makefile /!\\\n" RESET);
 		return (0);
 	}
 	while(i < loop)
