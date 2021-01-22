@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 17:20:33 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/22 17:33:21 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 **
 */
 
-int	free_mem(char **buff)
+int	error_mem(char **buff)
 {
 #ifdef DEBUG
-printf(B_RED "\nFREE_MEM CALL FOR ERROR" RESET);
+printf(B_RED "\nerror_mem CALL FOR ERROR" RESET);
 #endif
 	free(*buff);
 	return (ERROR);
@@ -47,8 +47,8 @@ printf(B_RED "\nFREE_MEM CALL FOR ERROR" RESET);
 int	get_next_line(int fd, char **line)
 {
 	static t_gnl	gnl;
-	static char		*buff;
 	static char		*tmp;
+	char		*buff;
 
 	if (!line)
 		return (ERROR);
@@ -61,7 +61,7 @@ printf(B_YEL "\nThe last buff" B_WHT " = |%s|\n" RESET, buff);
 	while (!(gnl.len = eol_len(tmp, 0)))
 	{
 		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE) == -1))
-			return(free_mem(&buff));
+			return(error_mem(&buff));
 		buff[gnl.ret_read] = '\0';
 																		#ifdef DEBUG
 printf(B_YEL "gnl.len = " RESET "[%lu]\n", gnl.len);
@@ -70,7 +70,7 @@ printf(B_YEL "Read & last = \'\\0\'" B_GRN "[Ok]\n" RESET);
 printf(B_YEL "\nRead buff" B_WHT " = |%s|\n" RESET, buff);
 																		#endif
 		if (!(tmp = ft_strjoin(tmp, buff)))
-			return (free_mem(&buff));
+			return (error_mem(&buff));
 	}
 																		#ifdef DEBUG
 printf(B_YEL "\nWhile break " B_GRN "[Ok]\n" RESET);
