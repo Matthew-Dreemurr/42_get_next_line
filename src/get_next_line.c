@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 17:33:21 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/22 17:34:05 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	get_next_line(int fd, char **line)
 	if (!line)
 		return (ERROR);
 																		#ifdef DEBUG
-printf(B_YEL "\nThe last buff" B_WHT " = |%s|\n" RESET, buff);
+printf(B_YEL "\nThe last tmp" B_WHT " = |%s|\n" RESET, tmp);
 																		#endif
 	if (!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
