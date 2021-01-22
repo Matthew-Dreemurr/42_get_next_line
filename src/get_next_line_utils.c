@@ -6,11 +6,14 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 17:11:11 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/22 18:01:10 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/get_next_line.h"
+#ifdef DEBUG
+# include <stdio.h>
+#endif
 
 /*
 **   eol_len();
@@ -39,22 +42,33 @@ size_t	eol_len(const char *s, int bool)
 	return (i);
 }
 
+//TODO utilisation de la fonction avec un tmp vide
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*buff;
 	size_t	len_s1;
 	size_t	len_s2;
 
-	if (!s1 || !s2)
+	if (!s2)
 		return (NULL);
-	len_s1 = eol_len(s1, 1);
+	len_s1 = 0;
+	if (s1)
+		len_s1 = eol_len(s1, 1);
 	len_s2 = eol_len(s2, 1);
+																		#ifdef DEBUG
+printf(B_YEL "\n==strjoin== len_s1 = " B_WHT " = |%lu|\n" RESET, len_s1);
+printf(B_YEL "==strjoin== len_s2 = " B_WHT " = |%lu|\n" RESET, len_s2);
+																		#endif
 	if (!(buff = malloc(sizeof(buff) * (len_s1 + len_s2 + 1))))
 		return (NULL);
 	buff[len_s1 + len_s2] = '\0';
-	while (--len_s1)
-		buff[len_s1] = s1[len_s1];
-	while (--len_s2)
+	if (s1)
+		while (len_s1--)
+			buff[len_s1] = s1[len_s1];
+	while (len_s2--)
 		buff[len_s2] = s2[len_s2];
+																		#ifdef DEBUG
+printf(B_YEL "==strjoin== buff return = " B_WHT " = |%s|\n" RESET, buff);
+																		#endif
 	return (buff);
 }

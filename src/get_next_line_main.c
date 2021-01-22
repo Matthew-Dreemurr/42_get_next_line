@@ -80,9 +80,9 @@ int	main()
 	while(i < loop)
 	{
 		#ifdef DEBUG
-		printf(B_YEL "\n     [..--====--..]\n" RESET);
-		printf(YEL "[=====[Loop nbr %d]=====]\n" RESET, i);
-		printf(B_YEL "   ['---========---']\n" RESET);
+		printf(B_YEL "\n     [..--================--..]\n" RESET);
+		printf(YEL "[===========[Loop nbr %d]===========]\n" RESET, i);
+		printf(B_YEL "      ['---==============---']\n" RESET);
 		ret = gnl_test(fd);
 		#endif
 		if (ret == -1)

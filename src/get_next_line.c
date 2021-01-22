@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 17:39:04 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/22 17:49:17 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 int	error_mem(char **buff)
 {
 #ifdef DEBUG
-printf(B_RED "\nerror_mem CALL FOR ERROR" RESET);
+printf(B_RED "\nerror_mem ERROR EXIT" RESET);
 #endif
 	free(*buff);
 	return (ERROR);
