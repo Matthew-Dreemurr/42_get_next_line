@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 18:01:10 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/22 19:13:28 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,19 @@
 size_t	eol_len(const char *s, int bool)
 {
 	size_t	i;
+	size_t	len;
 
+	len = 0;
+	i = 0;
 	if (!s)
 		return (0);
-	i = 0;
 	if (!bool)
-		while (s[i] && s[i] != '\n')
+		while (s[i])
+		{
+			if (s[i] != '\n')
+				len++;
 			i++;
+		}
 	else
 		while (s[i])
 			i++;
@@ -56,8 +62,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		len_s1 = eol_len(s1, 1);
 	len_s2 = eol_len(s2, 1);
 																		#ifdef DEBUG
-printf(B_YEL "\n==strjoin== len_s1 = " B_WHT " = |%lu|\n" RESET, len_s1);
-printf(B_YEL "==strjoin== len_s2 = " B_WHT " = |%lu|\n" RESET, len_s2);
+printf(B_YEL "\n╠╔  =strjoin= len_s1 = " B_WHT " = |%lu|\n" RESET, len_s1);
+printf(B_YEL "╠╠  =strjoin= len_s2 = " B_WHT " = |%lu|\n" RESET, len_s2);
 																		#endif
 	if (!(buff = malloc(sizeof(buff) * (len_s1 + len_s2 + 1))))
 		return (NULL);
@@ -68,7 +74,7 @@ printf(B_YEL "==strjoin== len_s2 = " B_WHT " = |%lu|\n" RESET, len_s2);
 	while (len_s2--)
 		buff[len_s2] = s2[len_s2];
 																		#ifdef DEBUG
-printf(B_YEL "==strjoin== buff return = " B_WHT " = |%s|\n" RESET, buff);
+printf(B_YEL "╠╚  =strjoin= buff return = " B_WHT " = |%s|\n╠" RESET, buff);
 																		#endif
 	return (buff);
 }
