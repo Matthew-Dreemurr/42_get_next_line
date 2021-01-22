@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 19:12:48 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/22 19:14:54 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ printf(B_YEL "\nThe last tmp" B_WHT " = |%s|\n" RESET, tmp);
 			return(error_mem(&buff));
 		buff[gnl.ret_read] = '\0';
 																		#ifdef DEBUG
-printf(B_YEL "\n╔ while" RESET);
+printf(B_YEL "\n╔ =while=" RESET);
 printf(B_YEL "\n╠ gnl.len = " RESET "[%lu]\n", gnl.len);
 printf(B_YEL "╠ gnl.ret_read = " RESET "[%lu]\n", gnl.ret_read);
 printf(B_YEL "╠ Read & last = \'\\0\'" B_GRN "[Ok]\n" RESET);
