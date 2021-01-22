@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 15:00:46 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/22 16:40:54 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,28 @@ int	get_next_line(int fd, char **line)
 	static char		*buff;
 	static char		*tmp;
 
-	tmp = NULL;
 	if (!line)
 		return (ERROR);
 #ifdef DEBUG
-printf(B_YEL "\nThe last buff" RESET " = |%s|\n", buff);
+printf(B_YEL "\nThe last buff" B_WHT " = |%s|\n" RESET, buff);
 #endif
-	if (!(buff = malloc(sizeof(buff) * BUFFER_SIZE + 1)))
+	if (!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
-	buff[BUFFER_SIZE] = '\0';
+	*buff = '\0';
 #ifdef DEBUG
-printf(B_YEL "\nAlloc & last = \'\\0\' " B_GRN "[Ok]\n" RESET);
+printf(B_YEL "\nAlloc & set to \'\\0\' " B_GRN "[Ok]\n" RESET);
 #endif
 	while (!(gnl.len = eol_len(tmp, 0)))
 	{
 #ifdef DEBUG
-	printf(B_YEL "gnl.len = " B_WHT "[%lu]\n" RESET, gnl.len);
+printf(B_YEL "gnl.len = " RESET "[%lu]\n", gnl.len);
 #endif
-		if ((gnl.ret_read = read(fd, &buff, BUFFER_SIZE) == -1))
+		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE) == -1))
 			return(free_mem(&buff));
 		buff[gnl.ret_read] = '\0';
 #ifdef DEBUG
-	printf(B_YEL "\nRead & last = \'\\0\'" B_GRN "[Ok]\n" RESET);
-#endif
-#ifdef DEBUG
+printf(B_YEL "gnl.ret_read = " RESET "[%lu]\n", gnl.ret_read);
+printf(B_YEL "\nRead & last = \'\\0\'" B_GRN "[Ok]\n" RESET);
 printf(B_YEL "\nRead buff" RESET " = |%s|\n", buff);
 #endif
 		if (!(tmp = ft_strjoin(tmp, buff)))

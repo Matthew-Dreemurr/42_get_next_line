@@ -42,8 +42,8 @@ int	gnl_test(int fd)
 	if (ret >= 0)
 	{
 		printf(B_GRN "[OK] get_next_line\n\n" RESET);
-	}
 	printf(B_YEL "**line" RESET " = " B_WHT "|%s|\n" RESET, line);
+	}
 	#endif
 	return (ret);
 }
@@ -82,7 +82,7 @@ int	main()
 		#ifdef DEBUG
 		printf(B_YEL "\n     [..--====--..]\n" RESET);
 		printf(YEL "[=====[Loop nbr %d]=====]\n" RESET, i);
-		printf(B_YEL "    ['---=======---']\n" RESET);
+		printf(B_YEL "   ['---========---']\n" RESET);
 		ret = gnl_test(fd);
 		#endif
 		if (ret == -1)
