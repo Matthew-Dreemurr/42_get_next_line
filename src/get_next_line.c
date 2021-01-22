@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 17:34:05 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/22 17:39:04 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ printf(B_YEL "\nThe last tmp" B_WHT " = |%s|\n" RESET, tmp);
 	buff[0] = '\0';
 	while (!(gnl.len = eol_len(tmp, 0)))
 	{
-		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE) == -1))
+		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == -1)
 			return(error_mem(&buff));
 		buff[gnl.ret_read] = '\0';
 																		#ifdef DEBUG
