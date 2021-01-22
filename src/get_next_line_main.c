@@ -38,11 +38,13 @@ int	gnl_test(int fd)
 	if (ret == -1)
 	{
 		printf(RED "/!\\ [Error_check_error]: Return fonction = -1 /!\\\n" RESET);
+		free(line);
+		return (0);
 	}
 	if (ret >= 0)
 	{
 		printf(B_GRN "[OK] get_next_line\n\n" RESET);
-	printf(B_YEL "**line" RESET " = " B_WHT "|%s|\n" RESET, line);
+		printf(B_YEL "**line" RESET " = " B_WHT "|%s|\n" RESET, line);
 	}
 	#endif
 	return (ret);

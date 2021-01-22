@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 19:14:54 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/22 20:49:34 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,32 @@ int	get_next_line(int fd, char **line)
 
 	if (!line)
 		return (ERROR);
-																		#ifdef DEBUG
+#ifdef DEBUG
 printf(B_YEL "\nThe last tmp" B_WHT " = |%s|\n" RESET, tmp);
-																		#endif
+#endif
 	if (!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
 	buff[0] = '\0';
-	while (!(eol_len(tmp, 1)))
+	while (!eol_len(tmp, 0))
 	{
 		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == -1)
 			return(error_mem(&buff));
 		buff[gnl.ret_read] = '\0';
-																		#ifdef DEBUG
-printf(B_YEL "\n╔ =while=" RESET);
-printf(B_YEL "\n╠ gnl.len = " RESET "[%lu]\n", gnl.len);
-printf(B_YEL "╠ gnl.ret_read = " RESET "[%lu]\n", gnl.ret_read);
-printf(B_YEL "╠ Read & last = \'\\0\'" B_GRN "[Ok]\n" RESET);
-printf(B_YEL "╠ \n╠ Read buff" B_WHT " = |%s|\n╠" RESET, buff);
-																		#endif
+#ifdef DEBUG
+printf(YEL "\n\n╔ ..====.. while ..====.." RESET);
+printf(B_YEL "\n╠ ╔ gnl.len = " RESET "[%lu]\n", gnl.len);
+printf(B_YEL "╠ ╠ gnl.ret_read = " RESET "[%lu]\n", gnl.ret_read);
+printf(B_YEL "╠ ╠ Read & last = \'\\0\'" B_GRN "[Ok]\n" RESET "╠");
+printf(B_YEL " ╠\n╠ ╚ Read buff" B_WHT " = |%s|\n╠" RESET, buff);
+#endif
 		if (!(tmp = ft_strjoin(tmp, buff)))
 			return (error_mem(&buff));
 	}
-																		#ifdef DEBUG
-printf(B_YEL "\n╚While break " B_GRN "[Ok]\n" RESET);
-																		#endif
-	*line = buff;
+#ifdef DEBUG
+printf(YEL "\n╚ ''===='' while ''===='' " B_GRN "[Ok]\n" RESET);
+#endif
+	*line = tmp;
+	tmp[0] = '\0';
 	if (!gnl.ret_read)
 		return (EOF);
 	return (LRD);
