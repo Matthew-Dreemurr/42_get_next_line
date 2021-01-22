@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 20:50:48 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/22 21:38:34 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **
 */
 
-int	error_mem(char **buff)
+static int	error_mem(char **buff)
 {
 #ifdef DEBUG
 printf(B_RED "\nerror_mem ERROR EXIT" RESET);
@@ -44,7 +44,7 @@ printf(B_RED "\nerror_mem ERROR EXIT" RESET);
 **   }				t_gnl;
 */
 
-int	get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
 	static t_gnl	gnl;
 	static char		*tmp;
