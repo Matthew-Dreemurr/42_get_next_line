@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 12:49:56 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 13:37:59 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define D_WHT	"\x1B[37;2m"
 # define B_RESET	"\x1B[0m"
 #endif
+
 /*
 **   get_next_line return :
 **      A line has been read =   LRD
@@ -51,20 +52,24 @@
 #define EOF 0
 #define ERROR -1
 
+/*
+**   All fonction prototype
+*/
+
 int		get_next_line(int fd, char **line);
 size_t	eol_len(const char *s, int len);
 char	*ft_strjoin(char  *s1, const char *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 /*
-**   struct gnl :
-**      index :
+**   struct gnl
 **      len :
-**      ret_read :
+**      ret_read : Use to save the return form the read(); fonction
 */
 
 typedef struct	s_gnl
 {
-	size_t		index;
+//
 	size_t		len;
 	ssize_t		ret_read;
 }				t_gnl;
