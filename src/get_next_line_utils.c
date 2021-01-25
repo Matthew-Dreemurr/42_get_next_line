@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 20:48:23 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 12:46:39 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 /*
 **   eol_len();
 **
-**   If len == 0, the fonction will return the number of characters that
-**   precede the '\n'.	If len == 1, the fonction will return the number
+**   If bool == 0, the fonction will return (1) if find character '\n'.
+**   If bool == 1, the fonction will return the number of characters that
+**   precede the '\n'.
+**   If bool == 2, the fonction will return the number
 **   of characters that precede the '\0'
 **
-**   Return :
+**   Return size_t:
 **      The number of characters
 */
 
@@ -33,32 +35,53 @@ size_t	eol_len(const char *s, int bool)
 	i = 0;
 	if (!s)
 		return (0);
-	if (!bool)
+	if (bool == 0)
 	{
 		while (s[i])
 		{
 			if (s[i] == '\n')
 			{
-																		#ifdef DEBUG
+#ifdef DEBUG
 printf(B_YEL " ╠  =eol_len= \'\\n\' find return " B_WHT "|1|\n╠" RESET);
-																		#endif
+#endif
 				return (1);
 			}
 			i++;
 		}
 		return (0);
 	}
-	else
+	if (bool == 1)
+	{
+		while (s[i])
+		{
+			if (s[i] == '\n')
+			{
+#ifdef DEBUG
+printf(B_YEL " ╠  =eol_len= \'\\n\' find return " B_WHT "|%lu|\n╠" RESET, i);
+#endif
+				return (i);
+			}
+			i++;
+		}
+		return (0);
+	}
+	if (bool == 2)
 		while (s[i])
 			i++;
-																		#ifdef DEBUG
+#ifdef DEBUG
 printf(B_YEL " ╠  =eol_len= len return = " B_WHT "|%lu|\n╠" RESET, i);
-																		#endif
+#endif
 	return (i);
 }
 
+/*
+**   ft_strjoin();
+**   
+**   
+*/
+
 //TODO utilisation de la fonction avec un tmp vide
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*buff;
 	size_t	len_s1;
@@ -70,13 +93,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	len_s1 = 0;
 	if (s1)
-		len_s1 = eol_len(s1, 1);
-	len_s2 = eol_len(s2, 1);
+		len_s1 = eol_len(s1, 2);
+	len_s2 = eol_len(s2, 2);
 	i = len_s1 + len_s2;
-																		#ifdef DEBUG
+#ifdef DEBUG
 printf(B_YEL "\n╠  ╔  =strjoin= len_s1 = " B_WHT "|%lu|\n" RESET, len_s1);
 printf(B_YEL "╠  ╠  =strjoin= len_s2 = " B_WHT "|%lu|\n" RESET, len_s2);
-																		#endif
+#endif
 	if (!(buff = malloc(sizeof(buff) * (len_s1 + len_s2 + 1))))
 		return (NULL);
 	buff[len_s1 + len_s2] = '\0';
@@ -85,8 +108,9 @@ printf(B_YEL "╠  ╠  =strjoin= len_s2 = " B_WHT "|%lu|\n" RESET, len_s2);
 	if (s1)
 		while (len_s1-- > 0)
 			buff[--i] = s1[len_s1];
-																		#ifdef DEBUG
+#ifdef DEBUG
 printf(B_YEL "╠  ╚  =strjoin= buff return = " B_WHT "|%s|\n╠" RESET, buff);
-																		#endif
+#endif
+	free(s1);
 	return (buff);
 }
