@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 16:22:34 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 16:45:26 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,20 @@ char	*return_nl(char	*tmp)
 **
 */
 
-char	*clean_tmp(char	tmp)
+int		clean_tmp(char	**tmp)
 {
-	
+	size_t	len;
+	size_t	start;
+	char *buff;
+
+	start = eol_len(*tmp, 1);
+	len = start - eol_len(*tmp, 3);
+
+	if (!(buff = ft_substr(*tmp, start, len)))
+		return (0);
+	free(*tmp);
+	*tmp = buff;
+	return (1);
 }
 
 /*
@@ -61,12 +72,6 @@ char	*clean_tmp(char	tmp)
 **      0 =    EOF
 **      -1 =   Error
 **
-**   typedef struct	s_gnl
-**   {
-**   	size_t		index;
-**   	size_t		len;
-**   	ssize_t		ret_read;
-**   }				t_gnl;
 */
 
 int		get_next_line(int fd, char **line)
@@ -104,6 +109,8 @@ printf(YEL "\n╚ ''===='' while ''===='' " B_GRN "[Ok]\n" RESET);
 	if (!(*line = return_nl(tmp)))
 		return(error_mem(&buff));
 	free(buff);
+	if (!(clean_tmp(&tmp)))
+		return (ERROR);
 	if (!gnl.ret_read)
 		return (EOF);
 	return (LRD);

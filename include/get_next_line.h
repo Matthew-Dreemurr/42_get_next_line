@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 15:53:06 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 16:38:38 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 */
 
 int		get_next_line(int fd, char **line);
-size_t	eol_len(const char *s, int len);
+size_t	eol_len(const char *s, int bool);
 char	*ft_strjoin(char  *s1, const char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	ft_bzero(void *s, size_t n);
