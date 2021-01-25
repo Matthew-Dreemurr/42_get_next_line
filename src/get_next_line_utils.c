@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 12:46:39 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 12:49:52 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ printf(B_YEL " ╠  =eol_len= len return = " B_WHT "|%lu|\n╠" RESET, i);
 */
 
 //TODO utilisation de la fonction avec un tmp vide
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(char *s1, const char *s2)
 {
 	char	*buff;
 	size_t	len_s1;
@@ -111,6 +111,5 @@ printf(B_YEL "╠  ╠  =strjoin= len_s2 = " B_WHT "|%lu|\n" RESET, len_s2);
 #ifdef DEBUG
 printf(B_YEL "╠  ╚  =strjoin= buff return = " B_WHT "|%s|\n╠" RESET, buff);
 #endif
-	free(s1);
 	return (buff);
 }
