@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 15:47:30 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 18:11:10 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,15 @@ size_t	eol_len(const char *s, int bool)
 			if (s[i] == '\n')
 			{
 #ifdef DEBUG
-printf(B_YEL " ╠  =eol_len= \'\\n\' find return " B_WHT "|1|\n╠" RESET);
+printf(B_YEL " ╠  =eol_len=0 \'\\n\' find return " B_WHT "|1|\n╠" RESET);
 #endif
 				return (1);
 			}
 			i++;
 		}
+#ifdef DEBUG
+printf(B_YEL " ╠  =eol_len= \'\\n\' not find return " B_WHT "|0|\n╠" RESET);
+#endif
 		return (0);
 	}
 	if (bool == 1)
@@ -57,7 +60,7 @@ printf(B_YEL " ╠  =eol_len= \'\\n\' find return " B_WHT "|1|\n╠" RESET);
 			if (s[i] == '\n')
 			{
 #ifdef DEBUG
-printf(B_YEL " ╠  =eol_len= \'\\n\' find return " B_WHT "|%lu|\n╠" RESET, i);
+printf(B_YEL " ╠  =eol_len=1 \'\\n\' find return " B_WHT "|%lu|\n╠" RESET, i);
 #endif
 				return (i);
 			}
@@ -69,7 +72,7 @@ printf(B_YEL " ╠  =eol_len= \'\\n\' find return " B_WHT "|%lu|\n╠" RESET, i)
 		while (s[i])
 			i++;
 #ifdef DEBUG
-printf(B_YEL " ╠  =eol_len= len return = " B_WHT "|%lu|\n╠" RESET, i);
+printf(B_YEL " ╠  =eol_len= 2 len return = " B_WHT "|%lu|\n╠" RESET, i);
 #endif
 	return (i);
 }
@@ -126,7 +129,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 
 	i = 0;
-	if (!s)
+	if (!s && *s)
 		return (NULL);
 	s1 = (char *)s;
 	if (!(buff = malloc((sizeof(char) * (len + 1)))))

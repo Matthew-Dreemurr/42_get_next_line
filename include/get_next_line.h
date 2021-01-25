@@ -46,9 +46,9 @@
 **      Error =	                 ERROR
 */
 
-#define LRD 1
-#define EOF 0
-#define ERROR -1
+#define LRD ((int)1)
+#define EOFL ((int)0)
+#define ERROR ((int)-1)
 
 /*
 **   All fonction prototype
