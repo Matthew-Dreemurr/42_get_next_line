@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 12:45:06 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 12:59:55 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ printf(B_RED "\nerror_mem ERROR EXIT" RESET);
 	free(*buff);
 	return (ERROR);
 }
+
+/*
+**
+*/
+
+	find_nl();
 
 /*
 **   get_next_line();
@@ -76,6 +82,7 @@ printf(B_YEL " ╠\n╠ ╚ Read buff" B_WHT " = |%s|\n╠" RESET, buff);
 #ifdef DEBUG
 printf(YEL "\n╚ ''===='' while ''===='' " B_GRN "[Ok]\n" RESET);
 #endif
+	find_nl();
 	*line = tmp;
 	free(buff);
 	if (!gnl.ret_read)
