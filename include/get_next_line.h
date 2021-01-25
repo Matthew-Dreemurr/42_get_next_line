@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 14:08:05 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 12:46:50 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 
 int		get_next_line(int fd, char **line);
 size_t	eol_len(const char *s, int len);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(const char  *s1, const char *s2);
 
 /*
 **   struct gnl :
