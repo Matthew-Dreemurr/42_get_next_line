@@ -22,9 +22,6 @@
 
 static int	error_mem(char	**buff)
 {
-#ifdef DEBUG
-printf(B_RED "\nerror_mem ERROR EXIT" RESET);
-#endif
 	free(*buff);
 	return (ERROR);
 }
@@ -82,17 +79,11 @@ int		get_next_line(int fd, char **line)
 
 	if (!line || !(BUFFER_SIZE > 0) )
 		return (ERROR);
-#ifdef DEBUG
-printf(B_YEL "\nThe last tmp" B_WHT " = |%s|\n" RESET, tmp);
-#endif
 	if (!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
 	ft_bzero(buff, BUFFER_SIZE + 1);
 	while (!eol_len(tmp, 0))
 	{
-#ifdef DEBUG
-//printf(YEL "\n\n╔ ..====.. while ..====.." RESET);
-#endif
 		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == -1)
 			return(error_mem(&buff));
 		buff[gnl.ret_read] = '\0';
@@ -100,22 +91,15 @@ printf(B_YEL "\nThe last tmp" B_WHT " = |%s|\n" RESET, tmp);
 			break;
 		if (!(tmp = ft_strjoin(tmp, buff)))
 			return (error_mem(&buff));
-#ifdef DEBUG
-//printf(B_YEL "\n╠ ╔ gnl.len = " RESET "[%lu]\n", gnl.len);
-//printf(B_YEL "╠ ╠ gnl.ret_read = " RESET "[%lu]\n", gnl.ret_read);
-//printf(B_YEL "╠ ╠ Read & last = \'\\0\'" B_GRN "[Ok]\n" RESET "╠");
-//printf(B_YEL " ╠\n╠ ╚ Read buff" B_WHT " = |%s|\n╠" RESET, buff);
-#endif
 	}
-printf(B_YEL "╠ ╠ gnl.ret_read = " RESET "[%lu]\n", gnl.ret_read);
-#ifdef DEBUG
-printf(YEL "\n╚ ''===='' while ''===='' " B_GRN "[Ok]\n" RESET);
-#endif
 	if (!(*line = return_nl(tmp)))
 		return(error_mem(&buff));
 	free(buff);
-	if (!(clean_tmp(&tmp)))
-		return (ERROR);
+	printf("\ntmp |%s|\n",tmp);
+	//check the EOF to note use clean_tmp
+	if (gnl.ret_read)
+		if (!(clean_tmp(&tmp)))
+			return (ERROR);
 	if (!gnl.ret_read)
 		return (EOFL);
 	return (LRD);

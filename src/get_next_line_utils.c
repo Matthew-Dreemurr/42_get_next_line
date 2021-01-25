@@ -41,16 +41,10 @@ size_t	eol_len(const char *s, int bool)
 		{
 			if (s[i] == '\n')
 			{
-#ifdef DEBUG
-printf(B_YEL " ╠  =eol_len=0 \'\\n\' find return " B_WHT "|1|\n╠" RESET);
-#endif
 				return (1);
 			}
 			i++;
 		}
-#ifdef DEBUG
-printf(B_YEL " ╠  =eol_len= \'\\n\' not find return " B_WHT "|0|\n╠" RESET);
-#endif
 		return (0);
 	}
 	if (bool == 1)
@@ -59,9 +53,6 @@ printf(B_YEL " ╠  =eol_len= \'\\n\' not find return " B_WHT "|0|\n╠" RESET);
 		{
 			if (s[i] == '\n')
 			{
-#ifdef DEBUG
-printf(B_YEL " ╠  =eol_len=1 \'\\n\' find return " B_WHT "|%lu|\n╠" RESET, i);
-#endif
 				return (i);
 			}
 			i++;
@@ -71,9 +62,6 @@ printf(B_YEL " ╠  =eol_len=1 \'\\n\' find return " B_WHT "|%lu|\n╠" RESET, i
 	if (bool == 2)
 		while (s[i])
 			i++;
-#ifdef DEBUG
-printf(B_YEL " ╠  =eol_len= 2 len return = " B_WHT "|%lu|\n╠" RESET, i);
-#endif
 	return (i);
 }
 
@@ -99,10 +87,6 @@ char	*ft_strjoin(char *s1, const char *s2)
 		len_s1 = eol_len(s1, 2);
 	len_s2 = eol_len(s2, 2);
 	i = len_s1 + len_s2;
-#ifdef DEBUG
-printf(B_YEL "\n╠  ╔  =strjoin= len_s1 = " B_WHT "|%lu|\n" RESET, len_s1);
-printf(B_YEL "╠  ╠  =strjoin= len_s2 = " B_WHT "|%lu|\n" RESET, len_s2);
-#endif
 	if (!(buff = malloc(sizeof(buff) * (len_s1 + len_s2 + 1))))
 		return (NULL);
 	buff[len_s1 + len_s2] = '\0';
@@ -111,9 +95,6 @@ printf(B_YEL "╠  ╠  =strjoin= len_s2 = " B_WHT "|%lu|\n" RESET, len_s2);
 	if (s1)
 		while (len_s1-- > 0)
 			buff[--i] = s1[len_s1];
-#ifdef DEBUG
-printf(B_YEL "╠  ╚  =strjoin= buff return = " B_WHT "|%s|\n╠" RESET, buff);
-#endif
 	free(s1);
 	return (buff);
 }
