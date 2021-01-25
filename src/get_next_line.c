@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/22 21:38:34 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 12:45:06 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ printf(B_YEL " ╠\n╠ ╚ Read buff" B_WHT " = |%s|\n╠" RESET, buff);
 printf(YEL "\n╚ ''===='' while ''===='' " B_GRN "[Ok]\n" RESET);
 #endif
 	*line = tmp;
+	free(buff);
 	if (!gnl.ret_read)
 		return (EOF);
 	return (LRD);
