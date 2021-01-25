@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 12:49:52 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 12:51:13 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,6 @@ printf(B_YEL "╠  ╠  =strjoin= len_s2 = " B_WHT "|%lu|\n" RESET, len_s2);
 #ifdef DEBUG
 printf(B_YEL "╠  ╚  =strjoin= buff return = " B_WHT "|%s|\n╠" RESET, buff);
 #endif
+	free(s1);
 	return (buff);
 }
