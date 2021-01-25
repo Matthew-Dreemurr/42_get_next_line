@@ -38,15 +38,17 @@ int	gnl_test(int fd)
 	if (ret == -1)
 	{
 		printf(RED "/!\\ [Error_check_error]: Return fonction = -1 /!\\\n" RESET);
-		free(line);
-		return (0);
-	}
-	if (ret >= 0)
-	{
-		printf(B_GRN "[OK] get_next_line\n\n" RESET);
-		printf(B_YEL "**line" RESET " = " B_WHT "|%s|\n" RESET, line);
+		return (ERROR);
 	}
 	#endif
+	if (ret >= 0)
+	{
+		#ifdef DEBUG
+		printf(B_GRN "[OK] get_next_line\n\n" RESET);
+		#endif
+		printf(B_YEL "**line" RESET " = " B_WHT "|%s|\n" RESET, line);
+	}
+	free(line);
 	return (ret);
 }
 
@@ -59,7 +61,7 @@ int	main()
 
 	loop = LOOP;
 	ret = 0;
-	i = 0;
+	i = 1;
 		//* Check open file *//
 	if((fd = open(TXT, O_RDONLY)) == -1)
 	{
@@ -79,14 +81,14 @@ int	main()
 		#endif
 		return (0);
 	}
-	while(i < loop)
+	while(i <= loop)
 	{
 		#ifdef DEBUG
 		printf(B_YEL "\n     [..--================--..]\n" RESET);
 		printf(YEL "[===========[Loop nbr %d]===========]\n" RESET, i);
 		printf(B_YEL "      ['---==============---']\n" RESET);
-		ret = gnl_test(fd);
 		#endif
+		ret = gnl_test(fd);
 		if (ret == -1)
 		{
 			#ifdef DEBUG
@@ -94,7 +96,7 @@ int	main()
 			#endif
 			break;
 		}
-		else if (!ret)
+		if (ret == 0)
 		{
 			#ifdef DEBUG
 			printf(GRN "[======[EOF]======]" RESET);
@@ -104,5 +106,6 @@ int	main()
 		i++;
 	}
 	close(fd);
+	printf(GRN "\n\n[====== main EXIT =====]\n" RESET);
 	return (0);
 }

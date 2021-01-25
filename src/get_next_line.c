@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 13:37:29 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 16:22:34 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 #ifdef DEBUG
 # include <stdio.h>
 #endif
-
+//TODO   make all man
+//TODO   make the function clean_tmp
 /*
 **
 */
 
-static int	error_mem(char **buff)
+static int	error_mem(char	**buff)
 {
 #ifdef DEBUG
 printf(B_RED "\nerror_mem ERROR EXIT" RESET);
@@ -28,6 +29,29 @@ printf(B_RED "\nerror_mem ERROR EXIT" RESET);
 	return (ERROR);
 }
 
+/*
+**
+*/
+
+char	*return_nl(char	*tmp)
+{
+	char	*ret;
+	size_t	len;
+
+	len = eol_len(tmp, 1);
+	if (!(ret = ft_substr(tmp, 0, len)))
+		return (NULL);
+	return (ret);
+}
+
+/*
+**
+*/
+
+char	*clean_tmp(char	tmp)
+{
+	
+}
 
 /*
 **   get_next_line();
@@ -51,14 +75,14 @@ int		get_next_line(int fd, char **line)
 	static char		*tmp;
 	char		*buff;
 
-	if (!line)
+	if (!line || !(BUFFER_SIZE > 0) )
 		return (ERROR);
 #ifdef DEBUG
 printf(B_YEL "\nThe last tmp" B_WHT " = |%s|\n" RESET, tmp);
 #endif
 	if (!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
-	buff[0] = '\0';
+	ft_bzero(buff, BUFFER_SIZE + 1);
 	while (!eol_len(tmp, 0))
 	{
 		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == -1)
@@ -77,7 +101,8 @@ printf(B_YEL " ╠\n╠ ╚ Read buff" B_WHT " = |%s|\n╠" RESET, buff);
 #ifdef DEBUG
 printf(YEL "\n╚ ''===='' while ''===='' " B_GRN "[Ok]\n" RESET);
 #endif
-	*line = ft_substr(tmp, 0, eol_len(tmp, 1));
+	if (!(*line = return_nl(tmp)))
+		return(error_mem(&buff));
 	free(buff);
 	if (!gnl.ret_read)
 		return (EOF);

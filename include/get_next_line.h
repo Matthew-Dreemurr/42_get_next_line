@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 13:37:59 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 15:53:06 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # define BUFFER_SIZE 128
 #endif
 
-#ifdef DEBUG
 # define RED	"\x1B[31m"
 # define GRN	"\x1B[32m"
 # define YEL	"\x1B[33m"
@@ -39,7 +38,6 @@
 # define B_WHT	"\x1B[37;1m"
 # define D_WHT	"\x1B[37;2m"
 # define B_RESET	"\x1B[0m"
-#endif
 
 /*
 **   get_next_line return :
@@ -60,6 +58,8 @@ int		get_next_line(int fd, char **line);
 size_t	eol_len(const char *s, int len);
 char	*ft_strjoin(char  *s1, const char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	ft_bzero(void *s, size_t n);
+
 
 /*
 **   struct gnl

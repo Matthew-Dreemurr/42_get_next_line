@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 13:32:30 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 15:47:30 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	s1 = (char *)s;
 	if (!(buff = malloc((sizeof(char) * (len + 1)))))
 		return (NULL);
-	buff[len] = '\0';
+	ft_bzero(buff, len + 1);
 	if (start >= eol_len(s, 2))
 		return (buff);
 	while (start--)
@@ -141,4 +141,20 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		buff[i++] = *s1++;
 	}
 	return (buff);
+}
+
+/*
+**   The  bzero() function erases the data in the n bytes of the memory
+**     starting at the location pointed to by s, by writing 
+**     zeros(bytes containing '\0') to that area.
+*/
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char *s1;
+
+	s1 = s;
+	if (n)
+		while (n--)
+			s1[n] = 0;
 }
