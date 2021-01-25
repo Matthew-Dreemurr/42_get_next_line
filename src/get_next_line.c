@@ -57,7 +57,7 @@ int		clean_tmp(char	**tmp)
 	start = eol_len(*tmp, 1);
 	len = start - eol_len(*tmp, 3);
 
-	if (!(buff = ft_substr(*tmp, start, len)))
+	if (!(buff = ft_substr(*tmp, start + 1, len)))
 		return (0);
 	free(*tmp);
 	*tmp = buff;

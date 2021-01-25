@@ -6,13 +6,13 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/01/25 16:42:51 by mhadad           ###   ########.fr        #
+#    Updated: 2021/01/25 18:12:55 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=64 -D TXT=\"test/txt.UwU\" -D LOOP=5 -D DEBUG
+DEF = -D BUFFER_SIZE=64 -D TXT=\"test/txt.UwU\" -D LOOP=10 -D DEBUG
 CFLAG = $(DEF) -Wall -Wextra -Werror
 SRC = src/get_next_line_utils.c src/get_next_line.c \
 	src/get_next_line_main.c
