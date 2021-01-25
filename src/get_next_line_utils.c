@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 12:51:13 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/01/25 13:32:30 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 **
 **   If bool == 0, the fonction will return (1) if find character '\n'.
 **   If bool == 1, the fonction will return the number of characters that
-**   precede the '\n'.
+**     precede the '\n'.
 **   If bool == 2, the fonction will return the number
 **   of characters that precede the '\0'
 **
@@ -112,5 +112,33 @@ printf(B_YEL "╠  ╠  =strjoin= len_s2 = " B_WHT "|%lu|\n" RESET, len_s2);
 printf(B_YEL "╠  ╚  =strjoin= buff return = " B_WHT "|%s|\n╠" RESET, buff);
 #endif
 	free(s1);
+	return (buff);
+}
+
+/*
+**
+*/
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*buff;
+	char	*s1;
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	s1 = (char *)s;
+	if (!(buff = malloc((sizeof(char) * (len + 1)))))
+		return (NULL);
+	buff[len] = '\0';
+	if (start >= eol_len(s, 2))
+		return (buff);
+	while (start--)
+		s1++;
+	while (i < len)
+	{
+		buff[i++] = *s1++;
+	}
 	return (buff);
 }
