@@ -40,9 +40,7 @@ size_t	eol_len(const char *s, int bool)
 		while (s[i])
 		{
 			if (s[i] == '\n')
-			{
 				return (1);
-			}
 			i++;
 		}
 		return (0);
@@ -52,9 +50,7 @@ size_t	eol_len(const char *s, int bool)
 		while (s[i])
 		{
 			if (s[i] == '\n')
-			{
 				return (i);
-			}
 			i++;
 		}
 		return (0);

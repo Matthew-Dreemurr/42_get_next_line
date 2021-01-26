@@ -77,30 +77,8 @@ int		get_next_line(int fd, char **line)
 	static char		*tmp;
 	char		*buff;
 
-	if (!line || !(BUFFER_SIZE > 0) )
+	if (!line || BUFFER_SIZE <= 0 || fd < 0|| 
+		!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
-	if (!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
-		return (ERROR);
-	ft_bzero(buff, BUFFER_SIZE + 1);
-	while (!eol_len(tmp, 0))
-	{
-		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == -1)
-			return(error_mem(&buff));
-		buff[gnl.ret_read] = '\0';
-		if (gnl.ret_read == EOFL)
-			break;
-		if (!(tmp = ft_strjoin(tmp, buff)))
-			return (error_mem(&buff));
-	}
-	if (!(*line = return_nl(tmp)))
-		return(error_mem(&buff));
-	free(buff);
-	printf("\ntmp |%s|\n",tmp);
-	//check the EOF to note use clean_tmp
-	if (gnl.ret_read)
-		if (!(clean_tmp(&tmp)))
-			return (ERROR);
-	if (!gnl.ret_read)
-		return (EOFL);
-	return (LRD);
+	
 }
