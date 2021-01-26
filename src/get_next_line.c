@@ -67,7 +67,7 @@ int		clean_tmp(char	**tmp)
 **   Return :
 **      1 =    LRD
 **      0 =    EOFL
-**      -1 =   Error
+**      -1 =   ERROR
 **
 */
 
@@ -77,8 +77,14 @@ int		get_next_line(int fd, char **line)
 	static char		*tmp;
 	char		*buff;
 
-	if (!line || BUFFER_SIZE <= 0 || fd < 0|| 
+	if (!line || BUFFER_SIZE <= 0 || fd < 0||
 		!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
+	if ((gnl.ret_read = (fd, buff, BUFFER_SIZE)) == ERROR)
+		return (ERROR);
+	while (!eol_len(tmp, 0) && gnl.ret_read != 0)
+	{
+		/* code */
+	}
 	
 }

@@ -18,7 +18,7 @@
 /*
 **   eol_len();
 **
-**   If bool == 0, the fonction will return (1) if find character '\n'.
+**   If bool == 0, the fonction will return (1) if find character '\n' else (0).
 **   If bool == 1, the fonction will return the number of characters that
 **     precede the '\n'.
 **   If bool == 2, the fonction will return the number
