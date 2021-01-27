@@ -16,7 +16,18 @@
 #endif
 //TODO   make all man
 //TODO   make the function clean_tmp
+
 /*
+**   error_mem();
+**
+** DESCRIPTION
+**   
+**
+** PARAMETERS
+**   
+**
+** RETURN
+**   
 **
 */
 
@@ -27,6 +38,16 @@ static int	error_mem(char	**buff)
 }
 
 /*
+**   return_nl();
+**
+** DESCRIPTION
+**   
+**
+** PARAMETERS
+**   
+**
+** RETURN
+**   
 **
 */
 
@@ -42,6 +63,16 @@ char	*return_nl(char	*tmp)
 }
 
 /*
+**   clean_tmp();
+**
+** DESCRIPTION
+**   
+**
+** PARAMETERS
+**   
+**
+** RETURN
+**   
 **
 */
 
@@ -64,10 +95,16 @@ int		clean_tmp(char	**tmp)
 /*
 **   get_next_line();
 **
-**   Return :
-**      1 =    LRD
-**      0 =    EOFL
-**      -1 =   ERROR
+** DESCRIPTION
+**   
+**
+** PARAMETERS
+**   
+**
+** RETURN
+**   A line has been read   L_READ
+**   End of line            EO_FILE
+**   Error                  ERROR
 **
 */
 
@@ -80,11 +117,25 @@ int		get_next_line(int fd, char **line)
 	if (!line || BUFFER_SIZE <= 0 || fd < 0||
 		!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
-	if ((gnl.ret_read = (fd, buff, BUFFER_SIZE)) == ERROR)
-		return (ERROR);
+	buff[BUFFER_SIZE] = '\0';
 	while (!eol_len(tmp, 0) && gnl.ret_read != 0)
 	{
-		/* code */
+		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == ERROR)
+			return (error_mem(&buff));
+		if (gnl.ret_read == EO_FILE)
+		{
+			free(tmp);
+			return (EO_FILE);
+		}
+		ft_strjoin(tmp, buff);
+		ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
 	}
-	
+	free(buff);
+
+	#ifdef DEBUG
+	printf();
+	#endif
+
+	*line = ft_substr(tmp, 0, eol_len(tmp, 1));
+	return (L_READ);
 }
