@@ -60,7 +60,7 @@ int	gnl_test(int fd)
 		return (ERROR);
 	}
 	#endif
-	if (ret >= 0)
+	if (ret > 0)
 	{
 		#ifdef DEBUG
 		printf(B_GRN "[OK] get_next_line\n\n" RESET);
@@ -69,7 +69,7 @@ int	gnl_test(int fd)
 			printf (RED "ERROR *line is NULL !" RESET);
 		printf(B_YEL "**line" RESET " = " B_WHT "|%s|\n" RESET, line);
 	}
-	free(line);
+	//free(line);
 	return (ret);
 }
 

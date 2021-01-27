@@ -122,9 +122,11 @@ int		get_next_line(int fd, char **line)
 	{
 		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == ERROR)
 			return (error_mem(&buff));
-		if (gnl.ret_read == EO_FILE)
+		if (gnl.ret_read == 0)
 		{
 			free(tmp);
+			free(buff);
+			*line = tmp;
 			return (EO_FILE);
 		}
 		tmp = ft_strjoin(tmp, buff);
@@ -132,7 +134,7 @@ int		get_next_line(int fd, char **line)
 	}
 	free(buff);
 	*line = ft_substr(tmp, 0, eol_len(tmp, 1));
-	if (!clean_tmp(tmp))
+	if (!clean_tmp(&tmp))
 		return (ERROR);
 	return (L_READ);
 }
