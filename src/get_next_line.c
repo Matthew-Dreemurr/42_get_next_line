@@ -118,7 +118,7 @@ int		get_next_line(int fd, char **line)
 		!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
 	buff[BUFFER_SIZE] = '\0';
-	while (!eol_len(tmp, 0) && gnl.ret_read != 0)
+	while (!eol_len(tmp, 0))
 	{
 		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == ERROR)
 			return (error_mem(&buff));
@@ -127,15 +127,12 @@ int		get_next_line(int fd, char **line)
 			free(tmp);
 			return (EO_FILE);
 		}
-		ft_strjoin(tmp, buff);
+		tmp = ft_strjoin(tmp, buff);
 		ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
 	}
 	free(buff);
-
-	#ifdef DEBUG
-	printf();
-	#endif
-
 	*line = ft_substr(tmp, 0, eol_len(tmp, 1));
+	if (!clean_tmp(tmp))
+		return (ERROR);
 	return (L_READ);
 }

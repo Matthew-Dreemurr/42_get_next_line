@@ -65,6 +65,8 @@ int	gnl_test(int fd)
 		#ifdef DEBUG
 		printf(B_GRN "[OK] get_next_line\n\n" RESET);
 		#endif
+		if (!line)
+			printf (RED "ERROR *line is NULL !" RESET);
 		printf(B_YEL "**line" RESET " = " B_WHT "|%s|\n" RESET, line);
 	}
 	free(line);
