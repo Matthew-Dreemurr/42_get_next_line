@@ -18,14 +18,15 @@
 /*
 **   eol_len();
 **
-**   If bool == 0, the fonction will return (1) if find character '\n'.
+** DESCRIPTION
+**   If bool == 0, the fonction will return (1) if find character '\n' else (0).
 **   If bool == 1, the fonction will return the number of characters that
 **     precede the '\n'.
 **   If bool == 2, the fonction will return the number
-**   of characters that precede the '\0'
+**     of characters that precede the '\0'.
 **
-**   Return size_t:
-**      The number of characters
+**   RETURN
+**      The number of characters.
 */
 
 size_t	eol_len(const char *s, int bool)
@@ -40,9 +41,7 @@ size_t	eol_len(const char *s, int bool)
 		while (s[i])
 		{
 			if (s[i] == '\n')
-			{
 				return (1);
-			}
 			i++;
 		}
 		return (0);
@@ -52,9 +51,7 @@ size_t	eol_len(const char *s, int bool)
 		while (s[i])
 		{
 			if (s[i] == '\n')
-			{
 				return (i);
-			}
 			i++;
 		}
 		return (0);
@@ -67,11 +64,20 @@ size_t	eol_len(const char *s, int bool)
 
 /*
 **   ft_strjoin();
-**   
-**   
+**
+** DESCRIPTION
+**   Allocates and returns a new string,
+**     which is the result of the concatenation of `s1` and `s2`.
+**
+** PARAMETERS
+**   @param `s1`   The prefix string.
+**   @param `s2`   The suffix string.
+**
+** RETURN
+**   The new string. NULL if the allocation fails.
+**
 */
 
-//TODO utilisation de la fonction avec un tmp vide
 char	*ft_strjoin(char *s1, const char *s2)
 {
 	char	*buff;
@@ -83,24 +89,43 @@ char	*ft_strjoin(char *s1, const char *s2)
 		return (NULL);
 	i = 0;
 	len_s1 = 0;
+#ifdef DEBUGd
+printf("\ns1 [%s]\ns2 [%s]\n", s1, s2);
+#endif
 	if (s1)
 		len_s1 = eol_len(s1, 2);
 	len_s2 = eol_len(s2, 2);
 	i = len_s1 + len_s2;
 	if (!(buff = malloc(sizeof(buff) * (len_s1 + len_s2 + 1))))
 		return (NULL);
-	buff[len_s1 + len_s2] = '\0';
+	ft_bzero(buff, (sizeof(buff) * (len_s1 + len_s2 + 1)));
 	while (len_s2-- > 0)
 		buff[--i] = s2[len_s2];
 	if (s1)
 		while (len_s1-- > 0)
 			buff[--i] = s1[len_s1];
 	free(s1);
+#ifdef DEBUGd
+printf("\nbuff [%s]\n", buff);
+#endif
 	return (buff);
 }
 
 /*
+**   ft_substr();
 **
+** DESCRIPTION
+**   Allocates and returns a substring from the string `s`.
+**   The substring begins at index ’start’ and is of
+**     maximum size `len`.
+**
+** PARAMETERS
+**   @param `s`       The string from which to create the substring.
+**   @param `start`   The start index of the substring in the string `s`.
+**   @param `len`     The maximum length of the substring.
+**
+** RETURN
+**   The substring. NULL if the allocation fails.
 */
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -110,27 +135,40 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 
 	i = 0;
-	if (!s && *s)
+	if (!s)
 		return (NULL);
 	s1 = (char *)s;
 	if (!(buff = malloc((sizeof(char) * (len + 1)))))
 		return (NULL);
-	ft_bzero(buff, len + 1);
+	ft_bzero(buff, (sizeof(char) * len + 1));
 	if (start >= eol_len(s, 2))
 		return (buff);
 	while (start--)
 		s1++;
 	while (i < len)
 	{
-		buff[i++] = *s1++;
+		buff[i] = *s1;
+		i++;
+		s1++;
 	}
 	return (buff);
 }
 
 /*
-**   The  bzero() function erases the data in the n bytes of the memory
-**     starting at the location pointed to by s, by writing 
+**   ft_bzero();
+**
+** DESCRIPTION
+**   The function erases the data in the n bytes of the memory
+**     starting at the location pointed to by s, by writing
 **     zeros(bytes containing '\0') to that area.
+**
+** PARAMETERS
+**   @param `s`   An existing object that you want to fill with zeroes.
+**   @param `n`   The number of bytes to fill.
+**
+** RETURN
+**   None.
+**
 */
 
 void	ft_bzero(void *s, size_t n)

@@ -15,8 +15,18 @@
 # include <stdio.h>
 #endif
 //TODO   make all man
-//TODO   make the function clean_tmp
+
 /*
+**   error_mem();
+**
+** DESCRIPTION
+**   Free the adresse pointed by `buff` and returns the `ERROR` value.
+**
+** PARAMETERS
+**   @param `buff`   Pointer of pointer.
+**
+** RETURN
+**   The `ERROR` value.
 **
 */
 
@@ -27,21 +37,17 @@ static int	error_mem(char	**buff)
 }
 
 /*
+**   clean_tmp();
 **
-*/
-
-char	*return_nl(char	*tmp)
-{
-	char	*ret;
-	size_t	len;
-
-	len = eol_len(tmp, 1);
-	if (!(ret = ft_substr(tmp, 0, len)))
-		return (NULL);
-	return (ret);
-}
-
-/*
+** DESCRIPTION
+**   Will remove all charater precede the first '\n' find and.
+**
+** PARAMETERS
+**   @param `tmp`   Pointer to a string.
+**
+** RETURN
+**   1 if successful.
+**   0 if failed.
 **
 */
 
@@ -64,10 +70,16 @@ int		clean_tmp(char	**tmp)
 /*
 **   get_next_line();
 **
-**   Return :
-**      1 =    LRD
-**      0 =    EOFL
-**      -1 =   Error
+** DESCRIPTION
+**   
+**
+** PARAMETERS
+**   
+**
+** RETURN
+**   A line has been read   L_READ
+**   End of line            EO_FILE
+**   Error                  ERROR
 **
 */
 
@@ -76,31 +88,35 @@ int		get_next_line(int fd, char **line)
 	static t_gnl	gnl;
 	static char		*tmp;
 	char		*buff;
-
-	if (!line || !(BUFFER_SIZE > 0) )
+#ifdef DEBUG
+printf("\nlast tmp [%s]\n", tmp);
+#endif
+	if (!line || BUFFER_SIZE <= 0 || fd < 0||
+		!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
-	if (!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
-		return (ERROR);
-	ft_bzero(buff, BUFFER_SIZE + 1);
+	ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
 	while (!eol_len(tmp, 0))
 	{
-		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == -1)
-			return(error_mem(&buff));
-		buff[gnl.ret_read] = '\0';
-		if (gnl.ret_read == EOFL)
-			break;
+		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == ERROR)
+			return (error_mem(&buff));
+#ifdef DEBUG
+printf("\nRead [%s]\n", buff);
+#endif
+		if (gnl.ret_read == 0)
+		{
+			free(tmp);
+			free(buff);
+			*line = tmp;
+			return (EO_FILE);
+		}
 		if (!(tmp = ft_strjoin(tmp, buff)))
 			return (error_mem(&buff));
+		ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
 	}
-	if (!(*line = return_nl(tmp)))
-		return(error_mem(&buff));
 	free(buff);
-	printf("\ntmp |%s|\n",tmp);
-	//check the EOF to note use clean_tmp
-	if (gnl.ret_read)
-		if (!(clean_tmp(&tmp)))
-			return (ERROR);
-	if (!gnl.ret_read)
-		return (EOFL);
-	return (LRD);
+	if (!(*line = ft_substr(tmp, 0, eol_len(tmp, 1))))
+		return (ERROR);
+	if (!clean_tmp(&tmp))
+		return (ERROR);
+	return (L_READ);
 }
