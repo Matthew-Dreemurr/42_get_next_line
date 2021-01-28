@@ -13,9 +13,9 @@
 NAME = gnl.OwO
 CC = gcc
 DEF = -D BUFFER_SIZE=32 \
--D TXT=\"test/txt.UwU\" \
--D LOOP=10 \
--D DEBUG
+-D TXT=\"test/lorem_ipsum_of_the_doom.UwU\" \
+-D LOOP=999 \
+#-D DEBUG
 
 CFLAG = $(DEF) -Wall -Wextra -Werror
 SRC = src/get_next_line_utils.c src/get_next_line.c \

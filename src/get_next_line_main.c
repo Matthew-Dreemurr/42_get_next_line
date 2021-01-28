@@ -67,7 +67,7 @@ int	gnl_test(int fd)
 		#endif
 		if (!line)
 			printf (RED "ERROR *line is NULL !" RESET);
-		printf(B_YEL "**line" RESET " = " B_WHT "|%s|\n" RESET, line);
+		printf(B_YEL "**line" RESET " = " B_WHT "|" B_YEL "%s" B_WHT "|\n" RESET, line);
 		free(line);
 	}
 	return (ret);

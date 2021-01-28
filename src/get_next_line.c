@@ -117,7 +117,7 @@ int		get_next_line(int fd, char **line)
 	if (!line || BUFFER_SIZE <= 0 || fd < 0||
 		!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
-	buff[BUFFER_SIZE] = '\0';
+	ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
 	while (!eol_len(tmp, 0))
 	{
 		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == ERROR)
