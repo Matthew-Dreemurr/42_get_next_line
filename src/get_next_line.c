@@ -15,19 +15,18 @@
 # include <stdio.h>
 #endif
 //TODO   make all man
-//TODO   make the function clean_tmp
 
 /*
 **   error_mem();
 **
 ** DESCRIPTION
-**   
+**   Free the adresse pointed by `buff` and returns the `ERROR` value.
 **
 ** PARAMETERS
-**   
+**   @param `buff`   Pointer of pointer.
 **
 ** RETURN
-**   
+**   The `ERROR` value.
 **
 */
 
@@ -38,41 +37,17 @@ static int	error_mem(char	**buff)
 }
 
 /*
-**   return_nl();
-**
-** DESCRIPTION
-**   
-**
-** PARAMETERS
-**   
-**
-** RETURN
-**   
-**
-*/
-
-char	*return_nl(char	*tmp)
-{
-	char	*ret;
-	size_t	len;
-
-	len = eol_len(tmp, 1);
-	if (!(ret = ft_substr(tmp, 0, len)))
-		return (NULL);
-	return (ret);
-}
-
-/*
 **   clean_tmp();
 **
 ** DESCRIPTION
-**   
+**   Will remove all charater precede the first '\n' find and.
 **
 ** PARAMETERS
-**   
+**   @param `tmp`   Pointer to a string.
 **
 ** RETURN
-**   
+**   1 if successful.
+**   0 if failed.
 **
 */
 
@@ -113,7 +88,9 @@ int		get_next_line(int fd, char **line)
 	static t_gnl	gnl;
 	static char		*tmp;
 	char		*buff;
-
+#ifdef DEBUG
+printf("\nlast tmp [%s]\n", tmp);
+#endif
 	if (!line || BUFFER_SIZE <= 0 || fd < 0||
 		!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
@@ -122,6 +99,9 @@ int		get_next_line(int fd, char **line)
 	{
 		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == ERROR)
 			return (error_mem(&buff));
+#ifdef DEBUG
+printf("\nRead [%s]\n", buff);
+#endif
 		if (gnl.ret_read == 0)
 		{
 			free(tmp);
@@ -129,11 +109,13 @@ int		get_next_line(int fd, char **line)
 			*line = tmp;
 			return (EO_FILE);
 		}
-		tmp = ft_strjoin(tmp, buff);
+		if (!(tmp = ft_strjoin(tmp, buff)))
+			return (error_mem(&buff));
 		ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
 	}
 	free(buff);
-	*line = ft_substr(tmp, 0, eol_len(tmp, 1));
+	if (!(*line = ft_substr(tmp, 0, eol_len(tmp, 1))))
+		return (ERROR);
 	if (!clean_tmp(&tmp))
 		return (ERROR);
 	return (L_READ);

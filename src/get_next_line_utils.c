@@ -78,7 +78,6 @@ size_t	eol_len(const char *s, int bool)
 **
 */
 
-//TODO utilisation de la fonction avec un tmp vide
 char	*ft_strjoin(char *s1, const char *s2)
 {
 	char	*buff;
@@ -90,19 +89,25 @@ char	*ft_strjoin(char *s1, const char *s2)
 		return (NULL);
 	i = 0;
 	len_s1 = 0;
+#ifdef DEBUGd
+printf("\ns1 [%s]\ns2 [%s]\n", s1, s2);
+#endif
 	if (s1)
 		len_s1 = eol_len(s1, 2);
 	len_s2 = eol_len(s2, 2);
 	i = len_s1 + len_s2;
 	if (!(buff = malloc(sizeof(buff) * (len_s1 + len_s2 + 1))))
 		return (NULL);
-	buff[len_s1 + len_s2] = '\0';
+	ft_bzero(buff, (sizeof(buff) * (len_s1 + len_s2 + 1)));
 	while (len_s2-- > 0)
 		buff[--i] = s2[len_s2];
 	if (s1)
 		while (len_s1-- > 0)
 			buff[--i] = s1[len_s1];
 	free(s1);
+#ifdef DEBUGd
+printf("\nbuff [%s]\n", buff);
+#endif
 	return (buff);
 }
 
