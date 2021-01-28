@@ -14,7 +14,11 @@
 #ifdef DEBUG
 # include <stdio.h>
 #endif
-//TODO   make all man
+
+/*
+**  //TODO   make all man
+**  //TODO   do not remove the `\n` in clean_tmp();
+*/
 
 /*
 **   error_mem();
