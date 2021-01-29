@@ -19,10 +19,10 @@
 **   eol_len();
 **
 ** DESCRIPTION
-**   If bool == 0, the fonction will return (1) if find character '\n' else (0).
-**   If bool == 1, the fonction will return the number of characters that
+**   If bool == 1, the fonction will return (1) if find character '\n' else (0).
+**   If bool == 2, the fonction will return the number of characters that
 **     precede the '\n'.
-**   If bool == 2, the fonction will return the number
+**   If bool == 3, the fonction will return the number
 **     of characters that precede the '\0'.
 **
 **   RETURN
@@ -36,7 +36,7 @@ size_t	eol_len(const char *s, int bool)
 	i = 0;
 	if (!s)
 		return (0);
-	if (bool == 0)
+	if (bool == 1)
 	{
 		while (s[i])
 		{
@@ -46,7 +46,7 @@ size_t	eol_len(const char *s, int bool)
 		}
 		return (0);
 	}
-	if (bool == 1)
+	if (bool == 2)
 	{
 		while (s[i])
 		{
@@ -56,7 +56,7 @@ size_t	eol_len(const char *s, int bool)
 		}
 		return (0);
 	}
-	if (bool == 2)
+	if (bool == 3)
 		while (s[i])
 			i++;
 	return (i);
@@ -93,8 +93,8 @@ char	*ft_strjoin(char *s1, const char *s2)
 printf("\ns1 [%s]\ns2 [%s]\n", s1, s2);
 #endif
 	if (s1)
-		len_s1 = eol_len(s1, 2);
-	len_s2 = eol_len(s2, 2);
+		len_s1 = eol_len(s1, 3);
+	len_s2 = eol_len(s2, 3);
 	i = len_s1 + len_s2;
 	if (!(buff = malloc(sizeof(buff) * (len_s1 + len_s2 + 1))))
 		return (NULL);
@@ -141,7 +141,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!(buff = malloc((sizeof(char) * (len + 1)))))
 		return (NULL);
 	ft_bzero(buff, (sizeof(char) * len + 1));
-	if (start >= eol_len(s, 2))
+	if (start >= eol_len(s, 3))
 		return (buff);
 	while (start--)
 		s1++;

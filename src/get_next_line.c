@@ -61,8 +61,8 @@ int		clean_tmp(char	**tmp)
 	size_t	start;
 	char *buff;
 
-	start = eol_len(*tmp, 1);
-	len = start - eol_len(*tmp, 3);
+	start = eol_len(*tmp, 2);
+	len = eol_len(*tmp, 3) - start;
 
 	if (!(buff = ft_substr(*tmp, start + 1, len)))
 		return (0);
@@ -91,15 +91,15 @@ int		get_next_line(int fd, char **line)
 {
 	static t_gnl	gnl;
 	static char		*tmp;
-	char		*buff;
+	char			*buff;
 #ifdef DEBUG
 printf("\nlast tmp [%s]\n", tmp);
 #endif
 	if (!line || BUFFER_SIZE <= 0 || fd < 0||
 		!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
-		return (ERROR);
+			return (ERROR);
 	ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
-	while (!eol_len(tmp, 0))
+	while (!eol_len(tmp, 1))
 	{
 		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == ERROR)
 			return (error_mem(&buff));
@@ -118,7 +118,7 @@ printf("\nRead [%s]\n", buff);
 		ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
 	}
 	free(buff);
-	if (!(*line = ft_substr(tmp, 0, eol_len(tmp, 1))))
+	if (!(*line = ft_substr(tmp, 0, eol_len(tmp, 2))))
 		return (ERROR);
 	if (!clean_tmp(&tmp))
 		return (ERROR);
