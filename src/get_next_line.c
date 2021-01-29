@@ -110,7 +110,6 @@ printf("\nRead [%s]\n", buff);
 		{
 			free(tmp);
 			free(buff);
-			*line = tmp;
 			return (EO_FILE);
 		}
 		if (!(tmp = ft_strjoin(tmp, buff)))
