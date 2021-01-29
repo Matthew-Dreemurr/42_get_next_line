@@ -108,7 +108,6 @@ printf("\nRead [%s]\n", buff);
 #endif
 		if (gnl.ret_read == 0)
 		{
-			free(tmp);
 			free(buff);
 			*line = tmp;
 			return (EO_FILE);
