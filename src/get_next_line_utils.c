@@ -19,24 +19,24 @@
 **   eol_len();
 **
 ** DESCRIPTION
-**   If bool == 1, the fonction will return (1) if find character '\n' else (0).
-**   If bool == 2, the fonction will return the number of characters that
+**   If set == 1, the fonction will return (1) if find character '\n' else (0).
+**   If set == 2, the fonction will return the number of characters that
 **     precede the '\n'.
-**   If bool == 3, the fonction will return the number
+**   If set == 3, the fonction will return the number
 **     of characters that precede the '\0'.
 **
 **   RETURN
 **      The number of characters.
 */
 
-size_t	eol_len(const char *s, int bool)
+size_t	eol_len(const char *s, int set)
 {
 	size_t	i;
 
 	i = 0;
 	if (!s)
 		return (0);
-	if (bool == 1)
+	if (set == 1)
 	{
 		while (s[i])
 		{
@@ -46,7 +46,7 @@ size_t	eol_len(const char *s, int bool)
 		}
 		return (0);
 	}
-	if (bool == 2)
+	if (set == 2)
 	{
 		while (s[i])
 		{
@@ -56,7 +56,7 @@ size_t	eol_len(const char *s, int bool)
 		}
 		return (0);
 	}
-	if (bool == 3)
+	if (set == 3)
 		while (s[i])
 			i++;
 	return (i);

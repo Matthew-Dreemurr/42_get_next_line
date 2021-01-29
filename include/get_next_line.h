@@ -37,7 +37,7 @@
 */
 
 int		get_next_line(int fd, char **line);
-size_t	eol_len(const char *s, int bool);
+size_t	eol_len(const char *s, int set);
 char	*ft_strjoin(char  *s1, const char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	ft_bzero(void *s, size_t n);
