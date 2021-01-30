@@ -14,6 +14,7 @@ NAME = gnl.OwO
 CC = gcc
 DEF = -D BUFFER_SIZE=128 \
 -D TXT=\"test/lorem_ipsum_of_the_doom.UwU\" \
+-D TXT2=\"test/txt.UwU\" \
 -D LOOP=9999 \
 #-D DEBUG
 

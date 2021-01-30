@@ -39,6 +39,7 @@
 
 #ifndef TXT
 # define TXT "ERROR"
+# define TXT2 "ERROR"
 #endif
 #ifndef LOOP
 # define LOOP 1
@@ -77,6 +78,7 @@ int	main()
 {
 	int	loop;
 	int	fd;
+	int	fd2;
 	int	ret;
 	int	i;
 
@@ -91,6 +93,13 @@ int	main()
 		#endif
 		return (0);
 	}
+	if((fd2 = open(TXT2, O_RDONLY)) == -1)
+	{
+		#ifdef DEBUG
+		printf(RED "/!\\ [Error_main]: Open " TXT2 " fd = |%d|/!\\\n" RESET, fd);
+		#endif
+		return (0);
+	}
 	#ifdef DEBUG
 	printf(GRN "Open %s successful, File descriptor |%d|\n" RESET, TXT, fd);
 	printf(YEL "Reading file |%s| whit the buffer size limit of |%d|oct\n" RESET, TXT, BUFFER_SIZE);
@@ -99,6 +108,13 @@ int	main()
 	{
 		#ifdef DEBUG
 		printf(RED "/!\\ [Error_main]: Please add DEF = -D TXT=\"FILE_NAME\" to the Makefile /!\\\n" RESET);
+		#endif
+		return (0);
+	}
+	if (!(strcmp(TXT2, "ERROR")))
+	{
+		#ifdef DEBUG
+		printf(RED "/!\\ [Error_main]: Please add DEF = -D TXT2=\"FILE_NAME\" to the Makefile /!\\\n" RESET);
 		#endif
 		return (0);
 	}
@@ -124,9 +140,25 @@ int	main()
 			#endif
 			break;
 		}
+		ret = gnl_test(fd2);
+		if (ret == -1)
+		{
+			#ifdef DEBUG
+			printf(RED "[======[ERROR]======]" RESET);
+			#endif
+			break;
+		}
+		if (ret == 0)
+		{
+			#ifdef DEBUG
+			printf(GRN "[======[EOF]======]" RESET);
+			#endif
+			break;
+		}
 		i++;
 	}
 	close(fd);
+	close(fd2);
 	printf(GRN "\n\n[====== main EXIT =====]\n" RESET);
 	return (0);
 }
