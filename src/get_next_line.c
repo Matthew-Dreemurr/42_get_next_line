@@ -82,19 +82,19 @@ int			clean_tmp(char **tmp)
 
 int			get_next_line(int fd, char **line)
 {
-	static t_gnl	gnl;
+	ssize_t			ret_read;
 	static char		*tmp;
 	char			*buff;
 
 	if (!line || BUFFER_SIZE <= 0 || fd < 0
 	|| !(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
-	ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
 	while (!eol_len(tmp, 1))
 	{
-		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == ERROR)
+		ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
+		if ((ret_read = read(fd, buff, BUFFER_SIZE)) == ERROR)
 			return (error_mem(&buff));
-		if (gnl.ret_read == 0)
+		if (ret_read == 0)
 		{
 			free(buff);
 			free(tmp);
@@ -102,7 +102,6 @@ int			get_next_line(int fd, char **line)
 		}
 		if (!(tmp = ft_strjoin(tmp, buff)))
 			return (error_mem(&buff));
-		ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
 	}
 	free(buff);
 	if (!(*line = ft_substr(tmp, 0, eol_len(tmp, 2))) || !clean_tmp(&tmp))

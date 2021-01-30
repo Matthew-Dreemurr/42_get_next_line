@@ -31,34 +31,28 @@
 
 size_t	eol_len(const char *s, int set)
 {
-	size_t	i;
+	ssize_t	i;
 
-	i = 0;
+	i = -1;
 	if (!s)
 		return (0);
 	if (set == 1)
 	{
-		while (s[i])
-		{
+		while (s[++i])
 			if (s[i] == '\n')
 				return (1);
-			i++;
-		}
 		return (0);
 	}
 	if (set == 2)
 	{
-		while (s[i])
-		{
+		while (s[++i])
 			if (s[i] == '\n')
 				return (i);
-			i++;
-		}
 		return (0);
 	}
 	if (set == 3)
-		while (s[i])
-			i++;
+		while (s[++i])
+			;
 	return (i);
 }
 
@@ -75,7 +69,6 @@ size_t	eol_len(const char *s, int set)
 **
 ** RETURN
 **   The new string. NULL if the allocation fails.
-**
 */
 
 char	*ft_strjoin(char *s1, const char *s2)
@@ -89,9 +82,6 @@ char	*ft_strjoin(char *s1, const char *s2)
 		return (NULL);
 	i = 0;
 	len_s1 = 0;
-#ifdef DEBUGd
-printf("\ns1 [%s]\ns2 [%s]\n", s1, s2);
-#endif
 	if (s1)
 		len_s1 = eol_len(s1, 3);
 	len_s2 = eol_len(s2, 3);
@@ -105,9 +95,6 @@ printf("\ns1 [%s]\ns2 [%s]\n", s1, s2);
 		while (len_s1-- > 0)
 			buff[--i] = s1[len_s1];
 	free(s1);
-#ifdef DEBUGd
-printf("\nbuff [%s]\n", buff);
-#endif
 	return (buff);
 }
 
@@ -168,7 +155,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 **
 ** RETURN
 **   None.
-**
 */
 
 void	ft_bzero(void *s, size_t n)

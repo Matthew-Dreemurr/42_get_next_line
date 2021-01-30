@@ -12,9 +12,9 @@
 
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=32 \
+DEF = -D BUFFER_SIZE=128 \
 -D TXT=\"test/lorem_ipsum_of_the_doom.UwU\" \
--D LOOP=999 \
+-D LOOP=9999 \
 #-D DEBUG
 
 CFLAG = $(DEF) -Wall -Wextra -Werror
