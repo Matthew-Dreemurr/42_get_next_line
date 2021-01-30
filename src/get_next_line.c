@@ -111,3 +111,5 @@ int			get_next_line(int fd, char **line)
 
 
 //TODO Find a solution check when we read EOF
+// check return of read();
+//		if is read_ret is > BUFF_S break
