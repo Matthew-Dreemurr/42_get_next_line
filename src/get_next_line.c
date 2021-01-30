@@ -108,3 +108,6 @@ int			get_next_line(int fd, char **line)
 		return (ERROR);
 	return (L_READ);
 }
+
+
+//TODO Find a solution check when we read EOF

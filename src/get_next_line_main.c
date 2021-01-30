@@ -45,6 +45,9 @@
 # define LOOP 1
 #endif
 
+# define TEST2
+
+#ifdef TEST1
 int	gnl_test(int fd)
 {
 	char		*line;
@@ -162,3 +165,45 @@ int	main()
 	printf(GRN "\n\n[====== main EXIT =====]\n" RESET);
 	return (0);
 }
+#endif
+
+#ifdef TEST2
+int main()
+{
+        int             fd;
+        int             i;
+        int             j;
+        char                    *line = 0;
+        char                    *lineadress[1056];
+
+        j = 1;
+        printf("\n==========================================\n");
+        printf("========== TEST 1 : The Alphabet =========\n");
+        printf("==========================================\n\n");
+
+        if (!(fd = open(TXT, O_RDONLY)))
+        {
+                printf("\nError in open\n");
+                return (0);
+        }
+        while ((i = get_next_line(fd, &line)) > 0)
+        {
+                printf("|%s\n", line);
+                lineadress[j - 1] = line;
+                j++;
+        }
+        printf("|%s\n", line);
+        free(line);
+        close(fd);
+
+                if (i == -1)
+                printf ("\nError in Fonction - Returned -1\n");
+        else if (j == 66)
+                printf("\nRight number of lines\n");
+        else if (j != 66)
+                printf("\nNot Good - Wrong Number Of Lines\n");
+        while (--j > 0)
+                free(lineadress[j - 1]);
+}
+
+#endif
