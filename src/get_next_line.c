@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "../include/get_next_line.h"
-#ifdef DEBUG
-# include <stdio.h>
-#endif
 
 /*
 **  //TODO   make all man
@@ -31,10 +28,9 @@
 **
 ** RETURN
 **   The `ERROR` value.
-**
 */
 
-static int	error_mem(char	**buff)
+static int	error_mem(char **buff)
 {
 	free(*buff);
 	return (ERROR);
@@ -52,18 +48,16 @@ static int	error_mem(char	**buff)
 ** RETURN
 **   1 if successful.
 **   0 if failed.
-**
 */
 
-int		clean_tmp(char	**tmp)
+int			clean_tmp(char **tmp)
 {
 	size_t	len;
 	size_t	start;
-	char *buff;
+	char	*buff;
 
 	start = eol_len(*tmp, 2);
 	len = eol_len(*tmp, 3) - start;
-
 	if (!(buff = ft_substr(*tmp, start + 1, len)))
 		return (0);
 	free(*tmp);
@@ -75,41 +69,35 @@ int		clean_tmp(char	**tmp)
 **   get_next_line();
 **
 ** DESCRIPTION
-**   
+**
 **
 ** PARAMETERS
-**   
+**
 **
 ** RETURN
 **   A line has been read   L_READ
 **   End of line            EO_FILE
 **   Error                  ERROR
-**
 */
 
-int		get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	static t_gnl	gnl;
 	static char		*tmp;
 	char			*buff;
-#ifdef DEBUG
-printf("\nlast tmp [%s]\n", tmp);
-#endif
-	if (!line || BUFFER_SIZE <= 0 || fd < 0||
-		!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
-			return (ERROR);
+
+	if (!line || BUFFER_SIZE <= 0 || fd < 0
+	|| !(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
+		return (ERROR);
 	ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
 	while (!eol_len(tmp, 1))
 	{
 		if ((gnl.ret_read = read(fd, buff, BUFFER_SIZE)) == ERROR)
 			return (error_mem(&buff));
-#ifdef DEBUG
-printf("\nRead [%s]\n", buff);
-#endif
 		if (gnl.ret_read == 0)
 		{
 			free(buff);
-			*line = tmp;
+			free(tmp);
 			return (EO_FILE);
 		}
 		if (!(tmp = ft_strjoin(tmp, buff)))
@@ -117,9 +105,7 @@ printf("\nRead [%s]\n", buff);
 		ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
 	}
 	free(buff);
-	if (!(*line = ft_substr(tmp, 0, eol_len(tmp, 2))))
-		return (ERROR);
-	if (!clean_tmp(&tmp))
+	if (!(*line = ft_substr(tmp, 0, eol_len(tmp, 2))) || !clean_tmp(&tmp))
 		return (ERROR);
 	return (L_READ);
 }
