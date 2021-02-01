@@ -83,13 +83,13 @@ int			clean_tmp(char **tmp)
 int			get_next_line(int fd, char **line)
 {
 	ssize_t			ret_read;
-	static char		*tmp;
+	static char		*tmp[FOPEN_MAX];
 	char			*buff;
 
 	if (!line || BUFFER_SIZE <= 0 || fd < 0
 	|| !(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ERROR);
-	while (!eol_len(tmp, 1))
+	while (!eol_len(tmp[fd], 1))
 	{
 		ft_bzero(buff, (sizeof(char) * (BUFFER_SIZE + 1)));
 		if ((ret_read = read(fd, buff, BUFFER_SIZE)) == ERROR)
@@ -97,14 +97,19 @@ int			get_next_line(int fd, char **line)
 		if (ret_read == 0)
 		{
 			free(buff);
-			free(tmp);
+			free(tmp[fd]);
 			return (EO_FILE);
 		}
-		if (!(tmp = ft_strjoin(tmp, buff)))
+		if (!(tmp[fd] = ft_strjoin(tmp[fd], buff)))
 			return (error_mem(&buff));
 	}
 	free(buff);
-	if (!(*line = ft_substr(tmp, 0, eol_len(tmp, 2))) || !clean_tmp(&tmp))
+	if (!(*line = ft_substr(tmp[fd], 0, eol_len(tmp[fd], 2))) || !clean_tmp(&tmp[fd]))
 		return (ERROR);
 	return (L_READ);
 }
+
+
+//TODO Find a solution check when we read EOF
+// check return of read();
+//		if is read_ret is > BUFF_S break
