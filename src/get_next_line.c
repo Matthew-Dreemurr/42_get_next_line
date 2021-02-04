@@ -51,9 +51,22 @@ static int	error_mem(char **buff)
 **
 */
 
-void	*lstcheck_fd(t_gnl list)
+void	*lstcheck_fd(t_gnl **list, int fd)
 {
+	t_gnl	*tmp;
 
+	tmp = *list;
+	while (tmp)
+	{
+		if (tmp->fd == fd)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	if (!(tmp->next = malloc(sizeof(t_gnl))))
+		return (NULL);
+	tmp = tmp->next;
+	tmp->fd = fd;
+	return (tmp);
 }
 
 /*
@@ -70,17 +83,30 @@ void	*lstcheck_fd(t_gnl list)
 **   End of line            EO_FILE
 **   Error                  ERROR
 */
-
+//TODO check if read return is < BUFFER_S
 int			get_next_line(int fd, char **line)
 {
 	static t_gnl	list;
-	t_gnl			*list_fd;
+	t_gnl			*lst;
 	char			*buff;
 
-	list_fd = lstcheck_fd(list);
 	if (!(buff = malloc(BUFFER_SIZE + 1)))
 		return (ERROR);
+	buff[BUFFER_SIZE] = '\0';
+	if (!(lst = lstcheck_fd(&list, fd)))
+		return (error_mem(&buff));
+	
+	while (!eol_len(lst->tmp, 1))
+	{
+		if ((lst->read_ret = read(lst->fd, buff, BUFFER_SIZE)) == ERROR)
+		{
+			free()
+		}
 
+	}
+	if (eol_len(buff, 3) != BUFFER_SIZE)
 	free(buff);
 	return (L_READ);
 }
+
+//TODO free list when EOF reatch

@@ -41,13 +41,16 @@ size_t	eol_len(const char *s, int set);
 char	*ft_strjoin(char *s1, const char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	ft_bzero(void *s, size_t n);
-void	*lstcheck_fd(t_gnl list);
+void	*lstcheck_fd(t_gnl **list, int fd);
+int		error_mem(char **buff);
+
 
 #endif
 
 typedef struct s_gnl
 {
-	char	*str;
-	ssize_t	read_ret;
-	void	*next;
+	char			*tmp;
+	ssize_t			read_ret;
+	int				fd;
+	struct s_gnl	*next;
 }				t_gnl;
