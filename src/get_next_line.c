@@ -92,21 +92,25 @@ int			get_next_line(int fd, char **line)
 
 	if (!(buff = malloc(BUFFER_SIZE + 1)))
 		return (ERROR);
-	buff[BUFFER_SIZE] = '\0';
 	if (!(lst = lstcheck_fd(&list, fd)))
 		return (error_mem(&buff));
 	
 	while (!eol_len(lst->tmp, 1))
 	{
+		ft_bzero(buff, BUFFER_SIZE + 1);
 		if ((lst->read_ret = read(lst->fd, buff, BUFFER_SIZE)) == ERROR)
 		{
-			free()
+			//free_lst_fd();
+			return (error_mem(&buff));
 		}
-
+		if (!(lst->tmp = ft_strjoin(lst->tmp, buff)))
+			return (error_mem(&buff));
 	}
-	if (eol_len(buff, 3) != BUFFER_SIZE)
 	free(buff);
+	if (!(*line = ft_substr(lst->tmp, 0, eol_len(lst->tmp, 2))) || !(clean_tmp(&(lst->tmp))))
+	if (lst->read_ret =! BUFFER_SIZE)
+		return (EO_FILE);
 	return (L_READ);
 }
 
-//TODO free list when EOF reatch
+//TODO free list when EOF reatch and move the list->next

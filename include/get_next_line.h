@@ -43,6 +43,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	ft_bzero(void *s, size_t n);
 void	*lstcheck_fd(t_gnl **list, int fd);
 int		error_mem(char **buff);
+int		clean_tmp(char **tmp);
 
 
 #endif
