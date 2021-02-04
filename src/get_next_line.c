@@ -36,32 +36,24 @@ static int	error_mem(char **buff)
 }
 
 /*
-**   clean_tmp();
+**   lstcheck_fd();
 **
 ** DESCRIPTION
-**   Will remove all charater precede the first '\n' find and.
+**
+**
+**
 **
 ** PARAMETERS
-**   @param `tmp`   Pointer to a string.
+**
+**
 **
 ** RETURN
-**   1 if successful.
-**   0 if failed.
+**
 */
 
-int			clean_tmp(char **tmp)
+void	*lstcheck_fd(t_gnl list)
 {
-	size_t	len;
-	size_t	start;
-	char	*buff;
 
-	start = eol_len(*tmp, 2);
-	len = eol_len(*tmp, 3) - start;
-	if (!(buff = ft_substr(*tmp, start + 1, len)))
-		return (0);
-	free(*tmp);
-	*tmp = buff;
-	return (1);
 }
 
 /*
@@ -81,5 +73,14 @@ int			clean_tmp(char **tmp)
 
 int			get_next_line(int fd, char **line)
 {
-	
+	static t_gnl	list;
+	t_gnl			*list_fd;
+	char			*buff;
+
+	list_fd = lstcheck_fd(list);
+	if (!(buff = malloc(BUFFER_SIZE + 1)))
+		return (ERROR);
+
+	free(buff);
+	return (L_READ);
 }

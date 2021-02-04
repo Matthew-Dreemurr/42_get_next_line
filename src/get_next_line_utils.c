@@ -166,3 +166,32 @@ void	ft_bzero(void *s, size_t n)
 		while (n--)
 			s1[n] = 0;
 }
+
+/*
+**   clean_tmp();
+**
+** DESCRIPTION
+**   Will remove all charater precede the first '\n' find and.
+**
+** PARAMETERS
+**   @param `tmp`   Pointer to a string.
+**
+** RETURN
+**   1 if successful.
+**   0 if failed.
+*/
+
+int			clean_tmp(char **tmp)
+{
+	size_t	len;
+	size_t	start;
+	char	*buff;
+
+	start = eol_len(*tmp, 2);
+	len = eol_len(*tmp, 3) - start;
+	if (!(buff = ft_substr(*tmp, start + 1, len)))
+		return (0);
+	free(*tmp);
+	*tmp = buff;
+	return (1);
+}
