@@ -92,7 +92,7 @@ int			get_next_line(int fd, char **line)
 
 	if (!(buff = malloc(BUFFER_SIZE + 1)))
 		return (ERROR);
-	if (!(lst = lstcheck_fd(list, fd)))
+	if (!(lst = lstcheck_fd(&list, fd)))
 		return (error_mem(&buff));
 	
 	while (!eol_len(lst->tmp, 1))
