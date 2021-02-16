@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/16 08:26:12 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/16 21:36:10 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 **   The `ERROR` value.
 */
 
-static int	error_mem(char **buff)
+int		error_mem(char **buff)
 {
 	free(*buff);
 	return (ERROR);
@@ -51,19 +51,24 @@ static int	error_mem(char **buff)
 **
 */
 
-t_gnl	*lstcheck_fd(t_gnl *list, int fd)
+t_gnl	*lstcheck_fd(t_gnl **list, int fd)
 {
-	while (list)
-	{
-		if (list->fd == fd)
-			return (list);
-		list = list->next;
-	}
-	if (!(list->next = malloc(sizeof(t_gnl))))
+	t_gnl	*tmp;
+
+	if (!*list)
 		return (NULL);
-	list = list->next;
-	list->fd = fd;
-	return (list);
+	tmp = *list;
+	while (tmp)
+	{
+		if (tmp->fd == fd)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	if (!(tmp->next = malloc(sizeof(t_gnl))))
+		return (NULL);
+	tmp = tmp->next;
+	tmp->fd = fd;
+	return (tmp);
 }
 
 /*
@@ -89,7 +94,7 @@ int			get_next_line(int fd, char **line)
 
 	if (!(buff = malloc(BUFFER_SIZE + 1)))
 		return (ERROR);
-	if (!(lst = lstcheck_fd(&list, fd)))
+	if (!(lst = lstcheck_fd(list, fd)))
 		return (error_mem(&buff));
 	
 	while (!eol_len(lst->tmp, 1))
