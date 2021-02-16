@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 16:45:26 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/16 08:26:12 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,19 @@ static int	error_mem(char **buff)
 **
 */
 
-void	*lstcheck_fd(t_gnl **list, int fd)
+t_gnl	*lstcheck_fd(t_gnl *list, int fd)
 {
-	t_gnl	*tmp;
-
-	tmp = *list;
-	while (tmp)
+	while (list)
 	{
-		if (tmp->fd == fd)
-			return (tmp);
-		tmp = tmp->next;
+		if (list->fd == fd)
+			return (list);
+		list = list->next;
 	}
-	if (!(tmp->next = malloc(sizeof(t_gnl))))
+	if (!(list->next = malloc(sizeof(t_gnl))))
 		return (NULL);
-	tmp = tmp->next;
-	tmp->fd = fd;
-	return (tmp);
+	list = list->next;
+	list->fd = fd;
+	return (list);
 }
 
 /*

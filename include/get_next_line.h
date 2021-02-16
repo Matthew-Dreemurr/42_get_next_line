@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/01/25 16:38:38 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/16 08:26:54 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ size_t	eol_len(const char *s, int set);
 char	*ft_strjoin(char *s1, const char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	ft_bzero(void *s, size_t n);
-void	*lstcheck_fd(t_gnl **list, int fd);
+t_gnl	*lstcheck_fd(t_gnl *list, int fd);
 int		error_mem(char **buff);
 int		clean_tmp(char **tmp);
 
