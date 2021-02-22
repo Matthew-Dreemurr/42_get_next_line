@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/22 23:27:29 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/22 23:38:55 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		ret_free(char **addr, int ret)
 **
 **   @return  1 or -1 if malloc fail.
 */
-int		joinstr(char *dest[], char *s1, char *s2)
+int		joinstr(char **dest, char *s1, char *s2)
 {
 	ssize_t	l_s1;
 	ssize_t	l_s2;

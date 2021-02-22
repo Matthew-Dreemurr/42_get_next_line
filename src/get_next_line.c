@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/22 23:28:47 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/22 23:37:38 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		get_next_line(int fd, char **line)
 			return (ret_free(&buff, ERROR));
 		buff[box.read_ret] = '\0';
 		
-		joinstr(tmp[fd], tmp[fd], buff);//TODO
+		joinstr(&tmp[fd], tmp[fd], buff);//TODO
 #ifdef DEBUG
 	printf("Read ret: |%lu|, Read buff: |%s|\n", box.read_ret, buff);
 #endif
