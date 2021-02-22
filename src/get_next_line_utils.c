@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/22 16:50:34 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/22 17:33:12 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ ssize_t		diy_strlen(char *str, char c, int mode)
 	ssize_t	len;
 
 	len = -1;
-		if (!str)
-			return (-1);
+	if (!str)
+		return (-1);
 	if (mode == 1)
 	{
 		(void)c;
