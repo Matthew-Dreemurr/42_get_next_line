@@ -6,7 +6,7 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/01/25 18:12:55 by mhadad           ###   ########.fr        #
+#    Updated: 2021/02/22 16:52:24 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ DEF = -D BUFFER_SIZE=128 \
 -D TXT=\"test/lorem_ipsum_of_the_doom.UwU\" \
 -D TXT2=\"test/txt.UwU\" \
 -D LOOP=9999 \
-#-D DEBUG
+-D DEBUG
 
 CFLAG = $(DEF) -Wall -Wextra -Werror
 SRC = src/get_next_line_utils.c src/get_next_line.c \
