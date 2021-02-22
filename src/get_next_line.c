@@ -6,15 +6,15 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/22 18:52:29 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/22 23:28:47 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/get_next_line.h"
 
 /*
-**   @param fd      The file descriptor.
-**   @param **line
+**   @param `fd`      The file descriptor.
+**   @param `**line`
 **
 **   @return L_READ (1), EO_FILE (0).
 **   ERROR (-1).
@@ -37,7 +37,7 @@ int		get_next_line(int fd, char **line)
 			return (ret_free(&buff, ERROR));
 		buff[box.read_ret] = '\0';
 		
-		
+		joinstr(tmp[fd], tmp[fd], buff);//TODO
 #ifdef DEBUG
 	printf("Read ret: |%lu|, Read buff: |%s|\n", box.read_ret, buff);
 #endif
