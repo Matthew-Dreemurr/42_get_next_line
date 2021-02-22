@@ -6,27 +6,9 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/22 16:50:50 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/22 18:07:23 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-**   layout_comment();
-**
-** DESCRIPTION
-**
-**
-**
-**
-** PARAMETERS
-**
-**
-**
-**
-** RETURN
-**
-**
-*/
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H

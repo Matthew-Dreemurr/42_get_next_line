@@ -6,31 +6,23 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/22 17:44:25 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/22 18:52:29 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/get_next_line.h"
 
 /*
-**   get_next_line();
+**   @param fd      The file descriptor.
+**   @param **line
 **
-** DESCRIPTION
-**
-**
-** PARAMETERS
-**
-**
-** RETURN
-**   A line has been read   L_READ  = 1
-**   End of line            EO_FILE = 0
-**   Error                  ERROR   = -1
+**   @return L_READ (1), EO_FILE (0).
+**   ERROR (-1).
 */
-
 int		get_next_line(int fd, char **line)
 {
 	static t_box	box;
-	const char		*tmp[FOPEN_MAX];
+	static char		*tmp[FOPEN_MAX];
 	char			*buff;
 
 	(void)tmp;//TODO
@@ -43,6 +35,9 @@ int		get_next_line(int fd, char **line)
 	{
 		if (ERROR == (box.read_ret = read(fd, buff, BUFFER_SIZE)))
 			return (ret_free(&buff, ERROR));
+		buff[box.read_ret] = '\0';
+		
+		
 #ifdef DEBUG
 	printf("Read ret: |%lu|, Read buff: |%s|\n", box.read_ret, buff);
 #endif
