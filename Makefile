@@ -6,13 +6,13 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/02/22 16:52:24 by mhadad           ###   ########.fr        #
+#    Updated: 2021/02/23 15:04:12 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=128 \
+DEF = -D BUFFER_SIZE=5 \
 -D TXT=\"test/lorem_ipsum_of_the_doom.UwU\" \
 -D TXT2=\"test/txt.UwU\" \
 -D LOOP=9999 \
