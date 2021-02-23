@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/22 23:47:48 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/23 16:04:39 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 **
 **   @return `len` or -1 if NULL string.
 */
-ssize_t		diy_strlen(char *str, char c, int mode)
+ssize_t		diyStrlen(char *str, char c, int mode)
 {
 	ssize_t	len;
 
@@ -57,35 +57,38 @@ ssize_t		diy_strlen(char *str, char c, int mode)
 **
 **   @return `ret`.
 */
-int		ret_free(char **addr, int ret)
+int		retFree(char **addr, int ret)
 {
 	free(*addr);
 	return (ret);
 }
 
 /*
-**   Will contanenate `s1` en `s2`.
+**   Will contanenate `dest` en `s1`.
 **
-**   @param `dest`  The destination will overwrite by the concatenation
-**   of s1 en s2.
-**   @param `s1`    .
-**   @param `s2`    .
+**   @param `dest`  The destination.
+**   @param `s1`    The string to add @ `dest`.
 **
 **   @return  1 or -1 if malloc fail.
-*///TODO free the dest, change the prototype (dont need the s1)
-int		joinstr(char **dest, char *s1, char *s2)
+*///TODO free the dest, change the prototype (dont need the s2)
+int		joinstr(char **dest, char *s1)
 {
-	ssize_t	l_s1;
-	ssize_t	l_s2;
+	ssize_t	lS1;
+	ssize_t	lDest;
+	char	*ret;
 
-	l_s1 = diy_strlen(s1, '\0', 1);
-	l_s2 = diy_strlen(s2, '\0', 1);
-	if (!(dest = malloc(l_s1 + l_s2 + 1)))
+	lS1 = diyStrlen(s1, '\0', 1);
+	if ((lDest = diyStrlen(*dest, '\0', 1)) < 0)
+		lDest = 0;
+	printf("lDest: %lu, lS1: %lu\n", lDest, lS1);
+	if (!(ret = malloc(lS1 + lDest + 1)))
 		return (-1);
-	*dest[l_s1 + l_s2] = '\0';
-	while (--l_s2)
-		*dest[l_s1 + l_s2] = s2[l_s2];
-	while (--l_s1)
-		*dest[l_s1] = s1[l_s1];
+	ret[lS1 + lDest] = '\0';
+	while (--lS1 >= 0)
+		ret[lS1 + lDest] = s1[lS1];
+	while (--lDest >= 0)
+		ret[lDest] = (*dest)[lDest];
+	free(*dest);
+	*dest = ret;
 	return (1);
 }

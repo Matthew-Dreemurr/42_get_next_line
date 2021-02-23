@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/22 23:37:38 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/23 16:09:13 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,21 @@ int		get_next_line(int fd, char **line)
 	!(buff = (char *)malloc(BUFFER_SIZE + 1)))
 		return (ERROR);
 	buff[BUFFER_SIZE] = '\0';
-	while (!diy_strlen(buff, '\n', 2))
+	while ((diyStrlen(tmp[fd], '\n', 2) <= 0))
 	{
 		if (ERROR == (box.read_ret = read(fd, buff, BUFFER_SIZE)))
-			return (ret_free(&buff, ERROR));
+			return (retFree(&buff, ERROR));
 		buff[box.read_ret] = '\0';
-		
-		joinstr(&tmp[fd], tmp[fd], buff);//TODO
+		if ((joinstr(&tmp[fd], buff)) < 0)
+			retFree(&buff, ERROR);
 #ifdef DEBUG
 	printf("Read ret: |%lu|, Read buff: |%s|\n", box.read_ret, buff);
+	printf("strjoin tmp[%d]: |%s|\n\n", fd, tmp[fd]);
 #endif
 	}
 	free (buff);
+	*line = tmp[fd];
 	if (box.read_ret < BUFFER_SIZE)
-		return(EO_FILE);
-	return (EO_FILE);
+		return(retFree(&tmp[fd], EO_FILE));
+	return (L_READ);
 }

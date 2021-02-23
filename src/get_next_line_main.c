@@ -45,7 +45,7 @@
 # define LOOP 1
 #endif
 
-# define TEST2
+# define TEST1
 
 #ifdef TEST1
 int	gnl_test(int fd)
@@ -106,6 +106,8 @@ int	main()
 	#ifdef DEBUG
 	printf(GRN "Open %s successful, File descriptor |%d|\n" RESET, TXT, fd);
 	printf(YEL "Reading file |%s| whit the buffer size limit of |%d|oct\n" RESET, TXT, BUFFER_SIZE);
+	printf(GRN "Open %s successful, File descriptor |%d|\n" RESET, TXT2, fd2);
+	printf(YEL "Reading file |%s| whit the buffer size limit of |%d|oct\n" RESET, TXT2, BUFFER_SIZE);
 	#endif
 	if (!(strcmp(TXT, "ERROR")))
 	{
