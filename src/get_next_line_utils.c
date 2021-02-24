@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/24 21:01:03 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/24 22:58:29 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /*
 **   If `mode` == 1 Will return `len` of the string and will ignore `c`.
-**   If `mode` == 2 Will return the number of characters preceding `c` and itself.
+**   If `mode` == 2 Will return the number of characters preceding
+**   `c` and itself.
 **
 **   @param `str`   The srting we're looking for the `c` caracter.
 **   @param `c`     The caratere we're looking for.
@@ -119,15 +120,18 @@ char	*tmpClean(char **tmp)
 		free(retTmp);
 		return (NULL);
 	}
+	printf("tmpClear tmp: |%s|\n", *tmp);
 	ret[toSkip - 1] = '\0';
 	len2 = toSkip;
-	while (--len2)
+	printf("len: |%lu| toSkip: |%lu| len2: |%lu|\n", len, toSkip, len2);
+	while (--len2 >= 0)
 		ret[len2] = (*tmp)[len2];
 	len -= toSkip;
 	while (--len >= 0)
 		retTmp[len] = (*tmp)[toSkip++];
 	free(*tmp);
 	*tmp = retTmp;
-	free(retTmp);
+//	free(retTmp);
+	printf("tmpClear after ret: |%s|\n", ret);
 	return (ret);
 }
