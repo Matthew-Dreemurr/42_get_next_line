@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/24 20:08:09 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/24 21:01:52 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ int		get_next_line(int fd, char **line)
 	printf("strjoin tmp[%d]: |%s|\n\n", fd, tmp[fd]);
 #endif
 	}
-	*line = tmp[fd];
-	tmpClean(&tmp[fd]);
+	*line = tmpClean(&tmp[fd]);
 	free (box.buff);
 	if (box.readR < BUFFER_SIZE)
 		return(retFree(&tmp[fd], EO_FILE));

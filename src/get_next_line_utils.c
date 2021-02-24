@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/24 20:28:55 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/24 21:01:03 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,10 @@ char	*tmpClean(char **tmp)
 		return (NULL);
 	retTmp[len - toSkip] = '\0';
 	if (!(ret = (char*)malloc(toSkip)))
-		return (retFree(&retTmp, 0));
+	{
+		free(retTmp);
+		return (NULL);
+	}
 	ret[toSkip - 1] = '\0';
 	len2 = toSkip;
 	while (--len2)
@@ -125,8 +128,6 @@ char	*tmpClean(char **tmp)
 		retTmp[len] = (*tmp)[toSkip++];
 	free(*tmp);
 	*tmp = retTmp;
-#ifdef DEBUG
-	printf("tmpClean tmp: |%s|, ret |%s|\n\n", *tmp, ret);
-#endif
+	free(retTmp);
 	return (ret);
 }
