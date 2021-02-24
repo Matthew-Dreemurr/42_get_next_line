@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/23 16:04:39 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/24 20:28:55 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 **
 **   @return `len` or -1 if NULL string.
 */
-ssize_t		diyStrlen(char *str, char c, int mode)
+ssize_t		diyStrLen(char *str, char c, int mode)
 {
 	ssize_t	len;
 
@@ -70,18 +70,19 @@ int		retFree(char **addr, int ret)
 **   @param `s1`    The string to add @ `dest`.
 **
 **   @return  1 or -1 if malloc fail.
-*///TODO free the dest, change the prototype (dont need the s2)
-int		joinstr(char **dest, char *s1)
+*/
+int		joinStr(char **dest, char *s1)
 {
+	char	*ret;
 	ssize_t	lS1;
 	ssize_t	lDest;
-	char	*ret;
 
-	lS1 = diyStrlen(s1, '\0', 1);
-	if ((lDest = diyStrlen(*dest, '\0', 1)) < 0)
+	lS1 = diyStrLen
+	(s1, '\0', 1);
+	if ((lDest = diyStrLen(*dest, '\0', 1)) < 0)
 		lDest = 0;
 	printf("lDest: %lu, lS1: %lu\n", lDest, lS1);
-	if (!(ret = malloc(lS1 + lDest + 1)))
+	if (!(ret = (char*)malloc(lS1 + lDest + 1)))
 		return (-1);
 	ret[lS1 + lDest] = '\0';
 	while (--lS1 >= 0)
@@ -91,4 +92,41 @@ int		joinstr(char **dest, char *s1)
 	free(*dest);
 	*dest = ret;
 	return (1);
+}
+
+/*
+**
+**
+**   @param `tmp`
+**   @return  1 or -1 if malloc fail / `tmp` = NULL.
+*/
+char	*tmpClean(char **tmp)
+{
+	char	*retTmp;
+	char	*ret;
+	ssize_t	len;
+	ssize_t	len2;
+	ssize_t	toSkip;
+
+	if (!tmp || !(len = diyStrLen(*tmp, '\0', 1)))
+		return (NULL);
+	toSkip = diyStrLen(*tmp, '\n', 2);
+	if (!(retTmp = (char*)malloc(len - toSkip + 1)))
+		return (NULL);
+	retTmp[len - toSkip] = '\0';
+	if (!(ret = (char*)malloc(toSkip)))
+		return (retFree(&retTmp, 0));
+	ret[toSkip - 1] = '\0';
+	len2 = toSkip;
+	while (--len2)
+		ret[len2] = (*tmp)[len2];
+	len -= toSkip;
+	while (--len >= 0)
+		retTmp[len] = (*tmp)[toSkip++];
+	free(*tmp);
+	*tmp = retTmp;
+#ifdef DEBUG
+	printf("tmpClean tmp: |%s|, ret |%s|\n\n", *tmp, ret);
+#endif
+	return (ret);
 }

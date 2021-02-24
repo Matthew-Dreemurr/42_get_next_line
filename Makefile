@@ -6,16 +6,16 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/02/23 15:04:12 by mhadad           ###   ########.fr        #
+#    Updated: 2021/02/24 20:05:38 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=5 \
+DEF = -D BUFFER_SIZE=128 \
 -D TXT=\"test/lorem_ipsum_of_the_doom.UwU\" \
 -D TXT2=\"test/txt.UwU\" \
--D LOOP=9999 \
+-D LOOP=1 \
 -D DEBUG
 
 CFLAG = $(DEF) -Wall -Wextra -Werror
