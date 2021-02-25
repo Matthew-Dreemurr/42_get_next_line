@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/24 22:58:29 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/02/25 18:01:31 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,32 +106,28 @@ char	*tmpClean(char **tmp)
 	char	*retTmp;
 	char	*ret;
 	ssize_t	len;
-	ssize_t	len2;
 	ssize_t	toSkip;
 
-	if (!tmp || !(len = diyStrLen(*tmp, '\0', 1)))
+	if (!tmp || !*tmp || (len = (diyStrLen(*tmp, '\0', 1) - 1)) < 0)
 		return (NULL);
 	toSkip = diyStrLen(*tmp, '\n', 2);
 	if (!(retTmp = (char*)malloc(len - toSkip + 1)))
 		return (NULL);
-	retTmp[len - toSkip] = '\0';
 	if (!(ret = (char*)malloc(toSkip)))
 	{
 		free(retTmp);
 		return (NULL);
 	}
-	printf("tmpClear tmp: |%s|\n", *tmp);
+	retTmp[len - toSkip] = '\0';
 	ret[toSkip - 1] = '\0';
-	len2 = toSkip;
-	printf("len: |%lu| toSkip: |%lu| len2: |%lu|\n", len, toSkip, len2);
-	while (--len2 >= 0)
-		ret[len2] = (*tmp)[len2];
 	len -= toSkip;
 	while (--len >= 0)
-		retTmp[len] = (*tmp)[toSkip++];
+		ret[len] = (*tmp)[len];
+	puts("Fini !");
+	len = -1;
+	while ((*tmp)[++len])
+		retTmp[len] = (*tmp)[toSkip];
 	free(*tmp);
 	*tmp = retTmp;
-//	free(retTmp);
-	printf("tmpClear after ret: |%s|\n", ret);
 	return (ret);
 }
