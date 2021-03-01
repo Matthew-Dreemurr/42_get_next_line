@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 10:11:48 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 11:04:45 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ ssize_t		diyStrLen(char *str, char c, int mode)
 	{
 		while (str[++len])
 			if (str[len] == c)
-				return (++len);
+				return (len);
 //		if (str[len] == c)
 //			return (++len);
 		return (0);
@@ -65,7 +65,7 @@ int		retFree(char **addr, int ret)
 }
 
 /*
-**   Will contanenate `dest` en `s1`.
+**   Will contanenate `dest` en `s1` (malloc, free).
 **
 **   @param `dest`  The destination.
 **   @param `s1`    The string to add @ `dest`.
@@ -98,17 +98,20 @@ int		joinStr(char **dest, char *s1)
 **
 **
 **   @param `tmp`
-**   @return  1 or -1 if malloc fail / `tmp` = NULL.
-*/
+**
+**   @return 1 or -1 if malloc fail / `tmp` = NULL.
 char	*tmpClean(char **tmp)
 {
 
 	return (ret);
 }
+*/
 
 /*
+**   Will return a string of all character preceding '\n' (malloc).
 **
 **
+**   @param `tmp`
 */
 char	*retNextLine(char **tmp)
 {
