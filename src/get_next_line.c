@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 12:02:44 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 13:47:20 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ int		get_next_line(int fd, char **line)
 	!(box.buff = (char *)malloc(BUFFER_SIZE + 1)))
 		return (ERROR);
 	box.buff[BUFFER_SIZE] = '\0';
+#ifdef DEBUG
+	printf("\n\nlast tmp: |%s|\n", tmp[fd]);
+#endif
 	while ((diyStrLen(tmp[fd], '\n', 2) <= 0))
 	{
 		if ((box.readR = read(fd, box.buff, BUFFER_SIZE)) == ERROR)
@@ -36,12 +39,9 @@ int		get_next_line(int fd, char **line)
 		if ((joinStr(&tmp[fd], box.buff)) < 0)
 			retFree(&box.buff, ERROR);
 #ifdef DEBUG
-	printf("Read ret: |%lu|, Read buff: |%s|\n", box.readR, box.buff);
-	printf("strjoin tmp[%d]: |%s|\n\n", fd, tmp[fd]);
+	printf("\n\nRead ret: |%lu|, Read buff: |%s|\n", box.readR, box.buff);
 #endif
 	}
-
-
 	if (!(*line = retNextLine(&tmp[fd])))
 		return (ERROR);
 	if (!(tmp[fd] = tmpClean(&tmp[fd])))
