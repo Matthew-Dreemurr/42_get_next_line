@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 14:56:34 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 15:48:29 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ char	*tmpClean(char *tmp)
 	while ((tmp)[++toSkip])
 	{
 		*ret = (tmp)[toSkip];
-		ret++;
+		ret++;					//TODO ERROR, is sending the last adresse of the string !
 	}
 #ifdef DEBUG
 	printf("======tmpClean ret: \n|%s|\n", ret);
