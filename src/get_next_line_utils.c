@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 14:21:23 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 14:31:22 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*joinStr(char *dest, char *s1)
 
 	lS1 = diyStrLen(s1, '\0', 1);
 	if ((lDest = diyStrLen(dest, '\0', 1)) == -1)
-		lDest = 0;moni
+		lDest = 0;
 	if (!(ret = (char*)malloc(lS1 + lDest + 1)))
 		return (NULL);
 	ret[lS1 + lDest] = '\0';
