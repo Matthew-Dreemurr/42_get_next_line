@@ -45,7 +45,7 @@
 # define LOOP 1
 #endif
 
-# define TEST1
+# define TEST2
 
 #ifdef TEST1
 int	gnl_test(int fd)
@@ -196,18 +196,18 @@ int main()
         printf("========== TEST 1 : The Alphabet =========\n");
         printf("==========================================\n\n");
 
-        if (!(fd = open("test/cat.UwU", O_RDONLY)))
+        if (!(fd = open("test/lorem_ipsum_of_the_doom.UwU", O_RDONLY)))
         {
                 printf("\nError in open\n");
                 return (0);
         }
         while ((i = get_next_line(fd, &line)) > 0)
         {
-                printf("|%s\n", line);
+                printf(YEL "|%s\n" RESET, line);
                 lineadress[j - 1] = line;
                 j++;
         }
-        printf("|%s\n", line);
+        printf(YEL "|%s\n" RESET, line);
         free(line);
         close(fd);
 
