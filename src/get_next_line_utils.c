@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 14:31:22 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 14:56:34 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ ssize_t		diyStrLen(char *str, char c, int mode)
 
 	len = -1;
 	if (!str)
-		return (-1);
+		return (0);
 	if (mode == 1)
 	{
 		(void)c;
@@ -90,6 +90,7 @@ char	*joinStr(char *dest, char *s1)
 	//free(*dest);
 #ifdef DEBUG
 	printf("======joinStr dest: \n|%s|\n\n", dest);
+	printf("======joinStr s1: \n|%s|\n\n", s1);
 #endif
 #ifdef DEBUG
 	printf("======joinStr ret: \n|%s|\n\n", ret);
