@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/02/25 18:01:31 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 10:11:48 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ ssize_t		diyStrLen(char *str, char c, int mode)
 		while (str[++len])
 			if (str[len] == c)
 				return (++len);
-		if (str[len] == c)
-			return (++len);
+//		if (str[len] == c)
+//			return (++len);
 		return (0);
 	}
 		return (0);
@@ -78,8 +78,7 @@ int		joinStr(char **dest, char *s1)
 	ssize_t	lS1;
 	ssize_t	lDest;
 
-	lS1 = diyStrLen
-	(s1, '\0', 1);
+	lS1 = diyStrLen(s1, '\0', 1);
 	if ((lDest = diyStrLen(*dest, '\0', 1)) < 0)
 		lDest = 0;
 	printf("lDest: %lu, lS1: %lu\n", lDest, lS1);
@@ -103,31 +102,24 @@ int		joinStr(char **dest, char *s1)
 */
 char	*tmpClean(char **tmp)
 {
-	char	*retTmp;
+
+	return (ret);
+}
+
+/*
+**
+**
+*/
+char	*retNextLine(char **tmp)
+{
 	char	*ret;
 	ssize_t	len;
-	ssize_t	toSkip;
 
-	if (!tmp || !*tmp || (len = (diyStrLen(*tmp, '\0', 1) - 1)) < 0)
+	len = diyStrLen(*tmp, '\n', 2);
+	if (!(ret = (char*)malloc(len + 1)))
 		return (NULL);
-	toSkip = diyStrLen(*tmp, '\n', 2);
-	if (!(retTmp = (char*)malloc(len - toSkip + 1)))
-		return (NULL);
-	if (!(ret = (char*)malloc(toSkip)))
-	{
-		free(retTmp);
-		return (NULL);
-	}
-	retTmp[len - toSkip] = '\0';
-	ret[toSkip - 1] = '\0';
-	len -= toSkip;
-	while (--len >= 0)
+	ret[len] = '\0';
+	while (--len >= 0 && (*tmp)[len])
 		ret[len] = (*tmp)[len];
-	puts("Fini !");
-	len = -1;
-	while ((*tmp)[++len])
-		retTmp[len] = (*tmp)[toSkip];
-	free(*tmp);
-	*tmp = retTmp;
 	return (ret);
 }
