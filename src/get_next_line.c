@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 11:04:37 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 11:08:29 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int		get_next_line(int fd, char **line)
 
 
 	if (!(*line = retNextLine(&tmp[fd])))
+		return (ERROR);
+	if (!(tmp[fd] = tmpClean(&tmp[fd])))
 		return (ERROR);
 	free (box.buff);
 	if (box.readR < BUFFER_SIZE)

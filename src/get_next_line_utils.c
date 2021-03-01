@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 11:04:45 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 11:37:48 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 /*
 **   If `mode` == 1 Will return `len` of the string and will ignore `c`.
-**   If `mode` == 2 Will return the number of characters preceding
-**   `c` and itself.
+**   If `mode` == 2 Will return the number of characters preceding `c`.
 **
 **   @param `str`   The srting we're looking for the `c` caracter.
 **   @param `c`     The caratere we're looking for.
@@ -95,17 +94,32 @@ int		joinStr(char **dest, char *s1)
 }
 
 /*
-**
+**   (malloc)
 **
 **   @param `tmp`
 **
-**   @return 1 or -1 if malloc fail / `tmp` = NULL.
+**   @return  if malloc fail / `tmp` = NULL.
+*/
 char	*tmpClean(char **tmp)
 {
+	char	*ret;
+	ssize_t	toSkip;
+	ssize_t	len;
 
+	len = diyStrLen(*tmp, '\0', 1);
+	toSkip = diyStrLen(*tmp, '\n', 2);
+	toSkip++;
+	if (!(ret = (char*)malloc(len - toSkip + 1)))
+		return (NULL);
+	len -= toSkip;
+	ret[len] = '\0';
+	while ((*tmp)[++toSkip])
+	{
+		*ret = (*tmp)[toSkip];
+		ret++;
+	}
 	return (ret);
 }
-*/
 
 /*
 **   Will return a string of all character preceding '\n' (malloc).
@@ -122,6 +136,7 @@ char	*retNextLine(char **tmp)
 	if (!(ret = (char*)malloc(len + 1)))
 		return (NULL);
 	ret[len] = '\0';
+	//free(*tmp);
 	while (--len >= 0 && (*tmp)[len])
 		ret[len] = (*tmp)[len];
 	return (ret);
