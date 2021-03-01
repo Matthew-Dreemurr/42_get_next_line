@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 13:47:20 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 13:51:09 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		get_next_line(int fd, char **line)
 		return (ERROR);
 	box.buff[BUFFER_SIZE] = '\0';
 #ifdef DEBUG
-	printf("\n\nlast tmp: |%s|\n", tmp[fd]);
+	printf("\n\n==last tmp: |%s|\n", tmp[fd]);
 #endif
 	while ((diyStrLen(tmp[fd], '\n', 2) <= 0))
 	{
@@ -39,12 +39,12 @@ int		get_next_line(int fd, char **line)
 		if ((joinStr(&tmp[fd], box.buff)) < 0)
 			retFree(&box.buff, ERROR);
 #ifdef DEBUG
-	printf("\n\nRead ret: |%lu|, Read buff: |%s|\n", box.readR, box.buff);
+	printf("\n\n==Read ret: |%lu|, Read buff: \n|%s|\n", box.readR, box.buff);
 #endif
 	}
-	if (!(*line = retNextLine(&tmp[fd])))
+	if (!(*line = retNextLine(tmp[fd])))
 		return (ERROR);
-	if (!(tmp[fd] = tmpClean(&tmp[fd])))
+	if (!(tmp[fd] = tmpClean(tmp[fd])))
 		return (ERROR);
 	free (box.buff);
 	

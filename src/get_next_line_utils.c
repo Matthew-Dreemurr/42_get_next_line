@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 13:43:55 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 13:51:03 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		joinStr(char **dest, char *s1)
 	//free(*dest);
 	*dest = ret;
 #ifdef DEBUG
-	printf("joinStr *dest: |%s|\n\n", *dest);
+	printf("======joinStr *dest: \n|%s|\n\n", *dest);
 #endif
 	return (1);
 }
@@ -102,24 +102,27 @@ int		joinStr(char **dest, char *s1)
 **
 **   @return  if malloc fail / `tmp` = NULL.
 */
-char	*tmpClean(char **tmp)
+char	*tmpClean(char *tmp)
 {
 	char	*ret;
 	ssize_t	toSkip;
 	ssize_t	len;
 
-	len = diyStrLen(*tmp, '\0', 1);
-	toSkip = diyStrLen(*tmp, '\n', 2);
+	len = diyStrLen(tmp, '\0', 1);
+	toSkip = diyStrLen(tmp, '\n', 2);
 	toSkip++;
 	if (!(ret = (char*)malloc(len - toSkip + 1)))
 		return (NULL);
 	len -= toSkip;
 	ret[len] = '\0';
-	while ((*tmp)[++toSkip])
+	while ((tmp)[++toSkip])
 	{
-		*ret = (*tmp)[toSkip];
+		*ret = (tmp)[toSkip];
 		ret++;
 	}
+#ifdef DEBUG
+	printf("======tmpClean ret: \n|%s|\n", ret);
+#endif
 	return (ret);
 }
 
@@ -129,20 +132,20 @@ char	*tmpClean(char **tmp)
 **
 **   @param `tmp`
 */
-char	*retNextLine(char **tmp)
+char	*retNextLine(char *tmp)
 {
 	char	*ret;
 	ssize_t	len;
 
-	len = diyStrLen(*tmp, '\n', 2);
+	len = diyStrLen(tmp, '\n', 2);
 	if (!(ret = (char*)malloc(len + 1)))
 		return (NULL);
 	ret[len] = '\0';
 	//free(*tmp);
-	while (--len >= 0 && (*tmp)[len])
-		ret[len] = (*tmp)[len];
+	while (--len >= 0 && (tmp)[len])
+		ret[len] = (tmp)[len];
 #ifdef DEBUG
-	printf("retNextLine ret: |%s|\n", ret);
+	printf("======retNextLine ret: \n|%s|\n", ret);
 #endif
 	return (ret);
 }

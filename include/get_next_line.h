@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 10:57:01 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 13:48:45 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ int		get_next_line(int fd, char **line);
 ssize_t	diyStrLen(char *str, char c, int mode);
 int		retFree(char **addr, int ret);
 int		joinStr(char **dest, char *s1);
-char	*tmpClean(char **tmp);
-char	*retNextLine(char **tmp);
+char	*tmpClean(char *tmp);
+char	*retNextLine(char *tmp);
 #endif
