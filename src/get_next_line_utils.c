@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 11:37:48 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 12:28:17 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ int		joinStr(char **dest, char *s1)
 	lS1 = diyStrLen(s1, '\0', 1);
 	if ((lDest = diyStrLen(*dest, '\0', 1)) < 0)
 		lDest = 0;
+#ifdef DEBUG
 	printf("lDest: %lu, lS1: %lu\n", lDest, lS1);
+#endif
 	if (!(ret = (char*)malloc(lS1 + lDest + 1)))
 		return (-1);
 	ret[lS1 + lDest] = '\0';
@@ -88,7 +90,7 @@ int		joinStr(char **dest, char *s1)
 		ret[lS1 + lDest] = s1[lS1];
 	while (--lDest >= 0)
 		ret[lDest] = (*dest)[lDest];
-	free(*dest);
+	//free(*dest);
 	*dest = ret;
 	return (1);
 }

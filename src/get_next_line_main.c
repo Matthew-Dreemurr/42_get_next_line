@@ -84,10 +84,12 @@ int	main()
 	int	fd2;
 	int	ret;
 	int	i;
+	int	j;
 
 	loop = LOOP;
 	ret = 0;
 	i = 1;
+	j = i;
 		//* Check open file *//
 	if((fd = open(TXT, O_RDONLY)) == -1)
 	{
@@ -145,6 +147,15 @@ int	main()
 			#endif
 			break;
 		}
+		i++;
+	}
+	while(j <= loop)
+	{
+		#ifdef DEBUG
+		printf(B_YEL "\n     [..--================--..]\n" RESET);
+		printf(YEL "[===========[Loop nbr %d]===========]\n" RESET, j);
+		printf(B_YEL "      ['---==============---']\n" RESET);
+		#endif
 		ret = gnl_test(fd2);
 		if (ret == -1)
 		{
@@ -156,11 +167,13 @@ int	main()
 		if (ret == 0)
 		{
 			#ifdef DEBUG
-			printf(GRN "[======[EOF]======]" RESET);
+			printf(GRN "  [..======[EOF]======..]\n" RESET);
+			printf(GRN "[==========[EOF]==========]\n" RESET);
+			printf(GRN "  [''======[EOF]======'']\n" RESET);
 			#endif
 			break;
 		}
-		i++;
+		j++;
 	}
 	close(fd);
 	close(fd2);
@@ -183,7 +196,7 @@ int main()
         printf("========== TEST 1 : The Alphabet =========\n");
         printf("==========================================\n\n");
 
-        if (!(fd = open(TXT, O_RDONLY)))
+        if (!(fd = open("test/cat.UwU", O_RDONLY)))
         {
                 printf("\nError in open\n");
                 return (0);
