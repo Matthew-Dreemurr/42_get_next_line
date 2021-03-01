@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 13:51:03 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/01 14:21:23 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,35 +64,37 @@ int		retFree(char **addr, int ret)
 }
 
 /*
-**   Will contanenate `dest` en `s1` (malloc, free).
+**   Will contanenate `dest` en `s1` (malloc).
 **
 **   @param `dest`  The destination.
 **   @param `s1`    The string to add @ `dest`.
 **
 **   @return  1 or -1 if malloc fail.
 */
-int		joinStr(char **dest, char *s1)
+char	*joinStr(char *dest, char *s1)
 {
 	char	*ret;
 	ssize_t	lS1;
 	ssize_t	lDest;
 
 	lS1 = diyStrLen(s1, '\0', 1);
-	if ((lDest = diyStrLen(*dest, '\0', 1)) < 0)
-		lDest = 0;
+	if ((lDest = diyStrLen(dest, '\0', 1)) == -1)
+		lDest = 0;moni
 	if (!(ret = (char*)malloc(lS1 + lDest + 1)))
-		return (-1);
+		return (NULL);
 	ret[lS1 + lDest] = '\0';
 	while (--lS1 >= 0)
 		ret[lS1 + lDest] = s1[lS1];
 	while (--lDest >= 0)
-		ret[lDest] = (*dest)[lDest];
+		ret[lDest] = (dest)[lDest];
 	//free(*dest);
-	*dest = ret;
 #ifdef DEBUG
-	printf("======joinStr *dest: \n|%s|\n\n", *dest);
+	printf("======joinStr dest: \n|%s|\n\n", dest);
 #endif
-	return (1);
+#ifdef DEBUG
+	printf("======joinStr ret: \n|%s|\n\n", ret);
+#endif
+	return (ret);
 }
 
 /*

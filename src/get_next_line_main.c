@@ -203,11 +203,11 @@ int main()
         }
         while ((i = get_next_line(fd, &line)) > 0)
         {
-                printf(YEL "|%s\n" RESET, line);
+                printf(YEL "|%s|\n" RESET, line);
                 lineadress[j - 1] = line;
                 j++;
         }
-        printf(YEL "|%s\n" RESET, line);
+        printf(YEL "|%s|\n" RESET, line);
         free(line);
         close(fd);
 
