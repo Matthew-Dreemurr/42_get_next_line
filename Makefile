@@ -19,7 +19,7 @@ DEF = -D BUFFER_SIZE=128 \
 -D TEST1 \
 #-D DEBUG
 
-CFLAG = $(DEF) -Wall -Wextra -Werror
+CFLAG = $(DEF) #-Wall -Wextra -Werror
 SRC = src/get_next_line_utils.c src/get_next_line.c \
 	src/get_next_line_main.c
 
