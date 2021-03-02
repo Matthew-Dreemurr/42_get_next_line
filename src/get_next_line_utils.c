@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 15:48:29 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/02 12:06:27 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,21 +108,26 @@ char	*joinStr(char *dest, char *s1)
 char	*tmpClean(char *tmp)
 {
 	char	*ret;
-	ssize_t	toSkip;
-	ssize_t	len;
+	char	*cpy_tmp;
+	int		i;
 
-	len = diyStrLen(tmp, '\0', 1);
-	toSkip = diyStrLen(tmp, '\n', 2);
-	toSkip++;
-	if (!(ret = (char*)malloc(len - toSkip + 1)))
+	cpy_tmp = tmp;
+	i = 0;
+	if (!tmp)
 		return (NULL);
-	len -= toSkip;
-	ret[len] = '\0';
-	while ((tmp)[++toSkip])
+	while (!(*cpy_tmp == '\n'))
+		cpy_tmp++;
+	if (*cpy_tmp == '\n')
+		cpy_tmp++;
+	if (!(ret = (char*)malloc((diyStrLen(cpy_tmp, '\0', 1) + 1))))
+		return (NULL);
+	while (*cpy_tmp)
 	{
-		*ret = (tmp)[toSkip];
-		ret++;					//TODO ERROR, is sending the last adresse of the string !
+		ret[i] = *cpy_tmp;
+		i++;
+		cpy_tmp++;
 	}
+	ret[i] = '\0';
 #ifdef DEBUG
 	printf("======tmpClean ret: \n|%s|\n", ret);
 #endif

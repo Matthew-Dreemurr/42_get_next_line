@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 15:13:27 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/02 12:09:07 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int		get_next_line(int fd, char **line)
 		box.buff[box.readR] = '\0';
 		if (!(tmp[fd] = joinStr(tmp[fd], box.buff)))
 			retFree(&box.buff, ERROR);
-	printf("\n\n==last tmp: |%s|\n", tmp[fd]);
 #ifdef DEBUG
+	printf("\n\n==last tmp: |%s|\n", tmp[fd]);
 	printf("\n\n==Read ret: |%lu|, Read buff: \n|%s|\n", box.readR, box.buff);
 #endif
 	}
@@ -50,7 +50,6 @@ int		get_next_line(int fd, char **line)
 		return (ERROR);
 	if (!(tmp[fd] = tmpClean(tmp[fd])))
 		return (ERROR);
-	printf("\n\n==last tmp: |%s|\n", tmp[fd]);
 	free (box.buff);
 	
 	if (box.readR < BUFFER_SIZE)

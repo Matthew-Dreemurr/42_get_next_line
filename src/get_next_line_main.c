@@ -27,8 +27,6 @@
 # define LOOP 1
 #endif
 
-# define TEST2
-
 #ifdef TEST1
 int	gnl_test(int fd)
 {
