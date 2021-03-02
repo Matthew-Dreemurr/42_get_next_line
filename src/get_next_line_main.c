@@ -27,6 +27,31 @@
 # define LOOP 1
 #endif
 
+#ifdef TEST0
+int		main(int ac, char **av)
+{
+	int		fd;
+	int		ret;
+	char	*line;
+
+	fd = 0;
+	ret = 1;
+	if (ac != 2)
+		return (1);
+	if ((fd = open(av[1], O_RDONLY)) == -1)
+		return (1);
+	while ((ret = get_next_line(fd, &line)) > 0)
+	{
+		printf("Line: |%s|\n", line);
+		free(line);
+	}
+	printf("====Line: |%s|\n", line);
+	free(line);
+	return (0);
+}
+
+#endif
+
 #ifdef TEST1
 int	gnl_test(int fd)
 {
