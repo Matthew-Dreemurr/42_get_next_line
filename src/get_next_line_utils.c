@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/02 12:06:27 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/02 13:04:22 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,14 @@ ssize_t		diyStrLen(char *str, char c, int mode)
 //			return (++len);
 		return (0);
 	}
+	else if (mode == 3)
+	{
+		while (str[++len])
+			if (str[len] == '\n')
+				return (1);
 		return (0);
+	}
+		return (-1);
 }
 
 /*
