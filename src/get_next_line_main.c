@@ -27,6 +27,32 @@
 # define LOOP 1
 #endif
 
+
+#ifdef TEST0
+int		main(int ac, char **av)
+{
+	int		fd;
+	int		ret;
+	char	*line;
+
+	fd = 0;
+	ret = 1;
+	if (ac != 2)
+		return (1);
+	if ((fd = open(av[1], O_RDONLY)) == -1)
+		return (1);
+	while ((ret = get_next_line(fd, &line)) > 0)
+	{
+		printf("Line: |%s|\n", line);
+		free(line);
+	}
+	printf("====Line: |%s|\n", line);
+	free(line);
+	return (0);
+}
+
+#endif
+
 #ifdef TEST1
 int	gnl_test(int fd)
 {
@@ -52,8 +78,8 @@ int	gnl_test(int fd)
 		if (!line)
 			printf (RED "ERROR *line is NULL !" RESET);
 		printf(B_YEL "**line" RESET " = " B_WHT "|" B_YEL "%s" B_WHT "|\n" RESET, line);
-		free(line);
 	}
+		free(line);
 	return (ret);
 }
 
@@ -88,8 +114,8 @@ int	main()
 	#ifdef DEBUG
 	printf(GRN "Open %s successful, File descriptor |%d|\n" RESET, TXT, fd);
 	printf(YEL "Reading file |%s| whit the buffer size limit of |%d|oct\n" RESET, TXT, BUFFER_SIZE);
-	printf(GRN "Open %s successful, File descriptor |%d|\n" RESET, TXT2, fd2);
-	printf(YEL "Reading file |%s| whit the buffer size limit of |%d|oct\n" RESET, TXT2, BUFFER_SIZE);
+	//printf(GRN "Open %s successful, File descriptor |%d|\n" RESET, TXT2, fd2);
+	//printf(YEL "Reading file |%s| whit the buffer size limit of |%d|oct\n" RESET, TXT2, BUFFER_SIZE);
 	#endif
 	if (!(strcmp(TXT, "ERROR")))
 	{

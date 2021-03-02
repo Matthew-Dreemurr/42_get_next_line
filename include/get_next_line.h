@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/02 15:43:38 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/02 17:05:57 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdio.h>
-# include "wraloc.h" //TODO REMOVE
+//# include "wraloc.h" //TODO REMOVE
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE	128
 # endif

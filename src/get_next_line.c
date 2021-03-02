@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/02 13:04:39 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/02 17:05:08 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ int		get_next_line(int fd, char **line)
 	free (box.buff);
 	
 	if (box.readR < BUFFER_SIZE)
-		return(/*retFree(&tmp[fd], */EO_FILE/*)*/);
+		return(retFree(&tmp[fd], EO_FILE));
 	return (L_READ);
 }

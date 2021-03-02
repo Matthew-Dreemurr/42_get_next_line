@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/02 13:04:22 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/02 16:55:23 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*joinStr(char *dest, char *s1)
 		ret[lS1 + lDest] = s1[lS1];
 	while (--lDest >= 0)
 		ret[lDest] = (dest)[lDest];
-	//free(*dest);
+	free(dest);
 #ifdef DEBUG
 	printf("======joinStr dest: \n|%s|\n\n", dest);
 	printf("======joinStr s1: \n|%s|\n\n", s1);
@@ -138,6 +138,7 @@ char	*tmpClean(char *tmp)
 #ifdef DEBUG
 	printf("======tmpClean ret: \n|%s|\n", ret);
 #endif
+	free(tmp);
 	return (ret);
 }
 
@@ -156,9 +157,9 @@ char	*retNextLine(char *tmp)
 	if (!(ret = (char*)malloc(len + 1)))
 		return (NULL);
 	ret[len] = '\0';
-	//free(*tmp);
 	while (--len >= 0 && (tmp)[len])
 		ret[len] = (tmp)[len];
+	free(tmp);
 #ifdef DEBUG
 	printf("======retNextLine ret: \n|%s|\n", ret);
 #endif
