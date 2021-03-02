@@ -61,15 +61,15 @@ int	main()
 {
 	int	loop;
 	int	fd;
-	int	fd2;
+	//int	fd2;
 	int	ret;
 	int	i;
-	int	j;
+	//int	j;
 
 	loop = LOOP;
 	ret = 0;
 	i = 1;
-	j = i;
+	//j = i;
 		//* Check open file *//
 	if((fd = open(TXT, O_RDONLY)) == -1)
 	{
@@ -77,14 +77,14 @@ int	main()
 		printf(RED "/!\\ [Error_main]: Open " TXT " fd = |%d|/!\\\n" RESET, fd);
 		#endif
 		return (0);
-	}
+	}/*
 	if((fd2 = open(TXT2, O_RDONLY)) == -1)
 	{
 		#ifdef DEBUG
 		printf(RED "/!\\ [Error_main]: Open " TXT2 " fd = |%d|/!\\\n" RESET, fd);
 		#endif
 		return (0);
-	}
+	}*/
 	#ifdef DEBUG
 	printf(GRN "Open %s successful, File descriptor |%d|\n" RESET, TXT, fd);
 	printf(YEL "Reading file |%s| whit the buffer size limit of |%d|oct\n" RESET, TXT, BUFFER_SIZE);
@@ -98,13 +98,13 @@ int	main()
 		#endif
 		return (0);
 	}
-	if (!(strcmp(TXT2, "ERROR")))
+	/*if (!(strcmp(TXT2, "ERROR")))
 	{
 		#ifdef DEBUG
 		printf(RED "/!\\ [Error_main]: Please add DEF = -D TXT2=\"FILE_NAME\" to the Makefile /!\\\n" RESET);
 		#endif
 		return (0);
-	}
+	}*/
 	while(i <= loop)
 	{
 		#ifdef DEBUG
@@ -129,6 +129,7 @@ int	main()
 		}
 		i++;
 	}
+	/*
 	while(j <= loop)
 	{
 		#ifdef DEBUG
@@ -154,9 +155,9 @@ int	main()
 			break;
 		}
 		j++;
-	}
+	}*/
 	close(fd);
-	close(fd2);
+	//close(fd2);
 	printf(GRN "\n\n[====== main EXIT =====]\n" RESET);
 	return (0);
 }
