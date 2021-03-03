@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/01 14:35:55 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/03 13:01:08 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@
 
 typedef struct	s_box
 {
-	ssize_t	readR;
-	char	*buff;
 }				t_box;
 
 
@@ -73,9 +71,4 @@ typedef struct	s_box
 */
 
 int		get_next_line(int fd, char **line);
-ssize_t	diyStrLen(char *str, char c, int mode);
-int		retFree(char **addr, int ret);
-char	*joinStr(char *dest, char *s1);
-char	*tmpClean(char *tmp);
-char	*retNextLine(char *tmp);
 #endif
