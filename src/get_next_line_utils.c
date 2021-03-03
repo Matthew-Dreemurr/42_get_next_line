@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/03 16:42:31 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:22:22 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 **
 **
 */
+
 int		freeRetun(void **addr, int ret)
 {
 	if (*addr)
@@ -25,8 +26,9 @@ int		freeRetun(void **addr, int ret)
 /*
 **
 **
-**/
-ssize_t	lenStr(const char *str, int c)
+*/
+
+ssize_t		lenStr(const char *str, int c)
 {
 	ssize_t	len;
 
@@ -43,6 +45,7 @@ ssize_t	lenStr(const char *str, int c)
 **
 **
 */
+
 char	*joinStr(char *s1, const char *s2)
 {
 	ssize_t	len_s1;
@@ -66,7 +69,34 @@ char	*joinStr(char *s1, const char *s2)
 **
 **
 */
-char	*nextLine(char	*tmp)
+
+char	*nextLine(char	**str)
 {
-	//TODO
+	ssize_t	len;
+	ssize_t	i;
+	char	*ret;
+	char	*str_cpy;
+
+	i = 0;
+	len = lenStr(*str, '\n');
+	if (!(ret = malloc(len + 1)))
+		return (NULL);
+	str_cpy = *str;
+	ret[len] = '\0';
+	while (len > i)
+	{
+		ret[i++] = *str_cpy;
+		str_cpy++;
+	}
+	str_cpy++;
+	len = 0;
+	while (*str_cpy)
+	{
+		(*str)[len] = *str_cpy;
+		puts("DEBUG");
+		str_cpy++;
+		len++;
+	}
+	(*str)[len] = '\0';
+	return (ret);
 }
