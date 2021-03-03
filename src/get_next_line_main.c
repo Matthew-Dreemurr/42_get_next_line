@@ -37,7 +37,6 @@ int		main()
 	puts("Open\n");
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		puts("Loop\n");
 		printf("Gnl ret:\n|%d|", ret);
 		printf("Line:\n|%s|", line);
 		free(line);

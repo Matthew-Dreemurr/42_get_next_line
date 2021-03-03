@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/03 18:22:22 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:26:06 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ char	*nextLine(char	**str)
 	while (*str_cpy)
 	{
 		(*str)[len] = *str_cpy;
-		puts("DEBUG");
 		str_cpy++;
 		len++;
 	}

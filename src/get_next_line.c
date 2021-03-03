@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/03 18:24:36 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:26:30 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 */
 int		get_next_line(int fd, char **line)
 {
-	ssize_t		read_ret; //TODO make it static
+	static ssize_t		read_ret; //TODO make it static
 	static char	*tmp;
 	char		*buff;
 
