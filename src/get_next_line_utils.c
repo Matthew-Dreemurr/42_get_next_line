@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/03 15:46:17 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/03 16:42:31 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,13 @@ char	*joinStr(char *s1, const char *s2)
 		ret[len_s1] = s1[len_s1];
 	free(s1);
 	return (ret);
+}
+
+/*
+**
+**
+*/
+char	*nextLine(char	*tmp)
+{
+	//TODO
 }

@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/03 14:57:55 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/03 16:29:20 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,6 @@ int		get_next_line(int fd, char **line);
 int		freeRetun(void **addr, int ret);
 ssize_t	lenStr(const char *str, int c);
 char	*joinStr(char *s1, const char *s2);
+void	freeErrorTab(char	**tab);
+char	*nextLine(char	*tmp);
 #endif

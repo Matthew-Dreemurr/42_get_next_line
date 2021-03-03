@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/03 15:43:40 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/03 16:28:58 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 int		get_next_line(int fd, char **line)
 {
 	ssize_t		read_ret;
-	static char	*tmp[FOPEN_MAX];
+	static char	*tmp;
 	char		*buff;
 
 	puts("GNL START");
@@ -30,16 +30,19 @@ int		get_next_line(int fd, char **line)
 	!(buff = (char*)malloc(BUFFER_SIZE + 1)))
 		return(ERROR);
 	buff[BUFFER_SIZE] = '\0';
-	while (!(lenStr(tmp[fd], '\n')))
+	while (!(lenStr(tmp, '\n')))
 	{
 		if ((read_ret = read(fd, buff, BUFFER_SIZE)) == ERROR)
 			return (freeRetun((void*)&buff, ERROR));
-		if (!(tmp[fd] = joinStr(tmp[fd], buff)))
+		if (!(tmp = joinStr(tmp, buff)))
+		{
+			free(tmp);
 			return (freeRetun((void*)&buff, ERROR));
+		}
 	}
 	free(buff);
-	*line = tmp[fd];
+	*line = nextLine(tmp);
 	if (read_ret < BUFFER_SIZE)
-		return (freeRetun((void*)&tmp[fd], EO_FILE));
+		return (freeRetun((void*)&tmp, EO_FILE));
 	return (L_READ);
 }
