@@ -27,3 +27,24 @@
 # define LOOP 1
 #endif
 
+int		main()
+{
+	char	*line;
+	int		ret;
+	int		fd;
+
+	fd = open(TXT, O_RDONLY);
+	puts("Open\n");
+	while ((ret = get_next_line(fd, &line)) > 0)
+	{
+		puts("Loop\n");
+		printf("Gnl ret:\n|%d|", ret);
+		printf("Line:\n|%s|", line);
+		free(line);
+	}
+		printf("EOF Gnl ret:\n|%d|", ret);
+		printf("Line:\n|%s|", line);
+		free(line);
+		close(fd);
+	return (0);
+}

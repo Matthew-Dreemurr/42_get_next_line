@@ -6,7 +6,7 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/03/02 17:11:04 by mhadad           ###   ########.fr        #
+#    Updated: 2021/03/03 15:41:20 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ leak: clean
 
 exe: leak
 	@echo "\n[======[EXE: start]======]\n"
-	@./gnl.OwO test/lorem_ipsum_of_the_doom.UwU
+	@./gnl.OwO
 	@echo "\n[=======[EXE: end]=======]\n"
 
 c:
