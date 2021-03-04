@@ -6,17 +6,17 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/03/03 15:41:20 by mhadad           ###   ########.fr        #
+#    Updated: 2021/03/04 14:22:28 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=128 \
--D TXT=\"test/lorem_ipsum_of_the_doom.UwU\" \
--D TXT2=\"test/txt.UwU\" \
+DEF = -D BUFFER_SIZE=2 \
 -D LOOP=999 \
 -D TEST0 \
+-D TXT=\"test/txt.UwU\" \
+#-D TXT=\"test/lorem_ipsum_of_the_doom.UwU\"
 #-D DEBUG
 
 CFLAG = $(DEF) -Wall -Wextra -Werror
@@ -42,7 +42,7 @@ leak: clean
 
 exe: leak
 	@echo "\n[======[EXE: start]======]\n"
-	@./gnl.OwO
+	@timeout 0.1s ./gnl.OwO > log.txt
 	@echo "\n[=======[EXE: end]=======]\n"
 
 c:

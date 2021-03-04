@@ -17,7 +17,7 @@
 #include <fcntl.h>
 #include <strings.h>
 #include <string.h>
-
+#include<time.h>
 
 #ifndef TXT
 # define TXT "ERROR"
@@ -29,20 +29,23 @@
 
 int		main()
 {
+	time_t t;   // not a primitive datatype
+    time(&t);
 	char	*line;
 	int		ret;
 	int		fd;
 
+	printf("%s", ctime(&t));
 	fd = open(TXT, O_RDONLY);
-	puts("Open\n");
+//	puts("Open\n");
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		printf("Gnl ret:\n|%d|", ret);
-		printf("Line:\n|%s|", line);
+//		printf("\nGnl ret:\n|%d|\n", ret);
+		printf("Line: |%s|\n", line);
 		free(line);
 	}
-		printf("EOF Gnl ret:\n|%d|", ret);
-		printf("Line:\n|%s|", line);
+//		printf("\nEOF Gnl ret:\n|%d|\n", ret);
+		printf("\nLine: |%s|\n", line);
 		free(line);
 		close(fd);
 	return (0);
