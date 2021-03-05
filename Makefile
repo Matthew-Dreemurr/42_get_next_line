@@ -6,20 +6,20 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/03/05 15:09:49 by mhadad           ###   ########.fr        #
+#    Updated: 2021/03/05 17:08:14 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=128 \
--D LOOP=999 \
--D TEST0 \
--D _PUTS=puts \
--D _PRINTF=printf \
--D TXT=\"test/txt.UwU\" 
+DEF = -D BUFFER_SIZE=128
+DEF += -D LOOP=999
+DEF += -D TEST0
+DEF += -D __PRINTF=_PRINTF
+DEF += -D __PRINTF=_PRINTF
+DEF += -D TXT=\"test/txt.UwU\"
+DEF += -D DEBUG
 #-D TXT=\"test/lorem_ipsum_of_the_doom.UwU\"
-#-D DEBUG
 
 CFLAG = $(DEF) -Wall -Wextra -Werror
 SRC = src/get_next_line_utils.c src/get_next_line.c \
