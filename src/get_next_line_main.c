@@ -44,7 +44,7 @@ int		main()
 		printf(YEL "Line: |%s|\n" RESET, line);
 		free(line);
 	}
-//		printf("\nEOF Gnl ret:\n|%d|\n", ret);
+		printf("\nEOF Gnl ret:\n|%d|\n", ret);
 		printf(YEL "\nLine: |%s|\n" RESET, line);
 		free(line);
 		close(fd);
