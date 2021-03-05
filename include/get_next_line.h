@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/05 13:32:11 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/05 13:59:11 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct	s_box
 
 int		get_next_line(int fd, char **line);
 int		freeRetun(void **addr, int ret);
-ssize_t	lenStr(const char *str, int c);
+ssize_t	lenStr(const char *str, int c, int mode);
 char	*joinStr(char *s1, const char *s2);
 char	*nextLine(char	**str);
 #endif

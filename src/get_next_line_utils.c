@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/05 13:32:40 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/05 14:16:16 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,29 @@ int		freeRetun(void **addr, int ret)
 **
 **
 */
-ssize_t		lenStr(const char *str, int c)//TODO return 0 if `c` not found
+ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not found
 {
 	ssize_t	len;
 
 	if (!str)
 		return (0);
-	len = -1;
-	while (str[++len])
-		if (str[len] == (char)c)
-			break;
-	if (str[len] != (char)c)
+	if (mode == 1)
+	{
+		len = -1;
+		while (str[++len])
+			if (str[len] == (char)c)
+				break;
+		if (str[len] != (char)c)
+			return (0);
+	}
+	if (mode == 2)
+	{
+		len = -1;
+		while (str[++len])
+			if (str[len] == (char)c)
+				return (1);
 		return (0);
+	}
 	//printf("lenStr ret: %lu\n", len);
 	return (len);
 }
@@ -53,8 +64,8 @@ char	*joinStr(char *s1, const char *s2)
 	ssize_t	len_s2;
 	char	*ret;
 
-	len_s1 = lenStr(s1, '\0');
-	len_s2 = lenStr(s2, '\0');
+	len_s1 = lenStr(s1, '\0', 1);
+	len_s2 = lenStr(s2, '\0', 1);
 	if (!(ret = malloc(len_s1 + len_s2 + 1)))
 		return (NULL);
 	ret[len_s1 + len_s2] = '\0';
@@ -79,7 +90,7 @@ char	*nextLine(char	**str)
 	char	*str_cpy;
 
 	i = 0;
-	len = lenStr(*str, '\n');
+	len = lenStr(*str, '\n', 1);
 	if (!(ret = malloc(len + 1)))
 		return (NULL);
 	str_cpy = *str;
