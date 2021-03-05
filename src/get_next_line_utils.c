@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/05 16:54:51 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/05 17:31:36 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,12 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 {
 	ssize_t	len;
 
+	printf("call lenStr mode: %d\n", mode);
 	if (!str)
+	{
+		printf("lenStr NULL ret: 0\n");
 		return (0);
+	}
 	if (mode == 1)
 	{
 		len = -1;
@@ -40,14 +44,21 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 			if (str[len] == (char)c)
 				break;
 		if (str[len] != (char)c)
+		{
+			printf("lenStr ret: 0\n");
 			return (0);
+		}
 	}
 	if (mode == 2)
 	{
 		len = -1;
 		while (str[++len])
 			if (str[len] == (char)c)
+			{
+				printf("lenStr ret: 1\n");
 				return (1);
+			}
+		printf("lenStr ret: 0\n");
 		return (0);
 	}
 	printf("lenStr ret: %lu\n", len);
