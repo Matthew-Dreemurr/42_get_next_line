@@ -6,7 +6,7 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/03/05 17:08:14 by mhadad           ###   ########.fr        #
+#    Updated: 2021/03/05 17:35:27 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,6 @@ CC = gcc
 DEF = -D BUFFER_SIZE=128
 DEF += -D LOOP=999
 DEF += -D TEST0
-DEF += -D __PRINTF=_PRINTF
-DEF += -D __PRINTF=_PRINTF
 DEF += -D TXT=\"test/txt.UwU\"
 DEF += -D DEBUG
 #-D TXT=\"test/lorem_ipsum_of_the_doom.UwU\"
