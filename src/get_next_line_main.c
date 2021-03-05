@@ -40,12 +40,12 @@ int		main()
 //	puts("Open\n");
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-//		printf("\nGnl ret:\n|%d|\n", ret);
-		printf("Line: |%s|\n", line);
+		printf("\nGnl ret: %d\n", ret);
+		printf(YEL "Line: |%s|\n" RESET, line);
 		free(line);
 	}
 //		printf("\nEOF Gnl ret:\n|%d|\n", ret);
-		printf("\nLine: |%s|\n", line);
+		printf(YEL "\nLine: |%s|\n" RESET, line);
 		free(line);
 		close(fd);
 	return (0);
