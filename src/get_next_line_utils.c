@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/05 15:40:28 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/05 16:54:51 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 				return (1);
 		return (0);
 	}
-	//printf("lenStr ret: %lu\n", len);
+	printf("lenStr ret: %lu\n", len);
 	return (len);
 }
 /*
