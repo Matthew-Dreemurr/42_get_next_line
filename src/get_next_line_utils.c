@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/04 14:30:00 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/05 13:32:40 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		freeRetun(void **addr, int ret)
 **
 **
 */
-
 ssize_t		lenStr(const char *str, int c)//TODO return 0 if `c` not found
 {
 	ssize_t	len;
@@ -38,10 +37,11 @@ ssize_t		lenStr(const char *str, int c)//TODO return 0 if `c` not found
 	while (str[++len])
 		if (str[len] == (char)c)
 			break;
-	printf("lenStr ret: %lu\n", len);
+	if (str[len] != (char)c)
+		return (0);
+	//printf("lenStr ret: %lu\n", len);
 	return (len);
 }
-
 /*
 **
 **

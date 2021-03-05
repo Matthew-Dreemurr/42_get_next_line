@@ -6,7 +6,7 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/03/04 14:22:28 by mhadad           ###   ########.fr        #
+#    Updated: 2021/03/05 13:33:56 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ CC = gcc
 DEF = -D BUFFER_SIZE=2 \
 -D LOOP=999 \
 -D TEST0 \
--D TXT=\"test/txt.UwU\" \
+-D _PUTS=puts \
+-D _PRINTF=printf \
+-D TXT=\"test/txt.UwU\" 
 #-D TXT=\"test/lorem_ipsum_of_the_doom.UwU\"
 #-D DEBUG
 
@@ -42,7 +44,7 @@ leak: clean
 
 exe: leak
 	@echo "\n[======[EXE: start]======]\n"
-	@timeout 0.1s ./gnl.OwO > log.txt
+	@./gnl.OwO
 	@echo "\n[=======[EXE: end]=======]\n"
 
 c:

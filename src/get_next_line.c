@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/04 22:40:13 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/05 13:32:32 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int		get_next_line(int fd, char **line)
 	static char		*tmp;
 	char			*buff;
 
-	puts("\n\n=========== START ===========\n\n");
-	printf("Last tmp:\n|%s|\nlast read return: %lu\n", tmp, read_ret);//TODO remove
+	//puts("\n=============================================");
+	//puts("        ----------- START ----------");
+	//puts("            .....................    \n");
+	//printf("Last tmp:\n|%s|\nlast read return: %lu\n", tmp, read_ret);//TODO remove
 	if (fd > FOPEN_MAX || fd < 0 || !(*line) ||
 	!(buff = (char*)malloc(BUFFER_SIZE + 1)))
 		return(ERROR);
@@ -41,8 +43,8 @@ int		get_next_line(int fd, char **line)
 			free(tmp);
 			return (freeRetun((void*)&buff, ERROR));
 		}
-		puts("\n=== while ===\n");
-		printf("read buff: \n|%s|\ntmp join: \n|%s|\n", buff, tmp);//TODO remove
+		//puts("\n=== while ===\n");
+		//printf("read buff: \n|%s|\ntmp join: \n|%s|\n", buff, tmp);//TODO remove
 	}
 	free(buff);
 	if (!(*line = nextLine(&tmp)))
