@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/06 18:12:44 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/06 18:16:06 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ int		get_next_line(int fd, char **line)
 	printf("Last tmp:\n|%s|\nlast read return: %lu\n", tmp, read_ret);//TODO remove
 	puts("        ----------- DEBUG ----------");
 #endif
+	if (read_ret == 0)
+	{
+		*line = joinStr(NULL, NULL);
+		return (/*freeRetun((void*)&tmp, */EO_FILE/*)*/);
+	}
 	if (fd < 0 || !line ||
 	!(buff = (char*)malloc(BUFFER_SIZE + 1)))
 		return(ERROR);
@@ -72,11 +77,6 @@ int		get_next_line(int fd, char **line)
 		//	break;
 	}
 	free(buff);
-	if (read_ret == 0)
-	{
-		*line = joinStr(NULL, NULL);
-		return (/*freeRetun((void*)&tmp, */EO_FILE/*)*/);
-	}
 	if (!(*line = nextLine(&tmp)))
 		return (freeRetun((void*)&tmp, ERROR));
 	return (L_READ);
