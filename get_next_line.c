@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/06 16:53:36 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/06 17:08:34 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,22 @@
 **
 **   @return L_READ (1), EO_FILE (0).
 **   ERROR (-1).
-**   //TODO @ EOL return a '\0' string
 */
+
+
+
+
+
+//TODO
+//TODO
+//TODO @ EOL return a '\0' string
+//TODO
+//TODO
+//TODO
+
+
+
+
 int		get_next_line(int fd, char **line)
 {
 	static ssize_t	read_ret;
