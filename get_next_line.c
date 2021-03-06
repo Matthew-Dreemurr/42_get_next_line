@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/06 18:16:06 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/06 18:47:20 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		get_next_line(int fd, char **line)
 	puts("        ----------- START ----------");
 	puts("            .....................    \n");
 	printf("fd: %d\n", fd);
-	printf("Last tmp:\n|%s|\nlast read return: %lu\n", tmp, read_ret);//TODO remove
+	//printf("Last tmp:\n|%s|\nlast read return: %lu\n", tmp, read_ret);//TODO remove
 	puts("        ----------- DEBUG ----------");
 #endif
 	if (read_ret == 0)
