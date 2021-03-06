@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/get_next_line.h"
+#include "get_next_line.h"
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -37,14 +37,20 @@ int		main()
 
 	printf("%s", ctime(&t));
 	fd = open(TXT, O_RDONLY);
-//	puts("Open\n");
+#ifdef DEBUG
+	puts("Open\n");
+#endif
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
+#ifdef DEBUG
 		printf("\nGnl ret: %d\n", ret);
+#endif
 		printf(YEL "Line: |%s|\n" RESET, line);
 		free(line);
 	}
+#ifdef DEBUG
 		printf("\nEOF Gnl ret:\n|%d|\n", ret);
+#endif
 		printf(YEL "\nLine: |%s|\n" RESET, line);
 		free(line);
 		close(fd);

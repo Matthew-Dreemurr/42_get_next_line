@@ -6,11 +6,11 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/05 17:31:36 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/06 16:27:10 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/get_next_line.h"
+#include "get_next_line.h"
 /*
 **
 **
@@ -31,10 +31,14 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 {
 	ssize_t	len;
 
+#ifdef DEBUG
 	printf("call lenStr mode: %d\n", mode);
+#endif
 	if (!str)
 	{
+#ifdef DEBUG
 		printf("lenStr NULL ret: 0\n");
+#endif
 		return (0);
 	}
 	if (mode == 1)
@@ -45,7 +49,9 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 				break;
 		if (str[len] != (char)c)
 		{
+#ifdef DEBUG
 			printf("lenStr ret: 0\n");
+#endif
 			return (0);
 		}
 	}
@@ -55,13 +61,19 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 		while (str[++len])
 			if (str[len] == (char)c)
 			{
+#ifdef DEBUG
 				printf("lenStr ret: 1\n");
+#endif
 				return (1);
 			}
+#ifdef DEBUG
 		printf("lenStr ret: 0\n");
+#endif
 		return (0);
 	}
+#ifdef DEBUG
 	printf("lenStr ret: %lu\n", len);
+#endif
 	return (len);
 }
 /*
@@ -122,6 +134,8 @@ char	*nextLine(char	**str)
 		len++;
 	}
 	(*str)[len] = '\0';
+#ifdef DEBUG
 	printf("nextLine **str: |%s| ret: |%s|\n", *str, ret);
+#endif
 	return (ret);
 }

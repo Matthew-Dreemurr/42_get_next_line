@@ -6,22 +6,21 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/03/05 17:35:27 by mhadad           ###   ########.fr        #
+#    Updated: 2021/03/06 16:28:11 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=128
+DEF = -D BUFFER_SIZE=9999
 DEF += -D LOOP=999
 DEF += -D TEST0
 DEF += -D TXT=\"test/txt.UwU\"
-DEF += -D DEBUG
+#DEF += -D DEBUG
 #-D TXT=\"test/lorem_ipsum_of_the_doom.UwU\"
 
 CFLAG = $(DEF) -Wall -Wextra -Werror
-SRC = src/get_next_line_utils.c src/get_next_line.c \
-	src/get_next_line_main.c
+SRC = get_next_line_utils.c get_next_line.c get_next_line_main.c
 
 all: $(NAME)
 
