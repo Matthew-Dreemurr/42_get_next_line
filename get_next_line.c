@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/08 12:54:24 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/08 12:58:44 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		get_next_line(int fd, char **line)
 #endif
 	}
 	free(buff);
-		printf("tmp: \n|%s|\n",tmp);//TODO remove
+		//printf("tmp: \n|%s|\n",tmp);//TODO remove
 	if (!(*line = nextLine(&tmp)))
 		return (freeRetun((void*)&tmp, ERROR));
 	return (L_READ);
