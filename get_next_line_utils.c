@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/06 16:27:10 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:52:44 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ char	*nextLine(char	**str)
 
 	i = 0;
 	len = lenStr(*str, '\n', 1);
-	if (!(lenStr(*str, '\n', 2)))
-		return (*str);
+	//if (!(lenStr(*str, '\n', 2)))
+	//	return (*str);
 	if (!(ret = malloc(len + 1)))
 		return (NULL);
 	str_cpy = *str;
