@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/08 13:52:44 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/08 15:17:03 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 }
 /*
 **
+** Warn s1 whill be free
 **
 */
 
@@ -114,8 +115,8 @@ char	*nextLine(char	**str)
 
 	i = 0;
 	len = lenStr(*str, '\n', 1);
-	//if (!(lenStr(*str, '\n', 2)))
-	//	return (*str);
+	if (!(lenStr(*str, '\n', 2)))
+		return (joinStr(NULL, *str));
 	if (!(ret = malloc(len + 1)))
 		return (NULL);
 	str_cpy = *str;
