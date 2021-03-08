@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/08 14:01:59 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/08 14:16:20 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		get_next_line(int fd, char **line)
 	{
 		*line = joinStr(NULL, NULL);
 		//puts(RESET "\nreturn EOF\n\n");
-		return (/*freeRetun((void*)&tmp, */EO_FILE/*)*/);
+		return (freeRetun((void*)&tmp, EO_FILE));
 	}
 		//printf("tmp: \n|%s|\n",tmp);//TODO remove
 	if (!(*line = nextLine(&tmp)))

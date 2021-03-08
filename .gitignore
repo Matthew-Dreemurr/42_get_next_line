@@ -57,3 +57,5 @@ dkms.conf
 /.idea/
 /_src/plan.svgZone.Identifier
 log
+.vscode/settings.json
+valgrind-out.txt
