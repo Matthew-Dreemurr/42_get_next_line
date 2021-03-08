@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/08 13:10:05 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:11:58 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		get_next_line(int fd, char **line)
 	if (read_ret == 0)
 	{
 		*line = joinStr(NULL, NULL);
-		puts("return EOF");
+		puts(RESET "\nreturn EOF\n\n");
 		return (/*freeRetun((void*)&tmp, */EO_FILE/*)*/);
 	}
 	if (!(buff = (char*)malloc(BUFFER_SIZE + 1)))
@@ -80,6 +80,6 @@ int		get_next_line(int fd, char **line)
 		//printf("tmp: \n|%s|\n",tmp);//TODO remove
 	if (!(*line = nextLine(&tmp)))
 		return (freeRetun((void*)&tmp, ERROR));
-	puts("return L_READ");
+	puts(RESET "\n\nreturn L_READ\n");
 	return (L_READ);
 }
