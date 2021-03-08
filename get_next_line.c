@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/06 18:47:20 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/08 12:54:24 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,15 @@ int		get_next_line(int fd, char **line)
 	//printf("Last tmp:\n|%s|\nlast read return: %lu\n", tmp, read_ret);//TODO remove
 	puts("        ----------- DEBUG ----------");
 #endif
+	if (fd < 0 || !line)
+		return(ERROR);
 	if (read_ret == 0)
 	{
 		*line = joinStr(NULL, NULL);
 		return (/*freeRetun((void*)&tmp, */EO_FILE/*)*/);
 	}
-	if (fd < 0 || !line ||
-	!(buff = (char*)malloc(BUFFER_SIZE + 1)))
-		return(ERROR);
+	if (!(buff = (char*)malloc(BUFFER_SIZE + 1)))
+		return (ERROR);
 	buff[BUFFER_SIZE] = '\0';
 	while (!(lenStr(tmp, '\n', 2)) && (read_ret != 0))
 	{
@@ -73,10 +74,9 @@ int		get_next_line(int fd, char **line)
 #ifdef DEBUG
 		printf("read ret: %lu\nread buff: \n|%s|\ntmp join: \n|%s|\n",read_ret, buff, tmp);//TODO remove
 #endif
-		//if (read_ret < BUFFER_SIZE)
-		//	break;
 	}
 	free(buff);
+		printf("tmp: \n|%s|\n",tmp);//TODO remove
 	if (!(*line = nextLine(&tmp)))
 		return (freeRetun((void*)&tmp, ERROR));
 	return (L_READ);

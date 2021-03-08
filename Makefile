@@ -6,13 +6,13 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/03/06 18:46:22 by mhadad           ###   ########.fr        #
+#    Updated: 2021/03/08 12:45:45 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=1
+DEF = -D BUFFER_SIZE=24
 DEF += -D LOOP=999
 DEF += -D TEST0
 DEF += -D TXT=\"test/txt.UwU\"
