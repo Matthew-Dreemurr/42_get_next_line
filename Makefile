@@ -6,13 +6,13 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/03/09 12:02:49 by mhadad           ###   ########.fr        #
+#    Updated: 2021/03/09 13:00:59 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=23
+DEF = -D BUFFER_SIZE=25
 DEF += -D LOOP=999
 DEF += -D TEST0
 DEF += -D TXT=\"test/txt.UwU\"
@@ -35,7 +35,7 @@ clean:
 	rm -f gnl.OwO
 
 leak: clean
-	$(CC) $(CFLAG) -g3 -fsanitize=address $(SRC) -o $(NAME)
+	$(CC) $(CFLAG) -g3 $(SRC) -o $(NAME)
 	@cat ./test/cat.UwU
 	@echo "\n"
 
