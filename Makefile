@@ -6,7 +6,7 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/03/09 14:25:15 by mhadad           ###   ########.fr        #
+#    Updated: 2021/03/09 14:46:17 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ DEF += -D TXT=\"test/txt.UwU\"
 #DEF += -D DEBUG
 #-D TXT=\"test/lorem_ipsum_of_the_doom.UwU\"
 
-CFLAG = $(DEF) #-Wall -Wextra -Werror
+CFLAG = $(DEF) -Wall -Wextra -Werror
 SRC = get_next_line_utils.c get_next_line.c get_next_line_main.c
 
 all: $(NAME)
