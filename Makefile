@@ -6,7 +6,7 @@
 #    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/03/09 14:46:17 by mhadad           ###   ########.fr        #
+#    Updated: 2021/03/09 14:55:04 by mhadad           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ clean:
 	rm -f gnl.OwO
 
 leak: clean
-	$(CC) $(CFLAG) -fsanitize=address -g3 $(SRC) -o $(NAME)
+	$(CC) $(CFLAG) -g3 $(SRC) -o $(NAME)
 	@cat ./test/cat.UwU
 	@echo "\n"
 
