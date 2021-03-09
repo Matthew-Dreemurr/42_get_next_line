@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/09 11:25:45 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/09 11:35:19 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 **
 **   @return  A string with the contatenate of s1 and s2
 */
-char	*joinStr(char *s1, const char *s2, int freeS1, int freeS2)
+char	*joinStr(char *s1, char *s2, int freeS1, int freeS2)
 {
 	ssize_t	len_s1;
 	ssize_t	len_s2;
@@ -81,7 +81,7 @@ char	*joinStr(char *s1, const char *s2, int freeS1, int freeS2)
 
 	len_s1 = lenStr(s1, '\0', 1);
 	len_s2 = lenStr(s2, '\0', 1);
-	if (!(ret = malloc(len_s1 + len_s2 + 1)))
+	if (!(ret = (char*)malloc(len_s1 + len_s2 + 1)))
 		return (NULL);
 	ret[len_s1 + len_s2] = '\0';
 	while (len_s2 > 0 && s2[--len_s2])
@@ -112,7 +112,7 @@ char	*nextLine(char	**str)
 	len = lenStr(*str, '\n', 1);
 	if (!(lenStr(*str, '\n', 2)))
 		return (joinStr(*str, NULL, FALSE, FALSE));
-	if (!(ret = malloc(len + 1)))
+	if (!(ret = (char*)malloc(len + 1)))
 		return (NULL);
 	str_cpy = *str;
 	ret[len] = '\0';
