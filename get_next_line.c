@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/09 10:53:56 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/09 11:33:32 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,18 @@ int		get_next_line(int fd, char **line)
 		return (ERROR);
 	if (!(box.buff = (char*)malloc(BUFFER_SIZE + 1)))
 		return (ERROR);
-	while (lenStr(box.buff, '\n', 2))
+	while (lenStr(box.buff, '\n', 2) && !(box.readRet < BUFFER_SIZE))
 	{
 		if ((box.readRet = read(fd, box.buff, BUFFER_SIZE)) < 0)
 			return (ERROR);
-		
+		if (!(box.tmp[fd] = joinStr(box.tmp[fd], box.buff, FALSE, FALSE)))
+			return (ERROR);
 	}
-	
+	free(box.buff);
+	if (!(*line = nextLine(&(box).tmp[fd])))
+		return (freeRetun(&(box).tmp[fd], ERROR));
+	if (box.readRet)
+		return (L_READ);
+	else if (!box.readRet)
+		return (freeRetun(&(box).tmp[fd], EO_FILE));
 }

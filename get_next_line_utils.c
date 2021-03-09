@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/09 10:53:32 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/09 11:25:45 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,15 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 }
 
 /*
-**   Will join s1 & s2, before return will free `s1` if `freeS1` is true. (Malloc, Free)
-**   
+**   Will join s1 & s2, before return will free `s1` or `s2` if `freeS1` or `freeS2`
+**    is true. (Malloc, Free)
 **
+**   @param   `s1`  Fisrt string.
+**   @param   `s2`  Secound strin.
+**
+**   @return  A string with the contatenate of s1 and s2
 */
-char	*joinStr(char *s1, const char *s2, int freeS1)
+char	*joinStr(char *s1, const char *s2, int freeS1, int freeS2)
 {
 	ssize_t	len_s1;
 	ssize_t	len_s2;
@@ -86,12 +90,16 @@ char	*joinStr(char *s1, const char *s2, int freeS1)
 		ret[len_s1] = s1[len_s1];
 	if (freeS1)
 		free(s1);
+	if (freeS2)
+		free(s2);
 	return (ret);
 }
 
 /*
+**   Will return a string with all caractere precede the first newline occured and
+**    will remove those character form `str`. (Malloc)
 **
-**
+**   @param  `str`  Pointer of adresse.
 */
 char	*nextLine(char	**str)
 {
@@ -103,7 +111,7 @@ char	*nextLine(char	**str)
 	i = 0;
 	len = lenStr(*str, '\n', 1);
 	if (!(lenStr(*str, '\n', 2)))
-		return (joinStr(NULL, *str, FALSE));
+		return (joinStr(*str, NULL, FALSE, FALSE));
 	if (!(ret = malloc(len + 1)))
 		return (NULL);
 	str_cpy = *str;
