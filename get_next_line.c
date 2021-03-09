@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/09 10:41:13 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/09 10:53:56 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ int		get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE < 1 || fd > FOPEN_MAX)
 		return (ERROR);
-	if (box.buff = (char*)malloc(BUFFER_SIZE + 1))
+	if (!(box.buff = (char*)malloc(BUFFER_SIZE + 1)))
 		return (ERROR);
-	
-	while (lenStr())
+	while (lenStr(box.buff, '\n', 2))
 	{
-		/* code */
+		if ((box.readRet = read(fd, box.buff, BUFFER_SIZE)) < 0)
+			return (ERROR);
+		
 	}
 	
 }

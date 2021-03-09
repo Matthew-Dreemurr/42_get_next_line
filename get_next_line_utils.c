@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/09 10:46:03 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/09 10:53:32 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,10 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 }
 
 /*
-**   Will join s1 & s2, before return will free `s1` if `freeS1` is true.
-**
+**   Will join s1 & s2, before return will free `s1` if `freeS1` is true. (Malloc, Free)
+**   
 **
 */
-
 char	*joinStr(char *s1, const char *s2, int freeS1)
 {
 	ssize_t	len_s1;
@@ -94,7 +93,6 @@ char	*joinStr(char *s1, const char *s2, int freeS1)
 **
 **
 */
-
 char	*nextLine(char	**str)
 {
 	ssize_t	len;
@@ -105,7 +103,7 @@ char	*nextLine(char	**str)
 	i = 0;
 	len = lenStr(*str, '\n', 1);
 	if (!(lenStr(*str, '\n', 2)))
-		return (joinStr(NULL, *str));
+		return (joinStr(NULL, *str, FALSE));
 	if (!(ret = malloc(len + 1)))
 		return (NULL);
 	str_cpy = *str;
