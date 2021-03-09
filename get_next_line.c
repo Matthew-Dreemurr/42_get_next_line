@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/09 13:05:28 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/09 14:18:18 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,18 @@ int		get_next_line(int fd, char **line)
 	box.readRet = BUFFER_SIZE;
 	while (!(lenStr(box.buff, '\n', 2)) && !(box.readRet < BUFFER_SIZE))
 	{
-		puts("=== while ===");
+		//printf("=== while ===");
 		if ((box.readRet = read(fd, box.buff, BUFFER_SIZE)) < 0)
 			return (ERROR);
-		if (!(box.tmp[fd] = joinStr(box.tmp[fd], box.buff, FALSE, FALSE)))
+			box.buff[box.readRet] = '\0';
+		if (!(box.tmp[fd] = joinStr(box.tmp[fd], box.buff, TRUE, FALSE)))
 			return (ERROR);
 	}
+	free(box.buff);
+	//printf("tmp @ end: |%s|\n", box.tmp[fd]);
 	if (box.readRet < BUFFER_SIZE && !(lenStr(box.tmp[fd], '\n', 2)))
 	{
-			*line = joinStr(box.tmp[fd], NULL, TRUE, FALSE);
+			*line = joinStr(box.tmp[fd], NULL, FALSE, FALSE);
 			return (freeRetun((void*)&(box).tmp[fd], EO_FILE));
 	}
 	if (!(*line = nextLine(&(box).tmp[fd])))
