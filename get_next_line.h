@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/09 12:55:24 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/09 15:10:25 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct	s_box
 {
 	char	*tmp[FOPEN_MAX];
 	char	*buff;
-	size_t	readRet;
+	ssize_t	readRet;
 }				t_box;
 
 

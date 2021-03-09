@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:15:17 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/09 14:53:51 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/09 15:10:52 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		get_next_line(int fd, char **line)
 	while (!(lenStr(box.buff, '\n', 2)) && !(box.readRet < BUFFER_SIZE))
 	{
 		//printf("=== while ===");
-		if ((box.readRet = read(fd, box.buff, BUFFER_SIZE)) < 0)
+		if ((box.readRet = read(fd, box.buff, BUFFER_SIZE)) == ERROR)
 			return (ERROR);
 		box.buff[box.readRet] = '\0';
 		if (!(box.tmp[fd] = joinStr(box.tmp[fd], box.buff, TRUE, FALSE)))
