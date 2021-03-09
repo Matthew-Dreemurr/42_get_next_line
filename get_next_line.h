@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/06 18:00:50 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/09 10:47:55 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 
 
 /*
+**   Return macro.
+**
 **   A line has been read   L_READ
 **   End of line            EO_FILE
 **   Error                  ERROR
@@ -58,11 +60,21 @@
 # define ERROR			-1
 
 /*
+**   Bool macro.
+*/
+
+# define TRUE			1
+# define FALSE			0
+
+/*
 **   Struct
 */
 
 typedef struct	s_box
 {
+	char	*tmp[FOPEN_MAX];
+	char	*buff;
+	size_t	readRet;
 }				t_box;
 
 
@@ -73,6 +85,6 @@ typedef struct	s_box
 int		get_next_line(int fd, char **line);
 int		freeRetun(void **addr, int ret);
 ssize_t	lenStr(const char *str, int c, int mode);
-char	*joinStr(char *s1, const char *s2);
+char	*joinStr(char *s1, const char *s2, int freeS1);
 char	*nextLine(char	**str);
 #endif

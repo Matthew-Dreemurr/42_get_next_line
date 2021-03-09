@@ -6,16 +6,20 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/08 15:48:03 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/09 10:46:03 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-/*
-**
-**
-*/
 
+/*
+**   Will return the pointed adresse en return `ret`. (Free)
+**
+**   @param  `addr`   Pointer to the adresse to free.
+**   @param  `ret`    Value will be return.
+**
+**   @return  `ret`.
+*/
 int		freeRetun(void **addr, int ret)
 {
 	if (*addr)
@@ -24,15 +28,22 @@ int		freeRetun(void **addr, int ret)
 }
 
 /*
+**   If `mode` == 1 will return the number of caracter predece the first
+**   `c` encountered.
+**   If `mode` == 2 Will return bool if the `c` exist in the sting.
 **
+**   @param `str`    The string.
+**   @param `c`      Ascii caracter.
+**   @param `mode`   If 1: strlen to `c`, if 2: bool (`c` exist) ? 1 : 0.
 **
+**   @return
 */
 ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not found
 {
 	ssize_t	len;
 
 	if (!str)
-		return (0);
+		return (FALSE);
 	if (mode == 1)
 	{
 		len = -1;
@@ -40,25 +51,26 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 			if (str[len] == (char)c)
 				break;
 		if (str[len] != (char)c)
-			return (0);
+			return (FALSE);
 	}
 	if (mode == 2)
 	{
 		len = -1;
 		while (str[++len])
 			if (str[len] == (char)c)
-				return (1);
-		return (0);
+				return (TRUE);
+		return (FALSE);
 	}
 	return (len);
 }
+
 /*
+**   Will join s1 & s2, before return will free `s1` if `freeS1` is true.
 **
-** Warn s1 whill be free
 **
 */
 
-char	*joinStr(char *s1, const char *s2)
+char	*joinStr(char *s1, const char *s2, int freeS1)
 {
 	ssize_t	len_s1;
 	ssize_t	len_s2;
@@ -73,7 +85,8 @@ char	*joinStr(char *s1, const char *s2)
 		ret[len_s1 + len_s2] = s2[len_s2];
 	while (len_s1 > 0 && s1[--len_s1])
 		ret[len_s1] = s1[len_s1];
-	free(s1);
+	if (freeS1)
+		free(s1);
 	return (ret);
 }
 
