@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/02 14:18:42 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/09 15:10:25 by mhadad           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
@@ -22,9 +11,12 @@
 #  define BUFFER_SIZE	128
 # endif
 
-# ifdef DEBUG
-#  include "wraloc.h"
+# ifdef WLK
+# include "wraloc.h"
 # endif
+# define BR printf("[%d]%s:%s\n", __LINE__, __FILE__, __FUNCTION__); getchar();
+# define P_INT(x) printf(#x " : %d\n", x);
+# define P_STR(x) printf(#x " : '%s'\n", x);
 
 # define RED	"\x1B[31m"
 # define GRN	"\x1B[32m"
@@ -45,8 +37,9 @@
 # define D_WHT	"\x1B[37;2m"
 # define B_RESET	"\x1B[0m"
 
+#define PRINT_DETAILS(str) print_details((lenStr(str, '\0', 1)), str, #str)
 
-
+void	print_details(size_t len, char *str, const char *name);
 
 /*
 **   Return macro.
@@ -76,6 +69,7 @@ typedef struct	s_box
 	char	*tmp[FOPEN_MAX];
 	char	*buff;
 	ssize_t	readRet;
+	int		eof;
 }				t_box;
 
 
