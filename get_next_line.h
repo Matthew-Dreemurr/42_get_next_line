@@ -80,6 +80,6 @@ typedef struct	s_box
 int		get_next_line(int fd, char **line);
 int		freeRetun(void **addr, int ret);
 ssize_t	lenStr(const char *str, int c, int mode);
-char	*joinStr(char *s1, char *s2, int freeS1, int freeS2);
+char	*joinStr(char *s1, char *s2, char **tofree);
 char	*nextLine(char	**str);
 #endif

@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/02 14:18:40 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/09 13:05:27 by mhadad           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "get_next_line.h"
 
@@ -65,7 +54,7 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 }
 
 /*
-**   Will join s1 & s2, before return will free `s1` or `s2` if `freeS1` or `freeS2`
+**   Will join s1 & s2, before return will free `s1` or `s2` if `freeS1`
 **    is true. (Malloc, Free)
 **
 **   @param   `s1`  Fisrt string.
@@ -73,7 +62,7 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 **
 **   @return  A string with the contatenate of s1 and s2
 */
-char	*joinStr(char *s1, char *s2, int freeS1, int freeS2)
+char	*joinStr(char *s1, char *s2, char **tofree)
 {
 	ssize_t	len_s1;
 	ssize_t	len_s2;
@@ -88,10 +77,11 @@ char	*joinStr(char *s1, char *s2, int freeS1, int freeS2)
 		ret[len_s1 + len_s2] = s2[len_s2];
 	while (len_s1 > 0 && s1[--len_s1])
 		ret[len_s1] = s1[len_s1];
-	if (freeS1)
-		free(s1);
-	if (freeS2)
-		free(s2);
+	if (tofree && *tofree)
+	{
+		free(*tofree);
+		*tofree = NULL;
+	}
 	return (ret);
 }
 
@@ -111,7 +101,7 @@ char	*nextLine(char	**str)
 	i = 0;
 	len = lenStr(*str, '\n', 1);
 	if (!(lenStr(*str, '\n', 2)))
-		return (joinStr(*str, NULL, FALSE, FALSE));
+		return (joinStr(*str, NULL, NULL));
 	if (!(ret = (char*)malloc(len + 1)))
 		return (NULL);
 	str_cpy = *str;

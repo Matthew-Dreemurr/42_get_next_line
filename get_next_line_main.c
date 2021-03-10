@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_main.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/09 16:05:34 by jaleman           #+#    #+#             */
-/*   Updated: 2021/03/10 17:09:57 by mhadad           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
@@ -16,62 +5,45 @@
 #include <sys/uio.h>
 #include <sys/types.h>
 
-int	main(int argc, char const *argv[]) {
-	int fd;
-	int fd_2;
-	int i;
-	char *line;
-	int status;
+# define NUM_FD 3
 
-		printf(B_YEL "\n     [..--================--..]\n" RESET);
-		printf(YEL "[===========[START]===========]\n" RESET, i);
-		printf(B_YEL "      ['---==============---']\n" RESET);
-	fd = open(argv[1], O_RDONLY);
-	i = 1;
-	while ((status = get_next_line(fd, &line)) == 1 && i < 500)
+int	main(int argc, char const *argv[])
+{
+	int		ret[NUM_FD];
+	int		fd[NUM_FD];
+	char	*line[NUM_FD];
+
+	ssize_t	i;
+
+	if (argc < 1 || argc > 2)
+		return (1);
+	i = 0;
+	while (i < NUM_FD)
 	{
-		printf(B_YEL "\n  [..--================--..]\n" RESET);
-		printf(YEL "[===========[return %d]===========]\n" RESET, status);
-		printf("[%d] ", i++);
-		PRINT_DETAILS(line);
-		printf("\n");
-		free(line);
-		printf(B_YEL "\n     [..--================--..]\n" RESET);
-		printf(YEL "[===========[Loop nbr %d]===========]\n" RESET, i);
-		printf(B_YEL "      ['---==============---']\n" RESET);
+		fd[i] = open(argv[1], O_RDONLY);
+		if (fd[i] < 0)
+			fd[i] = 0;
+		i++;
 	}
-	printf(B_YEL "\n  [..--================--..]\n" RESET);
-	printf(YEL "[===========[return %d]===========]\n" RESET, status);
-	PRINT_DETAILS(line);
-	fd_2 = open(argv[2], O_RDONLY);
-	free(line);
-	close(fd);
-	fd = fd_2;
-	i = 1;
-	while ((status = get_next_line(fd, &line)) == 1)
+	while (1)
 	{
-		printf(B_YEL "\n  [..--================--..]\n" RESET);
-		printf(YEL "[===========[return %d]===========]\n" RESET, status);
-		printf("[%d] ", i++);
-		PRINT_DETAILS(line);
-		printf("\n");
-		free(line);
-		printf(B_YEL "\n     [..--================--..]\n" RESET);
-		printf(YEL "[===========[Loop nbr %d]===========]\n" RESET, i);
-		printf(B_YEL "      ['---==============---']\n" RESET);
+		i = -1;
+		while (i < NUM_FD)
+		{
+			ret[i] = get_next_line(fd[i], &line[i]);
+			printf("[fd %ld]ret %d | '%s'\n", i, ret[i], line[i]);
+			free(line[i]);
+			if (ret[i] <= 0)
+			{
+				i++;
+				continue ;
+			}
+			i++;
+			if (ret[NUM_FD] <= 0)
+				break ;
+		}
+		if (ret[NUM_FD] <= 0)
+			break ;
 	}
-	printf(B_YEL "\n  [..--================--..]\n" RESET);
-	printf(YEL "[===========[return %d]===========]\n" RESET, status);
-	PRINT_DETAILS(line);
-	return (argc);
+	return (0);
 }
-
-
-//	while (1)
-//	{
-//		ret = get_next_line(fd, &line);
-//		printf("ret %d | '%s'\n", ret, line);
-//		free(line);
-//		if (ret <= 0)
-//			break ;
-//	}

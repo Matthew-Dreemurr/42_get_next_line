@@ -52,7 +52,7 @@ int		get_next_line(int fd, char **line)
 		if ((box.readRet = read(fd, box.buff, BUFFER_SIZE)) == (ssize_t)ERROR)
 			return (freeRetun((void*)&box.buff, ERROR));
 		box.buff[box.readRet] = '\0';
-		if (!(box.tmp[fd] = joinStr(box.tmp[fd], box.buff, TRUE, FALSE)))
+		if (!(box.tmp[fd] = joinStr(box.tmp[fd], box.buff, &box.tmp[fd])))
 			return (freeRetun((void*)&box.buff, ERROR));
 # ifdef DEBUG
 puts("\n\n");
@@ -73,13 +73,13 @@ puts("\n\n");
 # endif
 	if (box.eof)
 	{
-		*line = joinStr(NULL, NULL, FALSE, FALSE);
+		*line = joinStr(NULL, NULL, NULL);
 		box.eof = FALSE;
-		return(EO_FILE);
+		return(freeRetun((void*)&box.tmp[fd], EO_FILE));
 	}
 	if(!(lenStr(box.tmp[fd], '\n', 2)))
 	{
-		*line = joinStr(box.tmp[fd], NULL, TRUE, FALSE);
+		*line = joinStr(box.tmp[fd], NULL, &box.tmp[fd]);
 		box.eof = TRUE;
 		return (L_READ);
 	}
