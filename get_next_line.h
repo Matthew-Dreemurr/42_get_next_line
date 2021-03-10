@@ -8,14 +8,16 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	128
+#  define BUFFER_SIZE	99999
 # endif
+#define DEBUG 1
 
 # ifdef WLK
 # include "wraloc.h"
 # endif
 # define BR printf("[%d]%s:%s\n", __LINE__, __FILE__, __FUNCTION__); getchar();
 # define P_INT(x) printf(#x " : %d\n", x);
+# define P_LINT(x) printf(#x " : %ld\n", x);
 # define P_STR(x) printf(#x " : '%s'\n", x);
 
 # define RED	"\x1B[31m"
@@ -69,7 +71,7 @@ typedef struct	s_box
 	char	*tmp[FOPEN_MAX];
 	char	*buff;
 	ssize_t	readRet;
-	int		eof;
+	int		eof[FOPEN_MAX];
 }				t_box;
 
 

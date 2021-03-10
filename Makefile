@@ -1,23 +1,12 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/03/10 17:04:52 by mhadad           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=5
+DEF = -D BUFFER_SIZE=9999
 DEF += -D LOOP=999
 DEF += -D TEST0
 DEF += -D TXT=\"test/txt.UwU\"
-#DEF += -D DEBUG
-DEF += -D WLK
+DEF += -D DEBUG
+# DEF += -D WLK
+# DEF += -fsanitize=address -fsanitize=leak -g3
 #-D TXT=\"test/lorem_ipsum_of_the_doom.UwU\"
 
 CFLAG = $(DEF) #-Wall -Wextra -Werror

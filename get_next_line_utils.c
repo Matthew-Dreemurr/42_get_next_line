@@ -11,8 +11,11 @@
 */
 int		freeRetun(void **addr, int ret)
 {
-	if (*addr)
+	if (addr && *addr)
+	{
 		free (*addr);
+		*addr = NULL;
+	}
 	return (ret);
 }
 
