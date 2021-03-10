@@ -1,49 +1,89 @@
 
+// #include "get_next_line.h"
+// #include <stdio.h>
+// #include <fcntl.h>
+// #include <sys/uio.h>
+// #include <sys/types.h>
+
+// # define NUM_FD 3
+
+// int	main(int argc, char const *argv[])
+// {
+// 	int		ret[NUM_FD];
+// 	int		fd[NUM_FD];
+// 	char	*line[NUM_FD];
+
+// 	ssize_t	i;
+
+// 	if (argc != NUM_FD + 1)
+// 		return (1);
+// 	i = 0;
+// 	while (i < NUM_FD)
+// 	{
+// 		fd[i] = open(argv[i + ], O_RDONLY);
+// 		if (fd[i] < 0)
+// 			fd[i] = 0;
+// 		i++;
+// 	}
+// 	while (1)
+// 	{
+// 		i = 0;
+// 		while (i < NUM_FD)
+// 		{
+// 			ret[i] = get_next_line(fd[i], &line[i]);
+// 			printf("[i %ld][fd %d]ret %d | '%s'\n", i, fd[i], ret[i], line[i]);
+// 			free(line[i]);
+// 			line[i] = NULL;
+// 			i++;
+// 		}
+// 		i = 0;
+// 		while (i < NUM_FD && ret[i] == 0)
+// 			i++;
+// 		if (i == NUM_FD - 1)
+// 			break ;
+// 	}
+// 	return (0);
+// }
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main-multiple-fds.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/09 16:05:34 by jaleman           #+#    #+#             */
+/*   Updated: 2016/12/09 16:07:23 by jaleman          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 #include <stdio.h>
 #include <fcntl.h>
 #include <sys/uio.h>
 #include <sys/types.h>
 
-# define NUM_FD 3
+int	main(int argc, char const *argv[]) {
+	int fd;
+	int fd_2;
+	int i;
+	char *line;
+	int status;
 
-int	main(int argc, char const *argv[])
-{
-	int		ret[NUM_FD];
-	int		fd[NUM_FD];
-	char	*line[NUM_FD];
-
-	ssize_t	i;
-
-	if (argc < 1 || argc > 2)
-		return (1);
-	i = 0;
-	while (i < NUM_FD)
+	fd = open(argv[1], O_RDONLY);
+	i = 1;
+	while ((status = get_next_line(fd, &line)) == 1 && i < 500)
 	{
-		fd[i] = open(argv[1], O_RDONLY);
-		if (fd[i] < 0)
-			fd[i] = 0;
-		i++;
+		printf("[%d] %s\n", i++, line);
+		free(line);
 	}
-	while (1)
+	fd_2 = open(argv[2], O_RDONLY);
+	close(fd);
+	fd = fd_2;
+	while ((status = get_next_line(fd, &line)) == 1)
 	{
-		i = -1;
-		while (i < NUM_FD)
-		{
-			ret[i] = get_next_line(fd[i], &line[i]);
-			printf("[fd %ld]ret %d | '%s'\n", i, ret[i], line[i]);
-			free(line[i]);
-			if (ret[i] <= 0)
-			{
-				i++;
-				continue ;
-			}
-			i++;
-			if (ret[NUM_FD] <= 0)
-				break ;
-		}
-		if (ret[NUM_FD] <= 0)
-			break ;
+		printf("[%d] %s\n", i++, line);
+		free(line);
 	}
-	return (0);
+	return (argc);
 }

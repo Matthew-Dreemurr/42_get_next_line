@@ -73,7 +73,6 @@ puts("\n\n");
 # endif
 	if (box.eof)
 	{
-		*line = joinStr(NULL, NULL, NULL);
 		box.eof = FALSE;
 		return(freeRetun((void*)&box.tmp[fd], EO_FILE));
 	}
