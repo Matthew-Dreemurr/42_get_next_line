@@ -1,10 +1,10 @@
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=9999
+DEF = -D BUFFER_SIZE=10000000
 DEF += -D LOOP=999
 DEF += -D TEST0
 DEF += -D TXT=\"test/txt.UwU\"
-DEF += -D DEBUG
+# DEF += -D DEBUG
 # DEF += -D WLK
 # DEF += -fsanitize=address -fsanitize=leak -g3
 #-D TXT=\"test/lorem_ipsum_of_the_doom.UwU\"

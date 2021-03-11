@@ -19,7 +19,7 @@ void	print_details(size_t len, char *str, const char *name)
 		len--;
 		if (len > 0)
 		{
-			printf("|");
+			printf(" ");
 		}
 	}
 	printf("] END_DETAILS\n");
@@ -39,12 +39,15 @@ void	print_details(size_t len, char *str, const char *name)
 int		get_next_line(int fd, char **line)
 {
 	static t_box	box;
+
+// P_INT(fd);
 	box.readRet = 1;
 	if (fd < 0 || !line || BUFFER_SIZE < 1 || fd >= FOPEN_MAX)
 		return (ERROR);
 	if (!(box.buff = (char*)malloc(BUFFER_SIZE + 1)))
 		return (ERROR);
 	box.buff[BUFFER_SIZE] = '\0';
+// PRINT_DETAILS(box.buff);
 	while (!(lenStr(box.buff, '\n', 2)) && box.readRet)
 	{
 		if ((box.readRet = read(fd, box.buff, BUFFER_SIZE)) == (ssize_t)ERROR)
@@ -52,40 +55,16 @@ int		get_next_line(int fd, char **line)
 		box.buff[box.readRet] = '\0';
 		if (!(box.tmp[fd] = joinStr(box.tmp[fd], box.buff, &box.tmp[fd])))
 			return (freeRetun((void*)&box.buff, ERROR));
-// # ifdef DEBUG
-// puts("\n\n");
-// puts("=== While ===");
-// //P_STR(box.buff);
-// //P_STR(box.tmp[fd]);
-// PRINT_DETAILS(box.buff);
-// PRINT_DETAILS(box.tmp[fd]);
-// P_INT(fd);
-// P_LINT(box.readRet);
-// puts("\n\n");
-// //BR;
-// # endif
 	}
+	box.buff[0] = '\0';
 	free(box.buff);
 	box.buff = NULL;
-# ifndef DEBUG
-//BR;
-# endif
-	// if (box.eof[fd])
-	// {
-	// 	*line = joinStr(NULL, NULL, NULL);
-	// 	box.eof[fd] = FALSE;
-	// 	return(freeRetun((void*)&box.tmp[fd], EO_FILE));
-	// }
 	if(!(lenStr(box.tmp[fd], '\n', 2)))
 	{
+// puts("===== EOL =====");
 		*line = joinStr(NULL, NULL, NULL);
 		box.eof[fd] = FALSE;
-puts("=========== EOF ===========");
-
 		return(freeRetun((void*)&box.tmp[fd], EO_FILE));
-		// *line = joinStr(box.tmp[fd], NULL, &box.tmp[fd]);
-		// box.eof[fd] = TRUE;
-		// return (EO_FILE);
 	}
 	if (!(*line = nextLine(&box.tmp[fd])))
 		return (ERROR);
