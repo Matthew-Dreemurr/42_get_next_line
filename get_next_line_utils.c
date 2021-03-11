@@ -9,7 +9,7 @@
 **
 **   @return  `ret`.
 */
-int		freeRetun(void **addr, int ret)
+int		free_return(void **addr, int ret)
 {
 	if (addr && *addr)
 	{
@@ -30,7 +30,7 @@ int		freeRetun(void **addr, int ret)
 **
 **   @return
 */
-ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not found
+ssize_t		lentochar(const char *str, int c, int mode)//TODO return 0 if `c` not found
 {
 	ssize_t	len;
 
@@ -65,14 +65,14 @@ ssize_t		lenStr(const char *str, int c, int mode)//TODO return 0 if `c` not foun
 **
 **   @return  A string with the contatenate of s1 and s2
 */
-char	*joinStr(char *s1, char *s2, char **tofree)
+char	*join_str(char *s1, char *s2, char **tofree)
 {
 	ssize_t	len_s1;
 	ssize_t	len_s2;
 	char	*ret;
 
-	len_s1 = lenStr(s1, '\0', 1);
-	len_s2 = lenStr(s2, '\0', 1);
+	len_s1 = lentochar(s1, '\0', 1);
+	len_s2 = lentochar(s2, '\0', 1);
 	if (!(ret = (char*)malloc(len_s1 + len_s2 + 1)))
 		return (NULL);
 	ret[len_s1 + len_s2] = '\0';
@@ -94,7 +94,7 @@ char	*joinStr(char *s1, char *s2, char **tofree)
 **
 **   @param  `str`  Pointer of adresse.
 */
-char	*nextLine(char	**str)
+char	*next_line(char	**str)
 {
 	ssize_t	len;
 	ssize_t	i;
@@ -102,9 +102,9 @@ char	*nextLine(char	**str)
 	char	*str_cpy;
 
 	i = 0;
-	len = lenStr(*str, '\n', 1);
-	if (!(lenStr(*str, '\n', 2)))
-		return (joinStr(*str, NULL, NULL));
+	len = lentochar(*str, '\n', 1);
+	if (!(lentochar(*str, '\n', 2)))
+		return (join_str(*str, NULL, NULL));
 	if (!(ret = (char*)malloc(len + 1)))
 		return (NULL);
 	str_cpy = *str;

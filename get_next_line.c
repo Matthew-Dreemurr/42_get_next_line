@@ -1,29 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/11 14:21:39 by mhadad            #+#    #+#             */
+/*   Updated: 2021/03/11 14:52:16 by mhadad           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	print_details(size_t len, char *str, const char *name)
-{
-	len++;
-	printf("[%s][%p]Details (%ld): \n[", name, str, len);
-	while (len > 0)
-	{
-		if (*str >= ' ' && *str < '~')
-		{
-			printf("%c", *str);
-		}
-		else
-		{
-			printf("\\%d", *str);
-		}
-		str++;
-		len--;
-		if (len > 0)
-		{
-			printf("");
-		}
-	}
-	printf("] END_DETAILS\n");
-}
 
 /*
 **   @param  `fd`      The file descriptor.
@@ -31,39 +18,37 @@ void	print_details(size_t len, char *str, const char *name)
 **   @param  `box`:
 **     `*tmp`         .
 **     `*buff`        .
-**     `readRet`      .
+**     `ret`      .
 **
 **   @return L_READ (1), EO_FILE (0).
 **   ERROR (-1).
 */
+
 int		get_next_line(int fd, char **line)
 {
-	static t_box	box;
+	static t_box	box[FOPEN_MAX];
 
-// P_INT(fd);
-	box.readRet = 1;
-	if (fd < 0 || !line || BUFFER_SIZE < 1 || fd >= FOPEN_MAX)
+	if (fd < 0 || !line || BUFFER_SIZE < 1 || fd >= FOPEN_MAX ||
+	!(box[fd].buff = (char*)malloc(BUFFER_SIZE + 1)))
 		return (ERROR);
-	if (!(box.buff = (char*)malloc(BUFFER_SIZE + 1)))
-		return (ERROR);
-	box.buff[BUFFER_SIZE] = '\0';
-	while (!(lenStr(box.buff, '\n', 2)) && box.readRet)
+	box[fd].ret = 1;
+	box[fd].buff[0] = '\0';
+	while (!(lentochar(box[fd].buff, '\n', 2)) && box[fd].ret)
 	{
-		if ((box.readRet = read(fd, box.buff, BUFFER_SIZE)) == (ssize_t)ERROR)
-			return (freeRetun((void*)&box.buff, ERROR));
-		box.buff[box.readRet] = '\0';
-		if (!(box.tmp[fd] = joinStr(box.tmp[fd], box.buff, &box.tmp[fd])))
-			return (freeRetun((void*)&box.buff, ERROR));
+		if ((box[fd].ret = read(fd, box[fd].buff, BUFFER_SIZE)) ==
+		(ssize_t)ERROR)
+			return (free_return((void*)&box[fd].buff, ERROR));
+		box[fd].buff[box[fd].ret] = '\0';
+		if (!(box[fd].tmp = join_str(box[fd].tmp, box[fd].buff, &box[fd].tmp)))
+			return (free_return((void*)&box[fd].buff, ERROR));
 	}
-	box.buff[0] = '\0';
-	free(box.buff);
-	box.buff = NULL;
-	if(!(lenStr(box.tmp[fd], '\n', 2)))
+	free(box[fd].buff);
+	if (!(lentochar(box[fd].tmp, '\n', 2)))
 	{
-		*line = joinStr(box.tmp[fd], NULL, &box.tmp[fd]);
+		*line = join_str(box[fd].tmp, NULL, &box[fd].tmp);
 		return (EO_FILE);
 	}
-	if (!(*line = nextLine(&box.tmp[fd])))
+	if (!(*line = next_line(&box[fd].tmp)))
 		return (ERROR);
 	return (L_READ);
 }
