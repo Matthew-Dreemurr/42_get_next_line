@@ -60,7 +60,6 @@ int		get_next_line(int fd, char **line)
 	box.buff = NULL;
 	if(!(lenStr(box.tmp[fd], '\n', 2)))
 	{
-		puts("===== EOL =====");
 		*line = joinStr(NULL, NULL, NULL);
 		box.eof[fd] = FALSE;
 		return(freeRetun((void*)&box.tmp[fd], EO_FILE));
