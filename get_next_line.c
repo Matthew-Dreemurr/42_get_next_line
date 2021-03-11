@@ -60,7 +60,7 @@ int		get_next_line(int fd, char **line)
 	box.buff = NULL;
 	if(!(lenStr(box.tmp[fd], '\n', 2)))
 	{
-// puts("===== EOL =====");
+		puts("===== EOL =====");
 		*line = joinStr(NULL, NULL, NULL);
 		PRINT_DETAILS(*line);
 		box.eof[fd] = FALSE;
