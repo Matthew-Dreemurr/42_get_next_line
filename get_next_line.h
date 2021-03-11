@@ -71,7 +71,6 @@ typedef struct	s_box
 	char	*tmp[FOPEN_MAX];
 	char	*buff;
 	ssize_t	readRet;
-	int		eof[FOPEN_MAX];
 }				t_box;
 
 
