@@ -1,27 +1,16 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/01/02 14:25:35 by mhadad            #+#    #+#              #
-#    Updated: 2021/03/02 17:11:04 by mhadad           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=128 \
--D TXT=\"test/lorem_ipsum_of_the_doom.UwU\" \
--D TXT2=\"test/txt.UwU\" \
--D LOOP=999 \
--D TEST0 \
-#-D DEBUG
+DEF = -D BUFFER_SIZE=1
+# DEF += -D LOOP=999
+# DEF += -D TEST0
+# DEF += -D TXT=\"test/txt.UwU\"
+# DEF += -D DEBUG
+# DEF += -D WLK
+# DEF += -fsanitize=address -fsanitize=leak -g3
+#-D TXT=\"test/lorem_ipsum_of_the_doom.UwU\"
 
-CFLAG = $(DEF) -Wall -Wextra -Werror
-SRC = src/get_next_line_utils.c src/get_next_line.c \
-	src/get_next_line_main.c
+CFLAG = $(DEF) #-Wall -Wextra -Werror
+SRC = get_next_line_utils.c get_next_line.c get_next_line_main.c
 
 all: $(NAME)
 
@@ -31,18 +20,21 @@ $(NAME): $(OBJ)
 	@echo "\n"
 
 re: clean all
+	cp get_next_line.c get_next_line_bonus.c
+	cp get_next_line_utils.c get_next_line_utils_bonus.c
+	cp get_next_line.h get_next_line_bonus.h
 
 clean:
 	rm -f gnl.OwO
 
 leak: clean
-	$(CC) $(CFLAG) -g3 -fsanitize=address $(SRC) -o $(NAME)
+	$(CC) $(CFLAG) -g3 $(SRC) -o $(NAME)
 	@cat ./test/cat.UwU
 	@echo "\n"
 
 exe: leak
 	@echo "\n[======[EXE: start]======]\n"
-	@./gnl.OwO test/lorem_ipsum_of_the_doom.UwU
+	@./gnl.OwO
 	@echo "\n[=======[EXE: end]=======]\n"
 
 c:
