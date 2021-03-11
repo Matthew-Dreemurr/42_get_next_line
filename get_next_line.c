@@ -19,7 +19,7 @@ void	print_details(size_t len, char *str, const char *name)
 		len--;
 		if (len > 0)
 		{
-			printf(" ");
+			printf("");
 		}
 	}
 	printf("] END_DETAILS\n");
@@ -47,7 +47,6 @@ int		get_next_line(int fd, char **line)
 	if (!(box.buff = (char*)malloc(BUFFER_SIZE + 1)))
 		return (ERROR);
 	box.buff[BUFFER_SIZE] = '\0';
-// PRINT_DETAILS(box.buff);
 	while (!(lenStr(box.buff, '\n', 2)) && box.readRet)
 	{
 		if ((box.readRet = read(fd, box.buff, BUFFER_SIZE)) == (ssize_t)ERROR)
@@ -63,10 +62,12 @@ int		get_next_line(int fd, char **line)
 	{
 // puts("===== EOL =====");
 		*line = joinStr(NULL, NULL, NULL);
+		PRINT_DETAILS(*line);
 		box.eof[fd] = FALSE;
 		return(freeRetun((void*)&box.tmp[fd], EO_FILE));
 	}
 	if (!(*line = nextLine(&box.tmp[fd])))
 		return (ERROR);
+	PRINT_DETAILS(*line);
 	return (L_READ);
 }
