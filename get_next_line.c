@@ -58,12 +58,6 @@ int		get_next_line(int fd, char **line)
 	box.buff[0] = '\0';
 	free(box.buff);
 	box.buff = NULL;
-	// if (box.eof[fd])
-	// {
-	// 	*line = joinStr(NULL, NULL, NULL);
-	// 	box.eof[fd] = FALSE;
-	// 	return(EO_FILE);
-	// }
 	if(!(lenStr(box.tmp[fd], '\n', 2)))
 	{
 		*line = joinStr(box.tmp[fd], NULL, &box.tmp[fd]);
