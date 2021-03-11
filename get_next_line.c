@@ -58,6 +58,7 @@ int		get_next_line(int fd, char **line)
 	box.buff[0] = '\0';
 	free(box.buff);
 	box.buff = NULL;
+	printf("tmp: |%s|", box.tmp[fd]);
 	if(!(lenStr(box.tmp[fd], '\n', 2)))
 	{
 		*line = joinStr(box.tmp[fd], NULL, &box.tmp[fd]);
