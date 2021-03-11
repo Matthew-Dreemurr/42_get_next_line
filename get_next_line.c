@@ -62,12 +62,10 @@ int		get_next_line(int fd, char **line)
 	{
 		puts("===== EOL =====");
 		*line = joinStr(NULL, NULL, NULL);
-		PRINT_DETAILS(*line);
 		box.eof[fd] = FALSE;
 		return(freeRetun((void*)&box.tmp[fd], EO_FILE));
 	}
 	if (!(*line = nextLine(&box.tmp[fd])))
 		return (ERROR);
-	PRINT_DETAILS(*line);
 	return (L_READ);
 }
