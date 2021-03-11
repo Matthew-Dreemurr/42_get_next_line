@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/11 16:38:31 by mhadad            #+#    #+#             */
+/*   Updated: 2021/03/11 16:51:29 by mhadad           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "get_next_line.h"
 
@@ -9,11 +20,12 @@
 **
 **   @return  `ret`.
 */
-int		free_return(void **addr, int ret)
+
+int			free_return(void **addr, int ret)
 {
 	if (addr && *addr)
 	{
-		free (*addr);
+		free(*addr);
 		*addr = NULL;
 	}
 	return (ret);
@@ -30,7 +42,8 @@ int		free_return(void **addr, int ret)
 **
 **   @return
 */
-ssize_t		lentochar(const char *str, int c, int mode)//TODO return 0 if `c` not found
+
+ssize_t		lentochar(const char *str, int c, int mode)
 {
 	ssize_t	len;
 
@@ -41,7 +54,7 @@ ssize_t		lentochar(const char *str, int c, int mode)//TODO return 0 if `c` not f
 		len = -1;
 		while (str[++len])
 			if (str[len] == (char)c)
-				break;
+				break ;
 		if (str[len] != (char)c)
 			return (FALSE);
 	}
@@ -65,7 +78,8 @@ ssize_t		lentochar(const char *str, int c, int mode)//TODO return 0 if `c` not f
 **
 **   @return  A string with the contatenate of s1 and s2
 */
-char	*join_str(char *s1, char *s2, char **tofree)
+
+char		*join_str(char *s1, char *s2, char **tofree)
 {
 	ssize_t	len_s1;
 	ssize_t	len_s2;
@@ -89,12 +103,13 @@ char	*join_str(char *s1, char *s2, char **tofree)
 }
 
 /*
-**   Will return a string with all caractere precede the first newline occured and
-**    will remove those character form `str`. (Malloc)
+**   Will return a string with all caractere precede the first newline occured
+**    and will remove those character form `str`. (Malloc)
 **
 **   @param  `str`  Pointer of adresse.
 */
-char	*next_line(char	**str)
+
+char		*next_line(char **str)
 {
 	ssize_t	len;
 	ssize_t	i;
@@ -110,18 +125,11 @@ char	*next_line(char	**str)
 	str_cpy = *str;
 	ret[len] = '\0';
 	while (len > i)
-	{
-		ret[i++] = *str_cpy;
-		str_cpy++;
-	}
+		ret[i++] = *str_cpy++;
 	str_cpy++;
 	len = 0;
 	while (*str_cpy)
-	{
-		(*str)[len] = *str_cpy;
-		str_cpy++;
-		len++;
-	}
+		(*str)[len++] = *str_cpy++;
 	(*str)[len] = '\0';
 	return (ret);
 }
