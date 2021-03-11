@@ -1,9 +1,9 @@
 NAME = gnl.OwO
 CC = gcc
-DEF = -D BUFFER_SIZE=10000000
-DEF += -D LOOP=999
-DEF += -D TEST0
-DEF += -D TXT=\"test/txt.UwU\"
+DEF = -D BUFFER_SIZE=1
+# DEF += -D LOOP=999
+# DEF += -D TEST0
+# DEF += -D TXT=\"test/txt.UwU\"
 # DEF += -D DEBUG
 # DEF += -D WLK
 # DEF += -fsanitize=address -fsanitize=leak -g3
@@ -20,6 +20,9 @@ $(NAME): $(OBJ)
 	@echo "\n"
 
 re: clean all
+	cp get_next_line.c get_next_line_bonus.c
+	cp get_next_line_utils.c get_next_line_utils_bonus.c
+	cp get_next_line.h get_next_line_bonus.h
 
 clean:
 	rm -f gnl.OwO
