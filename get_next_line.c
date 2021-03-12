@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 14:21:39 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/12 12:40:39 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/12 12:45:45 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int		get_next_line(int fd, char **line)
 		return (EO_FILE);
 	}
 	if (!(*line = next_line(&box[fd].tmp)))
-		return (free_return((void*)&box[fd].buff, ERR));
+		return (free_return((void*)&box[fd].tmp, ERR));
 	return (L_READ);
 }
