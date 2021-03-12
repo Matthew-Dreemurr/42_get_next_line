@@ -6,7 +6,7 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 16:52:10 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/11 17:18:32 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/12 12:37:32 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@
 **
 **   A line has been read   L_READ
 **   End of line            EO_FILE
-**   Error                  ERROR
+**   Error                  ERR
 */
 
 # define L_READ		1
 # define EO_FILE	0
-# define ERROR		-1
+# define ERR		-1
 
 /*
 **   Bool macro.
