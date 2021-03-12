@@ -6,12 +6,12 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 16:52:10 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/12 12:38:19 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/12 15:02:27 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>
