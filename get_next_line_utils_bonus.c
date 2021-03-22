@@ -6,11 +6,11 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 16:38:31 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/11 17:18:30 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/22 13:36:10 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 /*
 **   Will return the pointed adresse en return `ret`. (Free)

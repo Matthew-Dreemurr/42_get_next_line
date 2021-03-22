@@ -6,11 +6,11 @@
 /*   By: mhadad <mhadad@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 14:21:39 by mhadad            #+#    #+#             */
-/*   Updated: 2021/03/12 12:46:07 by mhadad           ###   ########.fr       */
+/*   Updated: 2021/03/22 13:36:13 by mhadad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 /*
 **   @param  `fd`      The file descriptor.
